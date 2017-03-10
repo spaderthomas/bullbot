@@ -1,0 +1,5911 @@
+{
+    "Abra": {
+        "moves": [
+            "teleport",
+            "megapunch",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "psychic",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "metronome",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "flash"
+        ],
+        "stats": {
+            "attack": 138,
+            "defense": 128,
+            "hp": 253,
+            "special": 308,
+            "speed": 278
+        },
+        "type": [
+            "psychic"
+        ]
+    },
+    "Aerodactyl": {
+        "moves": [
+            "wingattack",
+            "agility",
+            "supersonic",
+            "bite",
+            "takedown",
+            "hyperbeam",
+            "razorwind",
+            "whirlwind",
+            "toxic",
+            "rage",
+            "dragonrage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skyattack",
+            "rest",
+            "substitute",
+            "fly"
+        ],
+        "stats": {
+            "attack": 308,
+            "defense": 228,
+            "hp": 363,
+            "special": 218,
+            "speed": 358
+        },
+        "type": [
+            "rock",
+            "flying"
+        ]
+    },
+    "Alakazam": {
+        "moves": [
+            "teleport",
+            "confusion",
+            "disable",
+            "psybeam",
+            "recover",
+            "psychic",
+            "reflect",
+            "kinesis",
+            "megapunch",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "flash"
+        ],
+        "stats": {
+            "attack": 198,
+            "defense": 188,
+            "hp": 313,
+            "special": 368,
+            "speed": 338
+        },
+        "type": [
+            "psychic"
+        ]
+    },
+    "Arbok": {
+        "moves": [
+            "wrap",
+            "leer",
+            "poisonsting",
+            "bite",
+            "glare",
+            "screech",
+            "acid",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "megadrain",
+            "earthquake",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "skullbash",
+            "rest",
+            "rockslide",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 268,
+            "defense": 236,
+            "hp": 323,
+            "special": 228,
+            "speed": 258
+        },
+        "type": [
+            "poison"
+        ]
+    },
+    "Arcanine": {
+        "moves": [
+            "roar",
+            "ember",
+            "leer",
+            "takedown",
+            "toxic",
+            "bodyslam",
+            "hyperbeam",
+            "rage",
+            "dragonrage",
+            "dig",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "bite",
+            "agility",
+            "flamethrower"
+        ],
+        "stats": {
+            "attack": 318,
+            "defense": 258,
+            "hp": 383,
+            "special": 258,
+            "speed": 288
+        },
+        "type": [
+            "fire"
+        ]
+    },
+    "Articuno": {
+        "moves": [
+            "peck",
+            "icebeam",
+            "blizzard",
+            "agility",
+            "mist",
+            "razorwind",
+            "whirlwind",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "hyperbeam",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "skyattack",
+            "rest",
+            "substitute",
+            "fly"
+        ],
+        "stats": {
+            "attack": 268,
+            "defense": 298,
+            "hp": 383,
+            "special": 348,
+            "speed": 268
+        },
+        "type": [
+            "ice",
+            "flying"
+        ]
+    },
+    "Beedrill": {
+        "moves": [
+            "furyattack",
+            "focusenergy",
+            "twineedle",
+            "rage",
+            "pinmissile",
+            "agility",
+            "swordsdance",
+            "toxic",
+            "takedown",
+            "hyperbeam",
+            "megadrain",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut",
+            "harden",
+            "poisonsting",
+            "stringshot"
+        ],
+        "stats": {
+            "attack": 258,
+            "defense": 178,
+            "hp": 333,
+            "special": 188,
+            "speed": 248
+        },
+        "type": [
+            "bug",
+            "poison"
+        ]
+    },
+    "Bellsprout": {
+        "moves": [
+            "vinewhip",
+            "growth",
+            "wrap",
+            "poisonpowder",
+            "sleeppowder",
+            "stunspore",
+            "acid",
+            "razorleaf",
+            "slam",
+            "swordsdance",
+            "toxic",
+            "takedown",
+            "rage",
+            "megadrain",
+            "solarbeam",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "cut"
+        ],
+        "stats": {
+            "attack": 248,
+            "defense": 168,
+            "hp": 303,
+            "special": 238,
+            "speed": 178
+        },
+        "type": [
+            "grass",
+            "poison"
+        ]
+    },
+    "Blastoise": {
+        "moves": [
+            "tackle",
+            "tailwhip",
+            "bubble",
+            "watergun",
+            "bite",
+            "withdraw",
+            "skullbash",
+            "hydropump",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "earthquake",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 264,
+            "defense": 298,
+            "hp": 361,
+            "special": 268,
+            "speed": 254
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Bulbasaur": {
+        "moves": [
+            "tackle",
+            "growl",
+            "leechseed",
+            "vinewhip",
+            "poisonpowder",
+            "razorleaf",
+            "growth",
+            "sleeppowder",
+            "solarbeam",
+            "swordsdance",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "rage",
+            "megadrain",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "cut"
+        ],
+        "stats": {
+            "attack": 196,
+            "defense": 196,
+            "hp": 293,
+            "special": 228,
+            "speed": 188
+        },
+        "type": [
+            "grass",
+            "poison"
+        ]
+    },
+    "Butterfree": {
+        "moves": [
+            "confusion",
+            "poisonpowder",
+            "stunspore",
+            "sleeppowder",
+            "supersonic",
+            "whirlwind",
+            "psybeam",
+            "gust",
+            "razorwind",
+            "toxic",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "megadrain",
+            "solarbeam",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "rest",
+            "psywave",
+            "substitute",
+            "flash",
+            "harden",
+            "tackle",
+            "stringshot"
+        ],
+        "stats": {
+            "attack": 188,
+            "defense": 198,
+            "hp": 323,
+            "special": 258,
+            "speed": 238
+        },
+        "type": [
+            "bug",
+            "flying"
+        ]
+    },
+    "Caterpie": {
+        "moves": [
+            "tackle",
+            "stringshot"
+        ],
+        "stats": {
+            "attack": 158,
+            "defense": 168,
+            "hp": 293,
+            "special": 138,
+            "speed": 188
+        },
+        "type": [
+            "bug"
+        ]
+    },
+    "Chansey": {
+        "moves": [
+            "pound",
+            "doubleslap",
+            "sing",
+            "growl",
+            "minimize",
+            "defensecurl",
+            "lightscreen",
+            "tailwhip",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "solarbeam",
+            "thunderbolt",
+            "thunder",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "metronome",
+            "eggbomb",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "strength",
+            "flash"
+        ],
+        "stats": {
+            "attack": 108,
+            "defense": 108,
+            "hp": 703,
+            "special": 308,
+            "speed": 198
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Charizard": {
+        "moves": [
+            "scratch",
+            "growl",
+            "ember",
+            "leer",
+            "rage",
+            "slash",
+            "flamethrower",
+            "firespin",
+            "megapunch",
+            "swordsdance",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "dragonrage",
+            "earthquake",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut",
+            "fly",
+            "strength"
+        ],
+        "stats": {
+            "attack": 266,
+            "defense": 254,
+            "hp": 359,
+            "special": 268,
+            "speed": 298
+        },
+        "type": [
+            "fire",
+            "flying"
+        ]
+    },
+    "Charmander": {
+        "moves": [
+            "scratch",
+            "growl",
+            "ember",
+            "leer",
+            "rage",
+            "slash",
+            "flamethrower",
+            "firespin",
+            "megapunch",
+            "swordsdance",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "submission",
+            "counter",
+            "seismictoss",
+            "dragonrage",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut",
+            "strength"
+        ],
+        "stats": {
+            "attack": 202,
+            "defense": 184,
+            "hp": 281,
+            "special": 198,
+            "speed": 228
+        },
+        "type": [
+            "fire"
+        ]
+    },
+    "Charmeleon": {
+        "moves": [
+            "scratch",
+            "growl",
+            "ember",
+            "leer",
+            "rage",
+            "slash",
+            "flamethrower",
+            "firespin",
+            "megapunch",
+            "swordsdance",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "submission",
+            "counter",
+            "seismictoss",
+            "dragonrage",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut",
+            "strength"
+        ],
+        "stats": {
+            "attack": 226,
+            "defense": 214,
+            "hp": 319,
+            "special": 228,
+            "speed": 258
+        },
+        "type": [
+            "fire"
+        ]
+    },
+    "Clefable": {
+        "moves": [
+            "sing",
+            "doubleslap",
+            "minimize",
+            "metronome",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "solarbeam",
+            "thunderbolt",
+            "thunder",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "strength",
+            "flash",
+            "pound",
+            "growl",
+            "defensecurl",
+            "lightscreen"
+        ],
+        "stats": {
+            "attack": 238,
+            "defense": 244,
+            "hp": 393,
+            "special": 268,
+            "speed": 218
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Clefairy": {
+        "moves": [
+            "pound",
+            "growl",
+            "sing",
+            "doubleslap",
+            "minimize",
+            "metronome",
+            "defensecurl",
+            "lightscreen",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "solarbeam",
+            "thunderbolt",
+            "thunder",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "strength",
+            "flash"
+        ],
+        "stats": {
+            "attack": 188,
+            "defense": 194,
+            "hp": 343,
+            "special": 218,
+            "speed": 168
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Cloyster": {
+        "moves": [
+            "withdraw",
+            "supersonic",
+            "clamp",
+            "aurorabeam",
+            "spikecannon",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "rage",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "rest",
+            "explosion",
+            "triattack",
+            "substitute",
+            "surf",
+            "tackle",
+            "leer"
+        ],
+        "stats": {
+            "attack": 288,
+            "defense": 458,
+            "hp": 303,
+            "special": 268,
+            "speed": 238
+        },
+        "type": [
+            "water",
+            "ice"
+        ]
+    },
+    "Cubone": {
+        "moves": [
+            "boneclub",
+            "growl",
+            "leer",
+            "focusenergy",
+            "thrash",
+            "bonemerang",
+            "rage",
+            "tailwhip",
+            "headbutt",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "submission",
+            "counter",
+            "seismictoss",
+            "earthquake",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 198,
+            "defense": 288,
+            "hp": 303,
+            "special": 178,
+            "speed": 168
+        },
+        "type": [
+            "ground"
+        ]
+    },
+    "Dewgong": {
+        "moves": [
+            "headbutt",
+            "growl",
+            "aurorabeam",
+            "rest",
+            "takedown",
+            "icebeam",
+            "toxic",
+            "horndrill",
+            "bodyslam",
+            "bubblebeam",
+            "watergun",
+            "blizzard",
+            "hyperbeam",
+            "payday",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "skullbash",
+            "substitute",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 238,
+            "defense": 258,
+            "hp": 383,
+            "special": 288,
+            "speed": 238
+        },
+        "type": [
+            "water",
+            "ice"
+        ]
+    },
+    "Diglett": {
+        "moves": [
+            "scratch",
+            "growl",
+            "dig",
+            "slash",
+            "earthquake",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "rage",
+            "fissure",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "rest",
+            "rockslide",
+            "substitute",
+            "cut"
+        ],
+        "stats": {
+            "attack": 208,
+            "defense": 148,
+            "hp": 223,
+            "special": 188,
+            "speed": 288
+        },
+        "type": [
+            "ground"
+        ]
+    },
+    "Ditto": {
+        "moves": [
+            "transform"
+        ],
+        "stats": {
+            "attack": 194,
+            "defense": 194,
+            "hp": 299,
+            "special": 194,
+            "speed": 194
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Dodrio": {
+        "moves": [
+            "peck",
+            "growl",
+            "furyattack",
+            "drillpeck",
+            "rage",
+            "triattack",
+            "agility",
+            "whirlwind",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "skullbash",
+            "skyattack",
+            "rest",
+            "substitute",
+            "fly"
+        ],
+        "stats": {
+            "attack": 318,
+            "defense": 238,
+            "hp": 323,
+            "special": 218,
+            "speed": 298
+        },
+        "type": [
+            "normal",
+            "flying"
+        ]
+    },
+    "Doduo": {
+        "moves": [
+            "peck",
+            "growl",
+            "furyattack",
+            "drillpeck",
+            "rage",
+            "triattack",
+            "agility",
+            "whirlwind",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "skullbash",
+            "skyattack",
+            "rest",
+            "substitute",
+            "fly"
+        ],
+        "stats": {
+            "attack": 268,
+            "defense": 188,
+            "hp": 273,
+            "special": 168,
+            "speed": 248
+        },
+        "type": [
+            "normal",
+            "flying"
+        ]
+    },
+    "Dragonair": {
+        "moves": [
+            "wrap",
+            "leer",
+            "thunderwave",
+            "agility",
+            "slam",
+            "dragonrage",
+            "hyperbeam",
+            "toxic",
+            "horndrill",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "surf"
+        ],
+        "stats": {
+            "attack": 266,
+            "defense": 228,
+            "hp": 325,
+            "special": 238,
+            "speed": 238
+        },
+        "type": [
+            "dragon"
+        ]
+    },
+    "Dragonite": {
+        "moves": [
+            "wrap",
+            "thunderwave",
+            "leer",
+            "agility",
+            "slam",
+            "dragonrage",
+            "hyperbeam",
+            "razorwind",
+            "toxic",
+            "horndrill",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 366,
+            "defense": 288,
+            "hp": 385,
+            "special": 298,
+            "speed": 258
+        },
+        "type": [
+            "dragon",
+            "flying"
+        ]
+    },
+    "Dratini": {
+        "moves": [
+            "wrap",
+            "leer",
+            "thunderwave",
+            "agility",
+            "slam",
+            "dragonrage",
+            "hyperbeam",
+            "toxic",
+            "horndrill",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "surf"
+        ],
+        "stats": {
+            "attack": 226,
+            "defense": 188,
+            "hp": 285,
+            "special": 198,
+            "speed": 198
+        },
+        "type": [
+            "dragon"
+        ]
+    },
+    "Drowzee": {
+        "moves": [
+            "pound",
+            "hypnosis",
+            "disable",
+            "confusion",
+            "headbutt",
+            "poisongas",
+            "psychic",
+            "meditate",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "metronome",
+            "skullbash",
+            "dreameater",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "flash"
+        ],
+        "stats": {
+            "attack": 194,
+            "defense": 188,
+            "hp": 323,
+            "special": 278,
+            "speed": 182
+        },
+        "type": [
+            "psychic"
+        ]
+    },
+    "Dugtrio": {
+        "moves": [
+            "scratch",
+            "growl",
+            "dig",
+            "slash",
+            "earthquake",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "fissure",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "rest",
+            "rockslide",
+            "substitute",
+            "cut"
+        ],
+        "stats": {
+            "attack": 258,
+            "defense": 198,
+            "hp": 273,
+            "special": 238,
+            "speed": 338
+        },
+        "type": [
+            "ground"
+        ]
+    },
+    "Eevee": {
+        "moves": [
+            "tackle",
+            "quickattack",
+            "tailwhip",
+            "bite",
+            "takedown",
+            "growl",
+            "focusenergy",
+            "toxic",
+            "bodyslam",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 208,
+            "defense": 198,
+            "hp": 313,
+            "special": 228,
+            "speed": 208
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Ekans": {
+        "moves": [
+            "wrap",
+            "leer",
+            "poisonsting",
+            "bite",
+            "glare",
+            "screech",
+            "acid",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "rage",
+            "megadrain",
+            "earthquake",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "skullbash",
+            "rest",
+            "rockslide",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 218,
+            "defense": 186,
+            "hp": 273,
+            "special": 178,
+            "speed": 208
+        },
+        "type": [
+            "poison"
+        ]
+    },
+    "Electabuzz": {
+        "moves": [
+            "quickattack",
+            "leer",
+            "thundershock",
+            "screech",
+            "thunderpunch",
+            "lightscreen",
+            "thunder",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "thunderbolt",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "metronome",
+            "swift",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "substitute",
+            "strength",
+            "flash"
+        ],
+        "stats": {
+            "attack": 264,
+            "defense": 212,
+            "hp": 333,
+            "special": 268,
+            "speed": 308
+        },
+        "type": [
+            "electric"
+        ]
+    },
+    "Electrode": {
+        "moves": [
+            "tackle",
+            "screech",
+            "sonicboom",
+            "lightscreen",
+            "swift",
+            "explosion",
+            "toxic",
+            "takedown",
+            "hyperbeam",
+            "thunderbolt",
+            "thunder",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "thunderwave",
+            "substitute",
+            "flash"
+        ],
+        "stats": {
+            "attack": 198,
+            "defense": 238,
+            "hp": 323,
+            "special": 258,
+            "speed": 378
+        },
+        "type": [
+            "electric"
+        ]
+    },
+    "Exeggcute": {
+        "moves": [
+            "barrage",
+            "hypnosis",
+            "reflect",
+            "leechseed",
+            "stunspore",
+            "poisonpowder",
+            "solarbeam",
+            "sleeppowder",
+            "toxic",
+            "takedown",
+            "rage",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "eggbomb",
+            "rest",
+            "psywave",
+            "explosion",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 178,
+            "defense": 258,
+            "hp": 323,
+            "special": 218,
+            "speed": 178
+        },
+        "type": [
+            "grass",
+            "psychic"
+        ]
+    },
+    "Exeggutor": {
+        "moves": [
+            "barrage",
+            "hypnosis",
+            "stomp",
+            "toxic",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "megadrain",
+            "solarbeam",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "eggbomb",
+            "rest",
+            "psywave",
+            "explosion",
+            "substitute",
+            "strength",
+            "leechseed",
+            "stunspore",
+            "poisonpowder",
+            "sleeppowder"
+        ],
+        "stats": {
+            "attack": 288,
+            "defense": 268,
+            "hp": 393,
+            "special": 348,
+            "speed": 208
+        },
+        "type": [
+            "grass",
+            "psychic"
+        ]
+    },
+    "Farfetch'd": {
+        "moves": [
+            "peck",
+            "leer",
+            "furyattack",
+            "swordsdance",
+            "agility",
+            "slash",
+            "razorwind",
+            "whirlwind",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut",
+            "fly"
+        ],
+        "stats": {
+            "attack": 228,
+            "defense": 208,
+            "hp": 307,
+            "special": 214,
+            "speed": 218
+        },
+        "type": [
+            "normal",
+            "flying"
+        ]
+    },
+    "Fearow": {
+        "moves": [
+            "peck",
+            "growl",
+            "leer",
+            "furyattack",
+            "mirrormove",
+            "drillpeck",
+            "agility",
+            "razorwind",
+            "whirlwind",
+            "toxic",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "swift",
+            "skyattack",
+            "rest",
+            "substitute",
+            "fly"
+        ],
+        "stats": {
+            "attack": 278,
+            "defense": 228,
+            "hp": 333,
+            "special": 220,
+            "speed": 298
+        },
+        "type": [
+            "normal",
+            "flying"
+        ]
+    },
+    "Flareon": {
+        "moves": [
+            "tackle",
+            "quickattack",
+            "ember",
+            "tailwhip",
+            "bite",
+            "leer",
+            "firespin",
+            "rage",
+            "flamethrower",
+            "smog",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "growl",
+            "focusenergy"
+        ],
+        "stats": {
+            "attack": 358,
+            "defense": 218,
+            "hp": 333,
+            "special": 318,
+            "speed": 228
+        },
+        "type": [
+            "fire"
+        ]
+    },
+    "Gastly": {
+        "moves": [
+            "lick",
+            "confuseray",
+            "nightshade",
+            "hypnosis",
+            "dreameater",
+            "toxic",
+            "rage",
+            "megadrain",
+            "thunderbolt",
+            "thunder",
+            "psychic",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "rest",
+            "psywave",
+            "explosion",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 168,
+            "defense": 158,
+            "hp": 263,
+            "special": 298,
+            "speed": 258
+        },
+        "type": [
+            "ghost",
+            "poison"
+        ]
+    },
+    "Gengar": {
+        "moves": [
+            "lick",
+            "confuseray",
+            "nightshade",
+            "hypnosis",
+            "dreameater",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "megadrain",
+            "thunderbolt",
+            "thunder",
+            "psychic",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "skullbash",
+            "rest",
+            "psywave",
+            "explosion",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 228,
+            "defense": 218,
+            "hp": 323,
+            "special": 358,
+            "speed": 318
+        },
+        "type": [
+            "ghost",
+            "poison"
+        ]
+    },
+    "Geodude": {
+        "moves": [
+            "tackle",
+            "defensecurl",
+            "rockthrow",
+            "harden",
+            "earthquake",
+            "explosion",
+            "megapunch",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "fireblast",
+            "rest",
+            "rockslide",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 258,
+            "defense": 298,
+            "hp": 283,
+            "special": 158,
+            "speed": 138
+        },
+        "type": [
+            "rock",
+            "ground"
+        ]
+    },
+    "Gloom": {
+        "moves": [
+            "absorb",
+            "poisonpowder",
+            "stunspore",
+            "sleeppowder",
+            "acid",
+            "petaldance",
+            "solarbeam",
+            "swordsdance",
+            "toxic",
+            "takedown",
+            "rage",
+            "megadrain",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "cut"
+        ],
+        "stats": {
+            "attack": 228,
+            "defense": 238,
+            "hp": 323,
+            "special": 268,
+            "speed": 178
+        },
+        "type": [
+            "grass",
+            "poison"
+        ]
+    },
+    "Golbat": {
+        "moves": [
+            "leechlife",
+            "screech",
+            "bite",
+            "supersonic",
+            "confuseray",
+            "wingattack",
+            "haze",
+            "razorwind",
+            "whirlwind",
+            "toxic",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "megadrain",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "swift",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 258,
+            "defense": 238,
+            "hp": 353,
+            "special": 248,
+            "speed": 278
+        },
+        "type": [
+            "poison",
+            "flying"
+        ]
+    },
+    "Goldeen": {
+        "moves": [
+            "peck",
+            "tailwhip",
+            "supersonic",
+            "hornattack",
+            "furyattack",
+            "waterfall",
+            "horndrill",
+            "agility",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "surf"
+        ],
+        "stats": {
+            "attack": 232,
+            "defense": 218,
+            "hp": 293,
+            "special": 198,
+            "speed": 224
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Golduck": {
+        "moves": [
+            "scratch",
+            "tailwhip",
+            "disable",
+            "confusion",
+            "furyswipes",
+            "hydropump",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "payday",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 262,
+            "defense": 254,
+            "hp": 363,
+            "special": 258,
+            "speed": 268
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Golem": {
+        "moves": [
+            "tackle",
+            "defensecurl",
+            "rockthrow",
+            "harden",
+            "earthquake",
+            "explosion",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "fireblast",
+            "rest",
+            "rockslide",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 318,
+            "defense": 358,
+            "hp": 363,
+            "special": 208,
+            "speed": 188
+        },
+        "type": [
+            "rock",
+            "ground"
+        ]
+    },
+    "Graveler": {
+        "moves": [
+            "tackle",
+            "defensecurl",
+            "rockthrow",
+            "harden",
+            "earthquake",
+            "explosion",
+            "megapunch",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "fireblast",
+            "rest",
+            "rockslide",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 288,
+            "defense": 328,
+            "hp": 313,
+            "special": 188,
+            "speed": 168
+        },
+        "type": [
+            "rock",
+            "ground"
+        ]
+    },
+    "Grimer": {
+        "moves": [
+            "pound",
+            "disable",
+            "poisongas",
+            "minimize",
+            "sludge",
+            "harden",
+            "screech",
+            "acidarmor",
+            "toxic",
+            "bodyslam",
+            "rage",
+            "megadrain",
+            "thunderbolt",
+            "thunder",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "fireblast",
+            "rest",
+            "explosion",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 258,
+            "defense": 198,
+            "hp": 363,
+            "special": 178,
+            "speed": 148
+        },
+        "type": [
+            "poison"
+        ]
+    },
+    "Growlithe": {
+        "moves": [
+            "bite",
+            "roar",
+            "ember",
+            "leer",
+            "takedown",
+            "agility",
+            "flamethrower",
+            "toxic",
+            "bodyslam",
+            "rage",
+            "dragonrage",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 238,
+            "defense": 188,
+            "hp": 313,
+            "special": 198,
+            "speed": 218
+        },
+        "type": [
+            "fire"
+        ]
+    },
+    "Gyarados": {
+        "moves": [
+            "bite",
+            "dragonrage",
+            "leer",
+            "hydropump",
+            "hyperbeam",
+            "tackle",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "substitute",
+            "surf",
+            "strength",
+            "splash"
+        ],
+        "stats": {
+            "attack": 348,
+            "defense": 256,
+            "hp": 393,
+            "special": 298,
+            "speed": 260
+        },
+        "type": [
+            "water",
+            "flying"
+        ]
+    },
+    "Haunter": {
+        "moves": [
+            "lick",
+            "confuseray",
+            "nightshade",
+            "hypnosis",
+            "dreameater",
+            "toxic",
+            "rage",
+            "megadrain",
+            "thunderbolt",
+            "thunder",
+            "psychic",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "rest",
+            "psywave",
+            "explosion",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 198,
+            "defense": 188,
+            "hp": 293,
+            "special": 328,
+            "speed": 288
+        },
+        "type": [
+            "ghost",
+            "poison"
+        ]
+    },
+    "Hitmonchan": {
+        "moves": [
+            "cometpunch",
+            "agility",
+            "firepunch",
+            "icepunch",
+            "thunderpunch",
+            "megapunch",
+            "counter",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "submission",
+            "seismictoss",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 308,
+            "defense": 256,
+            "hp": 303,
+            "special": 168,
+            "speed": 250
+        },
+        "type": [
+            "fighting"
+        ]
+    },
+    "Hitmonlee": {
+        "moves": [
+            "doublekick",
+            "meditate",
+            "rollingkick",
+            "jumpkick",
+            "focusenergy",
+            "hijumpkick",
+            "megakick",
+            "megapunch",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 338,
+            "defense": 204,
+            "hp": 303,
+            "special": 168,
+            "speed": 272
+        },
+        "type": [
+            "fighting"
+        ]
+    },
+    "Horsea": {
+        "moves": [
+            "bubble",
+            "smokescreen",
+            "leer",
+            "watergun",
+            "agility",
+            "hydropump",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "surf"
+        ],
+        "stats": {
+            "attack": 178,
+            "defense": 238,
+            "hp": 263,
+            "special": 238,
+            "speed": 218
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Hypno": {
+        "moves": [
+            "pound",
+            "hypnosis",
+            "disable",
+            "confusion",
+            "headbutt",
+            "poisongas",
+            "psychic",
+            "meditate",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "metronome",
+            "skullbash",
+            "dreameater",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "flash"
+        ],
+        "stats": {
+            "attack": 244,
+            "defense": 238,
+            "hp": 373,
+            "special": 328,
+            "speed": 232
+        },
+        "type": [
+            "psychic"
+        ]
+    },
+    "Ivysaur": {
+        "moves": [
+            "tackle",
+            "growl",
+            "leechseed",
+            "vinewhip",
+            "poisonpowder",
+            "razorleaf",
+            "growth",
+            "sleeppowder",
+            "solarbeam",
+            "swordsdance",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "rage",
+            "megadrain",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "cut"
+        ],
+        "stats": {
+            "attack": 222,
+            "defense": 224,
+            "hp": 323,
+            "special": 258,
+            "speed": 218
+        },
+        "type": [
+            "grass",
+            "poison"
+        ]
+    },
+    "Jigglypuff": {
+        "moves": [
+            "sing",
+            "pound",
+            "disable",
+            "defensecurl",
+            "doubleslap",
+            "rest",
+            "bodyslam",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "solarbeam",
+            "thunderbolt",
+            "thunder",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "skullbash",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "strength",
+            "flash"
+        ],
+        "stats": {
+            "attack": 188,
+            "defense": 138,
+            "hp": 433,
+            "special": 148,
+            "speed": 138
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Jolteon": {
+        "moves": [
+            "tackle",
+            "quickattack",
+            "thundershock",
+            "tailwhip",
+            "thunderwave",
+            "doublekick",
+            "agility",
+            "pinmissile",
+            "thunder",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "thunderbolt",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "flash",
+            "growl",
+            "bite",
+            "focusenergy"
+        ],
+        "stats": {
+            "attack": 228,
+            "defense": 218,
+            "hp": 333,
+            "special": 318,
+            "speed": 358
+        },
+        "type": [
+            "electric"
+        ]
+    },
+    "Jynx": {
+        "moves": [
+            "pound",
+            "lovelykiss",
+            "lick",
+            "doubleslap",
+            "icepunch",
+            "bodyslam",
+            "thrash",
+            "blizzard",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "metronome",
+            "skullbash",
+            "rest",
+            "psywave",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 198,
+            "defense": 168,
+            "hp": 333,
+            "special": 288,
+            "speed": 288
+        },
+        "type": [
+            "ice",
+            "psychic"
+        ]
+    },
+    "Kabuto": {
+        "moves": [
+            "scratch",
+            "harden",
+            "absorb",
+            "slash",
+            "leer",
+            "hydropump",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "surf"
+        ],
+        "stats": {
+            "attack": 258,
+            "defense": 278,
+            "hp": 263,
+            "special": 188,
+            "speed": 208
+        },
+        "type": [
+            "rock",
+            "water"
+        ]
+    },
+    "Kabutops": {
+        "moves": [
+            "scratch",
+            "harden",
+            "absorb",
+            "slash",
+            "leer",
+            "hydropump",
+            "razorwind",
+            "swordsdance",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "submission",
+            "seismictoss",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut",
+            "surf"
+        ],
+        "stats": {
+            "attack": 328,
+            "defense": 308,
+            "hp": 323,
+            "special": 238,
+            "speed": 258
+        },
+        "type": [
+            "rock",
+            "water"
+        ]
+    },
+    "Kadabra": {
+        "moves": [
+            "teleport",
+            "confusion",
+            "disable",
+            "psybeam",
+            "recover",
+            "psychic",
+            "reflect",
+            "kinesis",
+            "megapunch",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "flash"
+        ],
+        "stats": {
+            "attack": 168,
+            "defense": 158,
+            "hp": 283,
+            "special": 338,
+            "speed": 308
+        },
+        "type": [
+            "psychic"
+        ]
+    },
+    "Kakuna": {
+        "moves": [
+            "harden",
+            "poisonsting",
+            "stringshot"
+        ],
+        "stats": {
+            "attack": 148,
+            "defense": 198,
+            "hp": 293,
+            "special": 148,
+            "speed": 168
+        },
+        "type": [
+            "bug",
+            "poison"
+        ]
+    },
+    "Kangaskhan": {
+        "moves": [
+            "cometpunch",
+            "rage",
+            "bite",
+            "tailwhip",
+            "megapunch",
+            "leer",
+            "dizzypunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "thunderbolt",
+            "thunder",
+            "earthquake",
+            "fissure",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "rockslide",
+            "substitute",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 288,
+            "defense": 258,
+            "hp": 413,
+            "special": 178,
+            "speed": 278
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Kingler": {
+        "moves": [
+            "bubble",
+            "leer",
+            "vicegrip",
+            "guillotine",
+            "stomp",
+            "crabhammer",
+            "harden",
+            "swordsdance",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 358,
+            "defense": 328,
+            "hp": 313,
+            "special": 198,
+            "speed": 248
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Koffing": {
+        "moves": [
+            "tackle",
+            "smog",
+            "sludge",
+            "smokescreen",
+            "haze",
+            "explosion",
+            "toxic",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "fireblast",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 228,
+            "defense": 288,
+            "hp": 283,
+            "special": 218,
+            "speed": 168
+        },
+        "type": [
+            "poison"
+        ]
+    },
+    "Krabby": {
+        "moves": [
+            "bubble",
+            "leer",
+            "vicegrip",
+            "guillotine",
+            "stomp",
+            "crabhammer",
+            "harden",
+            "swordsdance",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 308,
+            "defense": 278,
+            "hp": 263,
+            "special": 148,
+            "speed": 198
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Lapras": {
+        "moves": [
+            "watergun",
+            "growl",
+            "sing",
+            "mist",
+            "bodyslam",
+            "confuseray",
+            "icebeam",
+            "hydropump",
+            "toxic",
+            "horndrill",
+            "takedown",
+            "bubblebeam",
+            "blizzard",
+            "hyperbeam",
+            "rage",
+            "solarbeam",
+            "dragonrage",
+            "thunderbolt",
+            "thunder",
+            "psychic",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "skullbash",
+            "rest",
+            "psywave",
+            "substitute",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 268,
+            "defense": 258,
+            "hp": 463,
+            "special": 288,
+            "speed": 218
+        },
+        "type": [
+            "water",
+            "ice"
+        ]
+    },
+    "Lickitung": {
+        "moves": [
+            "wrap",
+            "supersonic",
+            "stomp",
+            "disable",
+            "defensecurl",
+            "slam",
+            "screech",
+            "megapunch",
+            "swordsdance",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "earthquake",
+            "fissure",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 208,
+            "defense": 248,
+            "hp": 383,
+            "special": 218,
+            "speed": 158
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Machamp": {
+        "moves": [
+            "karatechop",
+            "lowkick",
+            "leer",
+            "focusenergy",
+            "seismictoss",
+            "submission",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "counter",
+            "rage",
+            "earthquake",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "rockslide",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 358,
+            "defense": 258,
+            "hp": 383,
+            "special": 228,
+            "speed": 208
+        },
+        "type": [
+            "fighting"
+        ]
+    },
+    "Machoke": {
+        "moves": [
+            "karatechop",
+            "lowkick",
+            "leer",
+            "focusenergy",
+            "seismictoss",
+            "submission",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "counter",
+            "rage",
+            "earthquake",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "rockslide",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 298,
+            "defense": 238,
+            "hp": 363,
+            "special": 198,
+            "speed": 188
+        },
+        "type": [
+            "fighting"
+        ]
+    },
+    "Machop": {
+        "moves": [
+            "karatechop",
+            "lowkick",
+            "leer",
+            "focusenergy",
+            "seismictoss",
+            "submission",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "counter",
+            "rage",
+            "earthquake",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "rockslide",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 258,
+            "defense": 198,
+            "hp": 343,
+            "special": 168,
+            "speed": 168
+        },
+        "type": [
+            "fighting"
+        ]
+    },
+    "Magikarp": {
+        "moves": [
+            "splash",
+            "tackle"
+        ],
+        "stats": {
+            "attack": 118,
+            "defense": 208,
+            "hp": 243,
+            "special": 138,
+            "speed": 258
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Magmar": {
+        "moves": [
+            "ember",
+            "leer",
+            "confuseray",
+            "firepunch",
+            "smokescreen",
+            "smog",
+            "flamethrower",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "psywave",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 288,
+            "defense": 212,
+            "hp": 333,
+            "special": 268,
+            "speed": 284
+        },
+        "type": [
+            "fire"
+        ]
+    },
+    "Magnemite": {
+        "moves": [
+            "tackle",
+            "sonicboom",
+            "thundershock",
+            "supersonic",
+            "thunderwave",
+            "swift",
+            "screech",
+            "toxic",
+            "takedown",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "flash"
+        ],
+        "stats": {
+            "attack": 168,
+            "defense": 238,
+            "hp": 253,
+            "special": 288,
+            "speed": 188
+        },
+        "type": [
+            "electric"
+        ]
+    },
+    "Magneton": {
+        "moves": [
+            "tackle",
+            "sonicboom",
+            "thundershock",
+            "supersonic",
+            "thunderwave",
+            "swift",
+            "screech",
+            "toxic",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "flash"
+        ],
+        "stats": {
+            "attack": 218,
+            "defense": 288,
+            "hp": 303,
+            "special": 338,
+            "speed": 238
+        },
+        "type": [
+            "electric"
+        ]
+    },
+    "Mankey": {
+        "moves": [
+            "scratch",
+            "leer",
+            "karatechop",
+            "furyswipes",
+            "focusenergy",
+            "seismictoss",
+            "thrash",
+            "lowkick",
+            "screech",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "payday",
+            "submission",
+            "counter",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "swift",
+            "skullbash",
+            "rest",
+            "rockslide",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 258,
+            "defense": 168,
+            "hp": 283,
+            "special": 168,
+            "speed": 238
+        },
+        "type": [
+            "fighting"
+        ]
+    },
+    "Marowak": {
+        "moves": [
+            "boneclub",
+            "growl",
+            "leer",
+            "focusenergy",
+            "thrash",
+            "bonemerang",
+            "rage",
+            "tailwhip",
+            "headbutt",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "earthquake",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 258,
+            "defense": 318,
+            "hp": 323,
+            "special": 198,
+            "speed": 188
+        },
+        "type": [
+            "ground"
+        ]
+    },
+    "Meowth": {
+        "moves": [
+            "scratch",
+            "growl",
+            "bite",
+            "payday",
+            "screech",
+            "furyswipes",
+            "slash",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 188,
+            "defense": 168,
+            "hp": 283,
+            "special": 178,
+            "speed": 278
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Metapod": {
+        "moves": [
+            "harden",
+            "tackle",
+            "stringshot"
+        ],
+        "stats": {
+            "attack": 138,
+            "defense": 208,
+            "hp": 303,
+            "special": 148,
+            "speed": 158
+        },
+        "type": [
+            "bug"
+        ]
+    },
+    "Mew": {
+        "moves": [
+            "pound",
+            "transform",
+            "megapunch",
+            "metronome",
+            "psychic",
+            "razorwind",
+            "swordsdance",
+            "whirlwind",
+            "megakick",
+            "toxic",
+            "horndrill",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "payday",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "megadrain",
+            "solarbeam",
+            "dragonrage",
+            "thunderbolt",
+            "thunder",
+            "earthquake",
+            "fissure",
+            "dig",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "eggbomb",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "dreameater",
+            "skyattack",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "explosion",
+            "rockslide",
+            "triattack",
+            "substitute",
+            "cut",
+            "fly",
+            "surf",
+            "strength",
+            "flash"
+        ],
+        "stats": {
+            "attack": 298,
+            "defense": 298,
+            "hp": 403,
+            "special": 298,
+            "speed": 298
+        },
+        "type": [
+            "psychic"
+        ]
+    },
+    "Mewtwo": {
+        "moves": [
+            "confusion",
+            "disable",
+            "swift",
+            "psychic",
+            "barrier",
+            "recover",
+            "mist",
+            "amnesia",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "payday",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "solarbeam",
+            "thunderbolt",
+            "thunder",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "metronome",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "strength",
+            "flash"
+        ],
+        "stats": {
+            "attack": 318,
+            "defense": 278,
+            "hp": 415,
+            "special": 406,
+            "speed": 358
+        },
+        "type": [
+            "psychic"
+        ]
+    },
+    "Moltres": {
+        "moves": [
+            "peck",
+            "firespin",
+            "leer",
+            "agility",
+            "skyattack",
+            "razorwind",
+            "whirlwind",
+            "toxic",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "rest",
+            "substitute",
+            "fly"
+        ],
+        "stats": {
+            "attack": 298,
+            "defense": 278,
+            "hp": 383,
+            "special": 348,
+            "speed": 278
+        },
+        "type": [
+            "fire",
+            "flying"
+        ]
+    },
+    "Mr. Mime": {
+        "moves": [
+            "confusion",
+            "barrier",
+            "lightscreen",
+            "doubleslap",
+            "meditate",
+            "substitute",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "solarbeam",
+            "thunderbolt",
+            "thunder",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "metronome",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "flash"
+        ],
+        "stats": {
+            "attack": 188,
+            "defense": 228,
+            "hp": 283,
+            "special": 298,
+            "speed": 278
+        },
+        "type": [
+            "psychic"
+        ]
+    },
+    "Muk": {
+        "moves": [
+            "pound",
+            "disable",
+            "poisongas",
+            "minimize",
+            "sludge",
+            "harden",
+            "screech",
+            "acidarmor",
+            "toxic",
+            "bodyslam",
+            "hyperbeam",
+            "rage",
+            "megadrain",
+            "thunderbolt",
+            "thunder",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "fireblast",
+            "rest",
+            "explosion",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 308,
+            "defense": 248,
+            "hp": 413,
+            "special": 228,
+            "speed": 198
+        },
+        "type": [
+            "poison"
+        ]
+    },
+    "Nidoking": {
+        "moves": [
+            "tackle",
+            "hornattack",
+            "poisonsting",
+            "thrash",
+            "doublekick",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "horndrill",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "payday",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "earthquake",
+            "fissure",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "rockslide",
+            "substitute",
+            "surf",
+            "strength",
+            "leer",
+            "focusenergy",
+            "furyattack"
+        ],
+        "stats": {
+            "attack": 282,
+            "defense": 252,
+            "hp": 365,
+            "special": 248,
+            "speed": 268
+        },
+        "type": [
+            "poison",
+            "ground"
+        ]
+    },
+    "Nidoqueen": {
+        "moves": [
+            "tackle",
+            "bodyslam",
+            "scratch",
+            "tailwhip",
+            "poisonsting",
+            "doublekick",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "horndrill",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "payday",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "earthquake",
+            "fissure",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "rockslide",
+            "substitute",
+            "surf",
+            "strength",
+            "growl",
+            "bite",
+            "furyswipes"
+        ],
+        "stats": {
+            "attack": 262,
+            "defense": 272,
+            "hp": 383,
+            "special": 248,
+            "speed": 250
+        },
+        "type": [
+            "poison",
+            "ground"
+        ]
+    },
+    "Nidoran": {
+        "moves": [
+            "leer",
+            "tackle",
+            "hornattack",
+            "poisonsting",
+            "focusenergy",
+            "furyattack",
+            "horndrill",
+            "doublekick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "blizzard",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "skullbash",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 212,
+            "defense": 178,
+            "hp": 295,
+            "special": 178,
+            "speed": 198
+        },
+        "type": [
+            "poison"
+        ]
+    },
+    "Nidorina": {
+        "moves": [
+            "growl",
+            "tackle",
+            "scratch",
+            "poisonsting",
+            "tailwhip",
+            "bite",
+            "furyswipes",
+            "doublekick",
+            "toxic",
+            "horndrill",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "skullbash",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 222,
+            "defense": 232,
+            "hp": 343,
+            "special": 208,
+            "speed": 210
+        },
+        "type": [
+            "poison"
+        ]
+    },
+    "Nidorino": {
+        "moves": [
+            "leer",
+            "tackle",
+            "hornattack",
+            "poisonsting",
+            "focusenergy",
+            "furyattack",
+            "horndrill",
+            "doublekick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "skullbash",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 242,
+            "defense": 212,
+            "hp": 325,
+            "special": 208,
+            "speed": 228
+        },
+        "type": [
+            "poison"
+        ]
+    },
+    "Ninetales": {
+        "moves": [
+            "ember",
+            "tailwhip",
+            "quickattack",
+            "roar",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "confuseray",
+            "flamethrower",
+            "firespin"
+        ],
+        "stats": {
+            "attack": 250,
+            "defense": 248,
+            "hp": 349,
+            "special": 298,
+            "speed": 298
+        },
+        "type": [
+            "fire"
+        ]
+    },
+    "Oddish": {
+        "moves": [
+            "absorb",
+            "poisonpowder",
+            "stunspore",
+            "sleeppowder",
+            "acid",
+            "petaldance",
+            "solarbeam",
+            "swordsdance",
+            "toxic",
+            "takedown",
+            "rage",
+            "megadrain",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "cut"
+        ],
+        "stats": {
+            "attack": 198,
+            "defense": 208,
+            "hp": 293,
+            "special": 248,
+            "speed": 158
+        },
+        "type": [
+            "grass",
+            "poison"
+        ]
+    },
+    "Omanyte": {
+        "moves": [
+            "watergun",
+            "withdraw",
+            "hornattack",
+            "leer",
+            "spikecannon",
+            "hydropump",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "surf"
+        ],
+        "stats": {
+            "attack": 178,
+            "defense": 298,
+            "hp": 273,
+            "special": 278,
+            "speed": 168
+        },
+        "type": [
+            "rock",
+            "water"
+        ]
+    },
+    "Omastar": {
+        "moves": [
+            "watergun",
+            "withdraw",
+            "hornattack",
+            "leer",
+            "spikecannon",
+            "hydropump",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "submission",
+            "seismictoss",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "skullbash",
+            "rest",
+            "substitute",
+            "surf"
+        ],
+        "stats": {
+            "attack": 218,
+            "defense": 348,
+            "hp": 343,
+            "special": 328,
+            "speed": 208
+        },
+        "type": [
+            "rock",
+            "water"
+        ]
+    },
+    "Onix": {
+        "moves": [
+            "tackle",
+            "screech",
+            "bind",
+            "rockthrow",
+            "rage",
+            "slam",
+            "harden",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "earthquake",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "rest",
+            "explosion",
+            "rockslide",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 188,
+            "defense": 418,
+            "hp": 273,
+            "special": 158,
+            "speed": 238
+        },
+        "type": [
+            "rock",
+            "ground"
+        ]
+    },
+    "Paras": {
+        "moves": [
+            "scratch",
+            "stunspore",
+            "leechlife",
+            "spore",
+            "slash",
+            "growth",
+            "swordsdance",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "rage",
+            "megadrain",
+            "solarbeam",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut"
+        ],
+        "stats": {
+            "attack": 238,
+            "defense": 208,
+            "hp": 273,
+            "special": 208,
+            "speed": 148
+        },
+        "type": [
+            "bug",
+            "grass"
+        ]
+    },
+    "Parasect": {
+        "moves": [
+            "scratch",
+            "stunspore",
+            "leechlife",
+            "spore",
+            "slash",
+            "growth",
+            "swordsdance",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "megadrain",
+            "solarbeam",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut"
+        ],
+        "stats": {
+            "attack": 288,
+            "defense": 258,
+            "hp": 323,
+            "special": 258,
+            "speed": 158
+        },
+        "type": [
+            "bug",
+            "grass"
+        ]
+    },
+    "Persian": {
+        "moves": [
+            "scratch",
+            "growl",
+            "bite",
+            "screech",
+            "payday",
+            "furyswipes",
+            "slash",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "hyperbeam",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 238,
+            "defense": 218,
+            "hp": 333,
+            "special": 228,
+            "speed": 328
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Pidgeot": {
+        "moves": [
+            "gust",
+            "quickattack",
+            "whirlwind",
+            "wingattack",
+            "agility",
+            "mirrormove",
+            "razorwind",
+            "toxic",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "skyattack",
+            "rest",
+            "substitute",
+            "fly"
+        ],
+        "stats": {
+            "attack": 258,
+            "defense": 248,
+            "hp": 369,
+            "special": 238,
+            "speed": 280
+        },
+        "type": [
+            "normal",
+            "flying"
+        ]
+    },
+    "Pidgeotto": {
+        "moves": [
+            "gust",
+            "quickattack",
+            "whirlwind",
+            "wingattack",
+            "agility",
+            "mirrormove",
+            "razorwind",
+            "toxic",
+            "takedown",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "skyattack",
+            "rest",
+            "substitute",
+            "fly"
+        ],
+        "stats": {
+            "attack": 218,
+            "defense": 208,
+            "hp": 329,
+            "special": 198,
+            "speed": 240
+        },
+        "type": [
+            "normal",
+            "flying"
+        ]
+    },
+    "Pidgey": {
+        "moves": [
+            "gust",
+            "quickattack",
+            "whirlwind",
+            "wingattack",
+            "agility",
+            "mirrormove",
+            "razorwind",
+            "toxic",
+            "takedown",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "skyattack",
+            "rest",
+            "substitute",
+            "fly"
+        ],
+        "stats": {
+            "attack": 188,
+            "defense": 178,
+            "hp": 283,
+            "special": 168,
+            "speed": 210
+        },
+        "type": [
+            "normal",
+            "flying"
+        ]
+    },
+    "Pikachu": {
+        "moves": [
+            "thundershock",
+            "growl",
+            "thunderwave",
+            "quickattack",
+            "swift",
+            "agility",
+            "thunder",
+            "tailwhip",
+            "doubleteam",
+            "slam",
+            "thunderbolt",
+            "lightscreen",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "payday",
+            "submission",
+            "seismictoss",
+            "rage",
+            "mimic",
+            "reflect",
+            "bide",
+            "skullbash",
+            "rest",
+            "substitute",
+            "flash",
+            "surf"
+        ],
+        "stats": {
+            "attack": 208,
+            "defense": 158,
+            "hp": 273,
+            "special": 198,
+            "speed": 278
+        },
+        "type": [
+            "electric"
+        ]
+    },
+    "Pinsir": {
+        "moves": [
+            "vicegrip",
+            "seismictoss",
+            "guillotine",
+            "focusenergy",
+            "harden",
+            "slash",
+            "swordsdance",
+            "bind",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "submission",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "rest",
+            "substitute",
+            "cut",
+            "strength"
+        ],
+        "stats": {
+            "attack": 348,
+            "defense": 298,
+            "hp": 333,
+            "special": 208,
+            "speed": 268
+        },
+        "type": [
+            "bug"
+        ]
+    },
+    "Poliwag": {
+        "moves": [
+            "bubble",
+            "hypnosis",
+            "watergun",
+            "doubleslap",
+            "bodyslam",
+            "amnesia",
+            "hydropump",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "rage",
+            "psychic",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "skullbash",
+            "rest",
+            "psywave",
+            "substitute",
+            "surf"
+        ],
+        "stats": {
+            "attack": 198,
+            "defense": 178,
+            "hp": 283,
+            "special": 178,
+            "speed": 278
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Poliwhirl": {
+        "moves": [
+            "bubble",
+            "hypnosis",
+            "watergun",
+            "doubleslap",
+            "bodyslam",
+            "amnesia",
+            "hydropump",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "earthquake",
+            "fissure",
+            "psychic",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "skullbash",
+            "rest",
+            "psywave",
+            "substitute",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 228,
+            "defense": 228,
+            "hp": 333,
+            "special": 198,
+            "speed": 278
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Poliwrath": {
+        "moves": [
+            "hypnosis",
+            "watergun",
+            "doubleslap",
+            "bodyslam",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "earthquake",
+            "fissure",
+            "psychic",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "skullbash",
+            "rest",
+            "psywave",
+            "substitute",
+            "surf",
+            "strength",
+            "bubble",
+            "amnesia",
+            "hydropump"
+        ],
+        "stats": {
+            "attack": 268,
+            "defense": 288,
+            "hp": 383,
+            "special": 238,
+            "speed": 238
+        },
+        "type": [
+            "water",
+            "fighting"
+        ]
+    },
+    "Ponyta": {
+        "moves": [
+            "ember",
+            "tailwhip",
+            "stomp",
+            "growl",
+            "firespin",
+            "takedown",
+            "agility",
+            "toxic",
+            "horndrill",
+            "bodyslam",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 268,
+            "defense": 208,
+            "hp": 303,
+            "special": 228,
+            "speed": 278
+        },
+        "type": [
+            "fire"
+        ]
+    },
+    "Porygon": {
+        "moves": [
+            "tackle",
+            "sharpen",
+            "conversion",
+            "psybeam",
+            "recover",
+            "agility",
+            "triattack",
+            "toxic",
+            "takedown",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "substitute",
+            "flash"
+        ],
+        "stats": {
+            "attack": 218,
+            "defense": 238,
+            "hp": 333,
+            "special": 248,
+            "speed": 178
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Primeape": {
+        "moves": [
+            "scratch",
+            "leer",
+            "karatechop",
+            "furyswipes",
+            "focusenergy",
+            "seismictoss",
+            "thrash",
+            "lowkick",
+            "rage",
+            "screech",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "payday",
+            "submission",
+            "counter",
+            "thunderbolt",
+            "thunder",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "metronome",
+            "swift",
+            "skullbash",
+            "rest",
+            "rockslide",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 308,
+            "defense": 218,
+            "hp": 333,
+            "special": 218,
+            "speed": 288
+        },
+        "type": [
+            "fighting"
+        ]
+    },
+    "Psyduck": {
+        "moves": [
+            "scratch",
+            "tailwhip",
+            "disable",
+            "confusion",
+            "furyswipes",
+            "hydropump",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "payday",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "surf",
+            "strength",
+            "amnesia"
+        ],
+        "stats": {
+            "attack": 202,
+            "defense": 194,
+            "hp": 303,
+            "special": 198,
+            "speed": 208
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Raichu": {
+        "moves": [
+            "thundershock",
+            "growl",
+            "thunderwave",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "payday",
+            "submission",
+            "seismictoss",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "flash",
+            "tailwhip",
+            "quickattack",
+            "slam",
+            "agility",
+            "lightscreen"
+        ],
+        "stats": {
+            "attack": 278,
+            "defense": 208,
+            "hp": 323,
+            "special": 278,
+            "speed": 298
+        },
+        "type": [
+            "electric"
+        ]
+    },
+    "Rapidash": {
+        "moves": [
+            "ember",
+            "tailwhip",
+            "stomp",
+            "growl",
+            "firespin",
+            "takedown",
+            "agility",
+            "toxic",
+            "horndrill",
+            "bodyslam",
+            "hyperbeam",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 298,
+            "defense": 238,
+            "hp": 333,
+            "special": 258,
+            "speed": 308
+        },
+        "type": [
+            "fire"
+        ]
+    },
+    "Raticate": {
+        "moves": [
+            "tackle",
+            "tailwhip",
+            "quickattack",
+            "hyperfang",
+            "focusenergy",
+            "superfang",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 260,
+            "defense": 218,
+            "hp": 313,
+            "special": 198,
+            "speed": 292
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Rattata": {
+        "moves": [
+            "tackle",
+            "tailwhip",
+            "quickattack",
+            "hyperfang",
+            "focusenergy",
+            "superfang",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "blizzard",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 210,
+            "defense": 168,
+            "hp": 263,
+            "special": 148,
+            "speed": 242
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Rhydon": {
+        "moves": [
+            "hornattack",
+            "stomp",
+            "tailwhip",
+            "furyattack",
+            "horndrill",
+            "leer",
+            "takedown",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "payday",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "earthquake",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "rockslide",
+            "substitute",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 358,
+            "defense": 338,
+            "hp": 413,
+            "special": 188,
+            "speed": 178
+        },
+        "type": [
+            "ground",
+            "rock"
+        ]
+    },
+    "Rhyhorn": {
+        "moves": [
+            "hornattack",
+            "stomp",
+            "tailwhip",
+            "furyattack",
+            "horndrill",
+            "leer",
+            "takedown",
+            "toxic",
+            "bodyslam",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "earthquake",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "rockslide",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 268,
+            "defense": 288,
+            "hp": 363,
+            "special": 158,
+            "speed": 148
+        },
+        "type": [
+            "ground",
+            "rock"
+        ]
+    },
+    "Sandshrew": {
+        "moves": [
+            "scratch",
+            "slash",
+            "poisonsting",
+            "swift",
+            "furyswipes",
+            "swordsdance",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "submission",
+            "seismictoss",
+            "rage",
+            "earthquake",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "skullbash",
+            "rest",
+            "rockslide",
+            "substitute",
+            "cut",
+            "strength"
+        ],
+        "stats": {
+            "attack": 248,
+            "defense": 268,
+            "hp": 303,
+            "special": 158,
+            "speed": 178
+        },
+        "type": [
+            "ground"
+        ]
+    },
+    "Sandslash": {
+        "moves": [
+            "scratch",
+            "slash",
+            "poisonsting",
+            "swift",
+            "furyswipes",
+            "swordsdance",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "submission",
+            "seismictoss",
+            "rage",
+            "earthquake",
+            "fissure",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "skullbash",
+            "rest",
+            "rockslide",
+            "substitute",
+            "cut",
+            "strength"
+        ],
+        "stats": {
+            "attack": 298,
+            "defense": 318,
+            "hp": 353,
+            "special": 208,
+            "speed": 228
+        },
+        "type": [
+            "ground"
+        ]
+    },
+    "Scyther": {
+        "moves": [
+            "quickattack",
+            "leer",
+            "focusenergy",
+            "doubleteam",
+            "slash",
+            "swordsdance",
+            "agility",
+            "wingattack",
+            "toxic",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "mimic",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut"
+        ],
+        "stats": {
+            "attack": 318,
+            "defense": 258,
+            "hp": 343,
+            "special": 208,
+            "speed": 308
+        },
+        "type": [
+            "bug",
+            "flying"
+        ]
+    },
+    "Seadra": {
+        "moves": [
+            "bubble",
+            "smokescreen",
+            "leer",
+            "watergun",
+            "agility",
+            "hydropump",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "surf"
+        ],
+        "stats": {
+            "attack": 228,
+            "defense": 288,
+            "hp": 313,
+            "special": 288,
+            "speed": 268
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Seaking": {
+        "moves": [
+            "peck",
+            "tailwhip",
+            "supersonic",
+            "hornattack",
+            "furyattack",
+            "waterfall",
+            "horndrill",
+            "agility",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "surf"
+        ],
+        "stats": {
+            "attack": 282,
+            "defense": 228,
+            "hp": 363,
+            "special": 258,
+            "speed": 234
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Seel": {
+        "moves": [
+            "headbutt",
+            "growl",
+            "aurorabeam",
+            "rest",
+            "takedown",
+            "icebeam",
+            "toxic",
+            "horndrill",
+            "bodyslam",
+            "bubblebeam",
+            "watergun",
+            "blizzard",
+            "payday",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "skullbash",
+            "substitute",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 188,
+            "defense": 208,
+            "hp": 333,
+            "special": 238,
+            "speed": 188
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Shellder": {
+        "moves": [
+            "tackle",
+            "withdraw",
+            "supersonic",
+            "clamp",
+            "aurorabeam",
+            "leer",
+            "icebeam",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "blizzard",
+            "rage",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "rest",
+            "explosion",
+            "triattack",
+            "substitute",
+            "surf"
+        ],
+        "stats": {
+            "attack": 228,
+            "defense": 298,
+            "hp": 263,
+            "special": 188,
+            "speed": 178
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Slowbro": {
+        "moves": [
+            "confusion",
+            "disable",
+            "headbutt",
+            "growl",
+            "watergun",
+            "withdraw",
+            "amnesia",
+            "psychic",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "payday",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "earthquake",
+            "fissure",
+            "dig",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "surf",
+            "strength",
+            "flash"
+        ],
+        "stats": {
+            "attack": 248,
+            "defense": 318,
+            "hp": 393,
+            "special": 258,
+            "speed": 158
+        },
+        "type": [
+            "water",
+            "psychic"
+        ]
+    },
+    "Slowpoke": {
+        "moves": [
+            "confusion",
+            "disable",
+            "headbutt",
+            "growl",
+            "watergun",
+            "amnesia",
+            "psychic",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "payday",
+            "rage",
+            "earthquake",
+            "fissure",
+            "dig",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "surf",
+            "strength",
+            "flash"
+        ],
+        "stats": {
+            "attack": 228,
+            "defense": 228,
+            "hp": 383,
+            "special": 178,
+            "speed": 128
+        },
+        "type": [
+            "water",
+            "psychic"
+        ]
+    },
+    "Snorlax": {
+        "moves": [
+            "headbutt",
+            "amnesia",
+            "rest",
+            "bodyslam",
+            "harden",
+            "hyperbeam",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "payday",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "solarbeam",
+            "thunderbolt",
+            "thunder",
+            "earthquake",
+            "fissure",
+            "psychic",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "metronome",
+            "fireblast",
+            "skullbash",
+            "psywave",
+            "rockslide",
+            "self-destruct",
+            "substitute",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 318,
+            "defense": 228,
+            "hp": 523,
+            "special": 228,
+            "speed": 158
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Spearow": {
+        "moves": [
+            "peck",
+            "growl",
+            "leer",
+            "furyattack",
+            "mirrormove",
+            "drillpeck",
+            "agility",
+            "razorwind",
+            "whirlwind",
+            "toxic",
+            "takedown",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "swift",
+            "skyattack",
+            "rest",
+            "substitute",
+            "fly"
+        ],
+        "stats": {
+            "attack": 218,
+            "defense": 158,
+            "hp": 283,
+            "special": 160,
+            "speed": 238
+        },
+        "type": [
+            "normal",
+            "flying"
+        ]
+    },
+    "Squirtle": {
+        "moves": [
+            "tackle",
+            "tailwhip",
+            "bubble",
+            "watergun",
+            "bite",
+            "withdraw",
+            "skullbash",
+            "hydropump",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 194,
+            "defense": 228,
+            "hp": 291,
+            "special": 198,
+            "speed": 184
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Starmie": {
+        "moves": [
+            "tackle",
+            "watergun",
+            "harden",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "surf",
+            "flash",
+            "recover",
+            "minimize",
+            "lightscreen",
+            "hydropump"
+        ],
+        "stats": {
+            "attack": 248,
+            "defense": 268,
+            "hp": 323,
+            "special": 298,
+            "speed": 328
+        },
+        "type": [
+            "water",
+            "psychic"
+        ]
+    },
+    "Staryu": {
+        "moves": [
+            "tackle",
+            "watergun",
+            "harden",
+            "recover",
+            "swift",
+            "minimize",
+            "lightscreen",
+            "hydropump",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "surf",
+            "flash"
+        ],
+        "stats": {
+            "attack": 188,
+            "defense": 208,
+            "hp": 263,
+            "special": 238,
+            "speed": 268
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Tangela": {
+        "moves": [
+            "constrict",
+            "bind",
+            "absorb",
+            "poisonpowder",
+            "stunspore",
+            "sleeppowder",
+            "slam",
+            "growth",
+            "vinewhip",
+            "swordsdance",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "megadrain",
+            "solarbeam",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut"
+        ],
+        "stats": {
+            "attack": 208,
+            "defense": 328,
+            "hp": 333,
+            "special": 298,
+            "speed": 218
+        },
+        "type": [
+            "grass"
+        ]
+    },
+    "Tauros": {
+        "moves": [
+            "tackle",
+            "stomp",
+            "tailwhip",
+            "leer",
+            "rage",
+            "takedown",
+            "toxic",
+            "horndrill",
+            "bodyslam",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "thunderbolt",
+            "thunder",
+            "earthquake",
+            "fissure",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "substitute",
+            "strength"
+        ],
+        "stats": {
+            "attack": 298,
+            "defense": 288,
+            "hp": 353,
+            "special": 238,
+            "speed": 318
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Tentacool": {
+        "moves": [
+            "acid",
+            "supersonic",
+            "wrap",
+            "poisonsting",
+            "watergun",
+            "constrict",
+            "barrier",
+            "screech",
+            "hydropump",
+            "swordsdance",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "rage",
+            "megadrain",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut",
+            "surf"
+        ],
+        "stats": {
+            "attack": 178,
+            "defense": 168,
+            "hp": 283,
+            "special": 298,
+            "speed": 238
+        },
+        "type": [
+            "water",
+            "poison"
+        ]
+    },
+    "Tentacruel": {
+        "moves": [
+            "acid",
+            "supersonic",
+            "wrap",
+            "poisonsting",
+            "watergun",
+            "constrict",
+            "barrier",
+            "screech",
+            "hydropump",
+            "swordsdance",
+            "toxic",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "rage",
+            "megadrain",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "skullbash",
+            "rest",
+            "substitute",
+            "cut",
+            "surf"
+        ],
+        "stats": {
+            "attack": 238,
+            "defense": 228,
+            "hp": 363,
+            "special": 338,
+            "speed": 298
+        },
+        "type": [
+            "water",
+            "poison"
+        ]
+    },
+    "Vaporeon": {
+        "moves": [
+            "tackle",
+            "quickattack",
+            "watergun",
+            "tailwhip",
+            "bite",
+            "acidarmor",
+            "haze",
+            "mist",
+            "hydropump",
+            "aurorabeam",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "rage",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute",
+            "surf",
+            "growl",
+            "focusenergy"
+        ],
+        "stats": {
+            "attack": 228,
+            "defense": 218,
+            "hp": 463,
+            "special": 318,
+            "speed": 228
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Venomoth": {
+        "moves": [
+            "tackle",
+            "disable",
+            "poisonpowder",
+            "leechlife",
+            "stunspore",
+            "psybeam",
+            "sleeppowder",
+            "psychic",
+            "supersonic",
+            "confusion",
+            "razorwind",
+            "whirlwind",
+            "toxic",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "megadrain",
+            "solarbeam",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "rest",
+            "psywave",
+            "substitute",
+            "flash"
+        ],
+        "stats": {
+            "attack": 228,
+            "defense": 218,
+            "hp": 343,
+            "special": 278,
+            "speed": 278
+        },
+        "type": [
+            "bug",
+            "poison"
+        ]
+    },
+    "Venonat": {
+        "moves": [
+            "tackle",
+            "disable",
+            "poisonpowder",
+            "leechlife",
+            "stunspore",
+            "psybeam",
+            "sleeppowder",
+            "psychic",
+            "supersonic",
+            "confusion",
+            "toxic",
+            "takedown",
+            "rage",
+            "megadrain",
+            "solarbeam",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "psywave",
+            "substitute",
+            "flash"
+        ],
+        "stats": {
+            "attack": 208,
+            "defense": 198,
+            "hp": 323,
+            "special": 178,
+            "speed": 188
+        },
+        "type": [
+            "bug",
+            "poison"
+        ]
+    },
+    "Venusaur": {
+        "moves": [
+            "tackle",
+            "growl",
+            "leechseed",
+            "vinewhip",
+            "poisonpowder",
+            "razorleaf",
+            "growth",
+            "sleeppowder",
+            "solarbeam",
+            "swordsdance",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "megadrain",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "cut"
+        ],
+        "stats": {
+            "attack": 262,
+            "defense": 264,
+            "hp": 363,
+            "special": 298,
+            "speed": 258
+        },
+        "type": [
+            "grass",
+            "poison"
+        ]
+    },
+    "Victreebel": {
+        "moves": [
+            "sleeppowder",
+            "stunspore",
+            "acid",
+            "razorleaf",
+            "wrap",
+            "poisonpowder",
+            "swordsdance",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "megadrain",
+            "solarbeam",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "cut",
+            "vinewhip",
+            "growth",
+            "slam"
+        ],
+        "stats": {
+            "attack": 308,
+            "defense": 228,
+            "hp": 363,
+            "special": 298,
+            "speed": 238
+        },
+        "type": [
+            "grass",
+            "poison"
+        ]
+    },
+    "Vileplume": {
+        "moves": [
+            "stunspore",
+            "sleeppowder",
+            "acid",
+            "petaldance",
+            "poisonpowder",
+            "swordsdance",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "megadrain",
+            "solarbeam",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "cut",
+            "absorb"
+        ],
+        "stats": {
+            "attack": 258,
+            "defense": 268,
+            "hp": 353,
+            "special": 298,
+            "speed": 198
+        },
+        "type": [
+            "grass",
+            "poison"
+        ]
+    },
+    "Voltorb": {
+        "moves": [
+            "tackle",
+            "screech",
+            "sonicboom",
+            "lightscreen",
+            "swift",
+            "explosion",
+            "toxic",
+            "takedown",
+            "thunderbolt",
+            "thunder",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "thunderwave",
+            "substitute",
+            "flash"
+        ],
+        "stats": {
+            "attack": 158,
+            "defense": 198,
+            "hp": 283,
+            "special": 208,
+            "speed": 298
+        },
+        "type": [
+            "electric"
+        ]
+    },
+    "Vulpix": {
+        "moves": [
+            "ember",
+            "tailwhip",
+            "quickattack",
+            "roar",
+            "confuseray",
+            "flamethrower",
+            "firespin",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "rage",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "swift",
+            "skullbash",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 180,
+            "defense": 178,
+            "hp": 279,
+            "special": 228,
+            "speed": 228
+        },
+        "type": [
+            "fire"
+        ]
+    },
+    "Wartortle": {
+        "moves": [
+            "tackle",
+            "tailwhip",
+            "bubble",
+            "watergun",
+            "bite",
+            "withdraw",
+            "skullbash",
+            "hydropump",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "icebeam",
+            "blizzard",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "dig",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "surf",
+            "strength"
+        ],
+        "stats": {
+            "attack": 224,
+            "defense": 258,
+            "hp": 321,
+            "special": 228,
+            "speed": 214
+        },
+        "type": [
+            "water"
+        ]
+    },
+    "Weedle": {
+        "moves": [
+            "poisonsting",
+            "stringshot"
+        ],
+        "stats": {
+            "attack": 168,
+            "defense": 158,
+            "hp": 283,
+            "special": 138,
+            "speed": 198
+        },
+        "type": [
+            "bug",
+            "poison"
+        ]
+    },
+    "Weepinbell": {
+        "moves": [
+            "vinewhip",
+            "growth",
+            "wrap",
+            "poisonpowder",
+            "sleeppowder",
+            "stunspore",
+            "acid",
+            "razorleaf",
+            "slam",
+            "swordsdance",
+            "toxic",
+            "takedown",
+            "rage",
+            "megadrain",
+            "solarbeam",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "rest",
+            "substitute",
+            "cut"
+        ],
+        "stats": {
+            "attack": 278,
+            "defense": 198,
+            "hp": 333,
+            "special": 268,
+            "speed": 208
+        },
+        "type": [
+            "grass",
+            "poison"
+        ]
+    },
+    "Weezing": {
+        "moves": [
+            "tackle",
+            "smog",
+            "sludge",
+            "smokescreen",
+            "haze",
+            "explosion",
+            "toxic",
+            "hyperbeam",
+            "rage",
+            "thunderbolt",
+            "thunder",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "fireblast",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 278,
+            "defense": 338,
+            "hp": 333,
+            "special": 268,
+            "speed": 218
+        },
+        "type": [
+            "poison"
+        ]
+    },
+    "Wigglytuff": {
+        "moves": [
+            "sing",
+            "disable",
+            "defensecurl",
+            "doubleslap",
+            "megapunch",
+            "megakick",
+            "toxic",
+            "bodyslam",
+            "takedown",
+            "bubblebeam",
+            "watergun",
+            "icebeam",
+            "blizzard",
+            "hyperbeam",
+            "submission",
+            "counter",
+            "seismictoss",
+            "rage",
+            "solarbeam",
+            "thunderbolt",
+            "thunder",
+            "psychic",
+            "teleport",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "fireblast",
+            "skullbash",
+            "rest",
+            "thunderwave",
+            "psywave",
+            "triattack",
+            "substitute",
+            "strength",
+            "flash",
+            "pound"
+        ],
+        "stats": {
+            "attack": 238,
+            "defense": 188,
+            "hp": 483,
+            "special": 198,
+            "speed": 188
+        },
+        "type": [
+            "normal"
+        ]
+    },
+    "Zapdos": {
+        "moves": [
+            "thundershock",
+            "drillpeck",
+            "thunder",
+            "agility",
+            "lightscreen",
+            "razorwind",
+            "whirlwind",
+            "toxic",
+            "takedown",
+            "hyperbeam",
+            "rage",
+            "thunderbolt",
+            "mimic",
+            "doubleteam",
+            "reflect",
+            "bide",
+            "swift",
+            "skyattack",
+            "rest",
+            "thunderwave",
+            "substitute",
+            "fly",
+            "flash"
+        ],
+        "stats": {
+            "attack": 278,
+            "defense": 268,
+            "hp": 383,
+            "special": 348,
+            "speed": 298
+        },
+        "type": [
+            "electric",
+            "flying"
+        ]
+    },
+    "Zubat": {
+        "moves": [
+            "leechlife",
+            "supersonic",
+            "bite",
+            "confuseray",
+            "wingattack",
+            "haze",
+            "razorwind",
+            "whirlwind",
+            "toxic",
+            "takedown",
+            "rage",
+            "megadrain",
+            "mimic",
+            "doubleteam",
+            "bide",
+            "swift",
+            "rest",
+            "substitute"
+        ],
+        "stats": {
+            "attack": 188,
+            "defense": 168,
+            "hp": 283,
+            "special": 178,
+            "speed": 208
+        },
+        "type": [
+            "poison",
+            "flying"
+        ]
+    }
+}
