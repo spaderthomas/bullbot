@@ -1,0 +1,3 @@
+/Users/okelly/CLionProjects/JuniorDesign_CLion/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/okelly/CLionProjects/JuniorDesign_CLion/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/okelly/CLionProjects/JuniorDesign_CLion/cmake-build-debug/CMakeFiles/JuniorDesign_CLion.dir
