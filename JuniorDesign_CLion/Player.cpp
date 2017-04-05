@@ -1,15 +1,21 @@
 #include "Player.h"
 
 
-Player::Player(string filepath,
-	 unordered_map<string, Pokemon> team,
-	 unordered_map<string, Pokemon> knownOpponentTeam,
-	 unordered_map<string, Pokemon> opponentTeam)
+Player::Player(std::string filepath,
+	 std::unordered_map<std::string, Pokemon> team,
+	 std::unordered_map<std::string, Pokemon> knownOpponentTeam,
+	 std::unordered_map<std::string, Pokemon> opponentTeam)
 {
-	srand(time(0));
-	this->team = team;
+	srand(time(0)); //TODO: there is almost definitely a better place for this
+	this->team = team; //TODO: We're setting the team here and in buildTeam, is this necessary?
 	this->knownOpponentTeam = knownOpponentTeam;
 	this->opponentTeam = opponentTeam;
+	this->hasWon = false;
+	buildTeam(filepath);
+}
+
+Player::Player(string filepath)
+{
 	this->hasWon = false;
 	buildTeam(filepath);
 }
