@@ -1,35 +1,35 @@
 Jynx
-Blizzard
-Psychic
-Lovely Kiss
-Rest
+blizzard
+psychic
+lovelykiss
+rest
 
 Exeggutor
-Psychic
-Sleep Powder
-Stun Spore
-Explosion
+psychic
+sleep Powder
+stunspore
+explosion
 
 Chansey
-Ice Beam
-Thunderbolt
-Thunder Wave
-Soft-Boiled
+icebeam
+thunderbolt
+thunderwave
+soft-boiled
 
 Cloyster
-Blizzard
-Clamp
-Hyper Beam
-Explosion
+blizzard
+clamp
+hyperbeam
+explosion
 
 Snorlax
-Body Slam
-Counter
-Hyper Beam
-Self-Destruct
+bodyslam
+counter
+hyperbeam
+self-destruct
 
 Tauros
-Body Slam
-Hyper Beam
-Blizzard
-Earthquake
+bodyslam
+hyperbeam
+blizzard
+earthquake

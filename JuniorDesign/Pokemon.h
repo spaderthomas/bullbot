@@ -9,7 +9,7 @@
 #include <sstream>
 #include <algorithm>
 #include <iterator>
-#include <tr1/unordered_map>
+#include <unordered_map>
 
 class Pokemon {
 public:
@@ -18,7 +18,7 @@ public:
     std::vector<std::string> getTypes();
     std::vector<std::string> getMoves();
     std::string getMove(int i);
-    std::tr1::unordered_map<std::string, int> getStats();
+    std::unordered_map<std::string, int> getStats();
     void addMove(std::string move);
     bool isFainted();
     bool containsMove(std::string moveName);
@@ -27,7 +27,7 @@ private:
     std::string name;
     std::vector<std::string> types;
     std::vector<std::string> moves;
-    std::tr1::unordered_map<std::string, int> stats;
+    std::unordered_map<std::string, int> stats;
     int hp = 0;
     bool isBurned = false;
     bool isParalyzed = false;

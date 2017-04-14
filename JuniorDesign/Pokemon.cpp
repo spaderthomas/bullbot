@@ -69,7 +69,7 @@ bool Pokemon::containsMove(std::string moveName)
 }
 
 //returns the vector with the values for stats
-std::tr1::unordered_map<std::string, int> Pokemon::getStats(){
+std::unordered_map<std::string, int> Pokemon::getStats(){
     return this->stats;
 }
 

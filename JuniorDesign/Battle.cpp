@@ -12,6 +12,7 @@
 #include "Player.h"
 #include <cstdlib>
 #include <string>
+#include "DamageCalculator.h"
 
 struct Battle {
 	Player* p1;
@@ -37,6 +38,7 @@ struct Battle {
 		while (!p1->isWinner() && !p2->isWinner()) {
 			PlayerMove p1Move = p1->move();
 			PlayerMove p2Move = p2->move();
+                        calcDamage(&p1Move, &p2Move);
 			p1->processTurn(p1Move, p2Move);
 			p2->processTurn(p2Move, p1Move);
                         int hp = p1->getCurrentOut().getHP();
