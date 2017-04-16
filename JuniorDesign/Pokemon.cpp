@@ -31,13 +31,13 @@ int Pokemon::getHP() {
 //returns the vector with the values for types
 //but prints them out first
 std::vector<std::string> Pokemon::getTypes() {
-    for (int i = 0; i < types.size(); i++) {
-        std::cout << types[i];
-        if (i < types.size() - 1) {
-            std::cout << ',' << '\n';
-        }
-    }
-    std::cout << '\n';
+    // for (int i = 0; i < types.size(); i++) {
+    //     std::cout << types[i];
+    //     if (i < types.size() - 1) {
+    //         std::cout << ',' << '\n';
+    //     }
+    // }
+    // std::cout << '\n';
     return this->types;
 }
 
@@ -81,5 +81,13 @@ void Pokemon::addMove(std::string move) {
 //returns if pokemon is fainted
 bool Pokemon::isFainted() {
     return this->hp <= 0;
+}
+
+void Pokemon::setFainted(bool status) {
+    this->fainted = status;
+}
+
+void Pokemon::takeDamage(int damage) {
+    this->hp -= damage;
 }
 

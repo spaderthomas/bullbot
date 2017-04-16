@@ -33,7 +33,7 @@
             "water", 
             "flying"
         ]
-    }, 
+    },
     "fighting": {
         "immune": [
             "ghost"

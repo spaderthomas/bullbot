@@ -7,7 +7,6 @@
 #include <unordered_map>
 #include <stdlib.h> 
 #include <time.h> 
-//wherever that is...
 #include "Pokemon.h"
 
 struct PlayerMove

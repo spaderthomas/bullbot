@@ -3,7 +3,7 @@
 
 Player::Player(std::string filepath)
 {
-	srand((unsigned)time(nullptr)); //TODO: there is almost definitely a better place for this
+    //srand((unsigned)time(nullptr)); //TODO: there is almost definitely a better place for this
 	this->hasWon = false;
 	this->buildTeam(filepath);
 	this->currentOut = this->team.begin()->first;
@@ -12,6 +12,10 @@ Player::Player(std::string filepath)
 void Player::processTurn(PlayerMove yourMove, PlayerMove opponentMove)
 {
     this->setCurrentOut(yourMove);
+    yourMove.pokemon->takeDamage(opponentMove.damage);
+    if (yourMove.pokemon->getHP() <= 0) {
+        yourMove.pokemon->setFainted(true);
+    }
 }
 
 Pokemon Player::getCurrentOut() {
@@ -20,7 +24,7 @@ Pokemon Player::getCurrentOut() {
 
 void Player::setCurrentOut(PlayerMove move)
 {
-	if (move.isSwitch)
+    if (move.isSwitch)
 		this->currentOut = move.pokemon->getName();
 }
 

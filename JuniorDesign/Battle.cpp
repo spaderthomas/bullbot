@@ -31,8 +31,6 @@ struct Battle {
 		}
 	}
 
-	//TODO: LaVorgia, you said you had a damage calculator, put it here pls, ty, <3
-
 	//Loops a battle until someone wins
 	void battleLoop() {
 		while (!p1->isWinner() && !p2->isWinner()) {
@@ -41,7 +39,8 @@ struct Battle {
                         calcDamage(&p1Move, &p2Move);
 			p1->processTurn(p1Move, p2Move);
 			p2->processTurn(p2Move, p1Move);
-                        int hp = p1->getCurrentOut().getHP();
+                        printf("\n%d, hp is %i\n", p1Move.pokemon->isFainted(), p1Move.pokemon->getHP());
+                        //printf("HP status: %i\n\n", p1->getCurrentOut().getHP());
 		}
 	}
 };

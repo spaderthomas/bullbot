@@ -4,12 +4,6 @@ psychic
 lovelykiss
 rest
 
-Exeggutor
-psychic
-sleep Powder
-stunspore
-explosion
-
 Chansey
 icebeam
 thunderbolt
@@ -20,6 +14,12 @@ Cloyster
 blizzard
 clamp
 hyperbeam
+explosion
+
+Exeggutor
+psychic
+sleeppowder
+stunspore
 explosion
 
 Snorlax

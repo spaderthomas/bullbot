@@ -21,8 +21,10 @@ public:
     std::unordered_map<std::string, int> getStats();
     void addMove(std::string move);
     bool isFainted();
+    void setFainted(bool status);
     bool containsMove(std::string moveName);
     int getHP();
+    void takeDamage(int damage);
 private:
     std::string name;
     std::vector<std::string> types;
@@ -33,4 +35,5 @@ private:
     bool isParalyzed = false;
     bool isAsleep = false;
     bool isFrozen = false;
+    bool fainted = false;
 };

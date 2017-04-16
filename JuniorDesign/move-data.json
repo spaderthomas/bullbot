@@ -282,7 +282,7 @@
     "explosion": {
         "accuracy": 100,
         "category": "physical",
-        "power": 170,
+        "power": 340,
         "pp": 5,
         "type": "normal"
     },
@@ -800,7 +800,7 @@
     "self-destruct": {
         "accuracy": 100,
         "category": "physical",
-        "power": 130,
+        "power": 260,
         "pp": 5,
         "type": "normal"
     },
