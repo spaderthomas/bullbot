@@ -1,0 +1,13 @@
+eventually define structures and get rid of hashmaps
+rectify battle structure;
+port over priority queue logic for move priority
+
+use more static objects/matrices for unchanging objects.
+
+load data  into defined structures; lower lookup cost.
+
+rename move() function and make it call a callback;
+so that a human player can make a move, a bot can make a move,
+or a random action can be taken instead of hardcoded random action
+
+Give control of turns to battle not players.
