@@ -9,21 +9,19 @@ def cleanLog(log):
     names = [x for x in usefulLines if re.match('\|player', x)]
     usefulLines = usefulLines[15:]
     # Remove all the following useless lines
-    usefulLines = names + [l for l in usefulLines if not (re.match('\|c\|', l) or re.match('\|J\|', l) or re.match('\|upkeep', l) or re.match('\|L\|', l) or re.match('\|-crit', l) or re.match('\|-resisted', l) or re.match('\|-fail', l) or re.match('\|cant', l) or re.match('\|-supereffective', l))]
+    usefulLines = names + [l for l in usefulLines if not (re.match('\|c\|', l) or re.match('\|J\|', l) or re.match('\|upkeep', l) or re.match('\|L\|', l) or re.match('\|-crit', l) or re.match('\|-resisted', l) or re.match('\|-fail', l) or re.match('\|cant', l) or re.match('\|-supereffective', l) or re.match('\|choice', l) or re.match('\|turn', l) or re.match('\|start', l) or re.match('\|message', l))]
     # Add newlines (but only between each turn) so we can delimit turns
     keep = True
     delete = []
     for i in range(len(usefulLines)):
         if usefulLines[i] == '|\n':
             if keep:
-                usefulLines[i] = '\n'
+                usefulLines[i] = '\n' 
                 keep = False
             else:
                 delete.append(i)
                 keep = True 
     usefulLines = [usefulLines[i] for i in range(len(usefulLines)) if i not in delete]
-    # Add a new line to delimit turn 0, which occurs at line 7
-    usefulLines.insert(6, '\n')
     open(log, "w").close()
     with open(log, "w") as file:
         file.writelines(usefulLines)

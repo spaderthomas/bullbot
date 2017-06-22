@@ -1,36 +1,24 @@
 |player|p1|bad ass|275
 |player|p2|Casual Slay|1
 
-|start
 |switch|p1a: Alakazam|Alakazam|313\/313
 |switch|p2a: Alakazam|Alakazam|313\/313
-
-|turn|1
-|choice|move thunderwave|move psychic
 |move|p1a: Alakazam|Thunder Wave|p2a: Alakazam
 |-status|p2a: Alakazam|par
 
-|turn|2
-|choice|move thunderwave|move psychic
 |move|p1a: Alakazam|Thunder Wave|p2a: Alakazam
 |move|p2a: Alakazam|Psychic|p1a: Alakazam
 |-damage|p1a: Alakazam|264\/313
 
-|turn|3
-|choice|move recover|move psychic
 |move|p1a: Alakazam|Recover|p1a: Alakazam
 |-heal|p1a: Alakazam|313\/313
 |move|p2a: Alakazam|Psychic|p1a: Alakazam
 |-damage|p1a: Alakazam|257\/313
 
-|turn|4
-|choice|switch 4|move psychic
 |switch|p1a: Tauros|Tauros|353\/353
 |move|p2a: Alakazam|Psychic|p1a: Tauros
 |-damage|p1a: Tauros|23\/353
 
-|turn|5
-|choice|move blizzard|move psychic
 |move|p1a: Tauros|Blizzard|p2a: Alakazam
 |-damage|p2a: Alakazam|170\/313 par
 |move|p2a: Alakazam|Psychic|p1a: Tauros
