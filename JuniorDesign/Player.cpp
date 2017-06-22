@@ -9,6 +9,7 @@ Player::Player(std::string filepath)
 	this->currentOut = this->team.begin()->first;
 }
 
+/* Receives two moves that have had their damage calculated and their damage field filled in. Updates which Pokemon is currently on the field. Updates damage dealt by opponentMove. */
 void Player::processTurn(PlayerMove yourMove, PlayerMove opponentMove)
 {
     this->setCurrentOut(yourMove);
@@ -34,6 +35,7 @@ PlayerMove Player::move()
 	PlayerMove move;
 	if (!moveType)
 	{
+            std::string oldPokemon = this->currentOut;
 		std::string switchPokemon = this->currentOut;
 		while (switchPokemon == this->currentOut)
 		{
@@ -47,7 +49,7 @@ PlayerMove Player::move()
 		}
 		move.isSwitch = true;
 		move.pokemon = &this->team[switchPokemon];
-		std::cout << "Switched to " << switchPokemon << std::endl;
+		std::cout << "Player switched from " << oldPokemon << " to " << switchPokemon << std::endl;
 	} else 
 	{
 		int i = rand() % 4;

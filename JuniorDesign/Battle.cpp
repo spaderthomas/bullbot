@@ -8,16 +8,18 @@
   3. Moves are executed in order (this means that an attack
   is not executed if the attacker faints)
   4. Battle sends a battle_move to both players
-  5. Player objects then handle updating states*/
+  5. Player objects then handle updating states
+*/
 #include "Player.h"
 #include <cstdlib>
 #include <string>
+#include <unistd.h>
 #include "DamageCalculator.h"
 
 struct Battle {
 	Player* p1;
 	Player* p2;
-	unsigned turn = 0;
+	unsigned int turn = 0;
 	bool isOver = false;
 
 	Battle(Player* initP1 = nullptr, Player* initP2 = nullptr) {
@@ -33,14 +35,16 @@ struct Battle {
 
 	//Loops a battle until someone wins
 	void battleLoop() {
-		while (!p1->isWinner() && !p2->isWinner()) {
+		while (!p1->isWinner() && !p2->isWinner() && turn < 20) {
+                    printf("\n\nTurn %i:\n", turn);
 			PlayerMove p1Move = p1->move();
 			PlayerMove p2Move = p2->move();
                         calcDamage(&p1Move, &p2Move);
 			p1->processTurn(p1Move, p2Move);
 			p2->processTurn(p2Move, p1Move);
-                        printf("\n%d, hp is %i\n", p1Move.pokemon->isFainted(), p1Move.pokemon->getHP());
-                        //printf("HP status: %i\n\n", p1->getCurrentOut().getHP());
+                        turn++;
+                        printf("Player 1's %s has %i HP remaining.\nPlayer 2's %s has %i HP remaining.\n", p1->getCurrentOut().getName().c_str(), p1->getCurrentOut().getHP(), p2->getCurrentOut().getName().c_str(), p2->getCurrentOut().getHP());
+                        usleep(3000000);
 		}
 	}
 };

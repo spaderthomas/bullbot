@@ -7,7 +7,7 @@
 jsoncons::json types;
 jsoncons::json moves;
 
-/* Takes in pointers to two player moves. Uses RNG to calculate damage each of these moves causes. Sets each move's damage field equal to amount of damage calculated.*/
+/* Takes in pointers to two player moves. Uses RNG to calculate damage each of these moves causes. Sets each move's damage field equal to amount of damage calculated. The processTurn() method in Player then takes the moves and modifies the Pokemon's hp stat accordingly. */
 void calcDamage(PlayerMove *p1Move, PlayerMove *p2Move) {
     // attack stat, base power, defense stat, random number, multiplier
     std::ifstream typestream("type-chart.json");
@@ -21,6 +21,7 @@ void calcDamage(PlayerMove *p1Move, PlayerMove *p2Move) {
     
 }
 
+/* Calculates damage with one move as the attacker and the other as the defender. */
 int calc(PlayerMove *attacker, PlayerMove *defender) {
     if (attacker->isSwitch) {
         return 0;
@@ -33,10 +34,12 @@ int calc(PlayerMove *attacker, PlayerMove *defender) {
     int random = ( rand() % 38 ) + 217;
     float mult = getMultiplier(attacker, defender);
     int damage = pow == 0 ? 0 : floor(DAMAGE(attack, defense, pow, random, mult));
-    printf("%s used %s against %s. The multiplier was %.3f. The base power was %i. The damage was %i\n", attacker->pokemon->getName().c_str(), attacker->moveName.c_str(), defender->pokemon->getName().c_str(), mult, pow, damage);
+    
+    printf("%s used %s against %s. The multiplier was %.3f. The base power was %i. The damage was %i.\n", attacker->pokemon->getName().c_str(), attacker->moveName.c_str(), defender->pokemon->getName().c_str(), mult, pow, damage);
     return damage;
 }
 
+/* Move effectiveness varies based on type chart and whether the attacking move is of the same type as the Pokemon using it. This method calculates that effectiveness multiplier*/
 float getMultiplier(PlayerMove *attacker, PlayerMove *defender) {    
     float mult = 1.0;
     std::vector<std::string> defenderTypes = defender->pokemon->getTypes();
