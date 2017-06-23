@@ -64,6 +64,7 @@ def parseLog(filename):
                 parsedTurn['defenderHP'] = -1
                 parsedTurn['heal'] = -1
                 parsedTurn['inflictedStatus'] = ''
+                game['turns'].append(parsedTurn)
             elif (turn[i][0] == 'move'):
                 parsedTurn = {'num':turnNum}
                 turnNum = turnNum + 1
@@ -73,10 +74,10 @@ def parseLog(filename):
                 parsedTurn['defender'] = turn[i][3][5:]
                 parsedTurn['defenderHP'] = -1
                 parsedTurn['inflictedStatus'] = ''
-                parsedTurn['heal'] = -1
+                parsedTurn['attackerHP'] = -1
                 # Parse damage, status, heal, and faint info
                 j = i + 1
-                while ((j < len(turn)) and (turn[j][0] != 'switch') and (turn[j][0] != 'turn')):
+                while ((j < len(turn)) and (turn[j][0] != 'switch') and (turn[j][0] != 'move')):
                     if (turn[j][0] == "-damage"): # check for damage (given as remaining hp)
                         match = match = re.match(ur'[0-9]+(?=\\)', turn[j][2])
                         if (match): # match any  number of digits followed by \
@@ -86,17 +87,17 @@ def parseLog(filename):
                         if (match): # match any  number of digits followed by \
                             parsedTurn['heal'] = int(match.group(0))
                     if (turn[j][0] == "-status"):
-                        parsedTurn['status'] = turn[j][2]
+                        parsedTurn['inflictedStatus'] = turn[j][2]
                     if (turn[j][0] == "faint"): # check if defender fainted as result
                         parsedTurn['defenderHP'] = 0
                     j = j + 1
+                game['turns'].append(parsedTurn)
             elif (turn[0] == 'win'):
                 print 3
                 game['win'] = turn[i][1][:-8] # winner's name has '<script' at the end of it
-            game['turns'].append(parsedTurn)
 
         
     gameJSON = json.dumps(game)
-    print(gameJSON)
+    pp.pprint(game)
     
 parseLog("test-log.txt")
