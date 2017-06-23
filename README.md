@@ -19,12 +19,12 @@ var battle =
         "win": "player_name",
         "turns": [
             {
-             "attacker": "pokemon executor of move. either pokemon switched to or the attacker",
+             "atkr": "pokemon executor of move. either pokemon switched to or the attacker",
              "defender": "opposing pokemon on the field when move is executed"
              "defenderHP": "-1 for no change, otherwise the remaining HP of the defender",
-             "attackerHP": "-1 for no change, otherwise the remaining HP of the attacker",
-             "inflictedStatus": "status inflicted on defender as result of turn",
-             "selfInflictedStatus": "status inflicted on attacker as result of turn",
+             "atkrHP": "-1 for no change, otherwise the remaining HP of the attacker",
+             "selfStatus": "status inflicted on attacker as result of turn",
+             "oppStatus": "status inflicted on defender as resulf of turn",
              "move": "name of move used by attacker, switch if move was a switch",
              "player": "name of player who the move, in {p1a, p2a}",
              "num": "turn number"

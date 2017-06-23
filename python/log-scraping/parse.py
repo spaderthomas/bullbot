@@ -1,11 +1,8 @@
 import re
 import json
 import pprint as pp
-'''
-    Outer list of moves (as dictionaries)
-    A move is represented as a dictionary
-        {player, playerID, type: attack/switch, pokemon: attacker/switchee, move: moveID, damage: #, heal: #, 
-'''
+
+# Consult documentation (README.md) for format of game output
 def parseLog(filename):
     game = {'players': {}, 'turns': []}
     with open(filename, "r") as logfile:
@@ -52,29 +49,32 @@ def parseLog(filename):
     '''
     turnNum = 1
     for turn in turns:
-        pp.pprint(turn)
         for i in range(len(turn)):
             if (turn[i][0] == 'switch'):
+                # Parse base info included in with the move
                 parsedTurn = {'num':turnNum}
                 turnNum = turnNum + 1
                 parsedTurn['move'] = 'switch'
                 parsedTurn['player'] = turn[i][1][0:3]
-                parsedTurn['attacker'] = turn[i][1][5:] # everything after header 'pna: '
+                parsedTurn['atkr'] = turn[i][1][5:] # everything after header 'pna: '
                 parsedTurn['defender'] = turn[i][2]
+                parsedTurn['atkrHP'] = -1
                 parsedTurn['defenderHP'] = -1
-                parsedTurn['heal'] = -1
-                parsedTurn['inflictedStatus'] = ''
+                parsedTurn['selfStatus'] = ''
+                parsedTurn['oppStatus'] = ''
                 game['turns'].append(parsedTurn)
             elif (turn[i][0] == 'move'):
+                # Parse base info included in with the move
                 parsedTurn = {'num':turnNum}
                 turnNum = turnNum + 1
                 parsedTurn['move'] = turn[i][2]
                 parsedTurn['player'] = turn[i][1][0:3]
-                parsedTurn['attacker'] = turn[i][1][5:] # everything after header 'pna: '
+                parsedTurn['atkr'] = turn[i][1][5:] # everything after header 'pna: '
                 parsedTurn['defender'] = turn[i][3][5:]
                 parsedTurn['defenderHP'] = -1
-                parsedTurn['inflictedStatus'] = ''
-                parsedTurn['attackerHP'] = -1
+                parsedTurn['selfStatus'] = ''
+                parsedTurn['oppStatus'] = ''
+                parsedTurn['atkrHP'] = -1
                 # Parse damage, status, heal, and faint info
                 j = i + 1
                 while ((j < len(turn)) and (turn[j][0] != 'switch') and (turn[j][0] != 'move')):
@@ -84,20 +84,25 @@ def parseLog(filename):
                             parsedTurn['defenderHP'] = int(match.group(0))
                     if (turn[j][0] == "-heal"): # check for healing (given as remaining hp)
                         match = match = re.match(ur'[0-9]+(?=\\)', turn[j][2])
-                        if (match): # match any  number of digits followed by \
-                            parsedTurn['heal'] = int(match.group(0))
+                        if (match):
+                            parsedTurn['atkrHP'] = int(match.group(0))
+                    # determine whethers status self-inflicted
                     if (turn[j][0] == "-status"):
-                        parsedTurn['inflictedStatus'] = turn[j][2]
-                    if (turn[j][0] == "faint"): # check if defender fainted as result
+                        player = turn[j][1][0:4] # get player name
+                        if player == parsedTurn['player']:
+                            parsedTurn['selfStatus'] = turn[j][2]
+                        else:
+                            parsedTurn['oppStatus'] = turn[j][2]
+                    if (turn[j][0] == "faint"):
                         parsedTurn['defenderHP'] = 0
                     j = j + 1
                 game['turns'].append(parsedTurn)
             elif (turn[0] == 'win'):
-                print 3
-                game['win'] = turn[i][1][:-8] # winner's name has '<script' at the end of it
+                print turn[1][:-8]
+                game['win'] = turn[1][:-8] # winner's name has '<script' at the end of it
+                return game
 
-        
-    gameJSON = json.dumps(game)
-    pp.pprint(game)
+parsedGame = parseLog("test-log.txt")
+pp.pprint(parsedGame)
+gameJSON = json.dumps(parsedGame)
     
-parseLog("test-log.txt")
