@@ -1,3 +1,5 @@
+#pragma once
+
 #include "libs/jsoncons/json.hpp"
 #include "libs/jsoncons_ext/jsonpath/json_query.hpp"
 #include <sstream>

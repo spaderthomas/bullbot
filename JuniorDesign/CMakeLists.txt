@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.5.1)
 
 project(JuniorDesign)
-
 set(CMAKE_CXX_STANDARD 14)
-
 include_directories(${CMAKE_SOURCE_DIR}/libs)
+
+# Set debug flags to remove optimization
+set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
 
 file(GLOB_RECURSE allCodeFiles RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.hpp" "*.cpp" "*.h")
 # copies json files from source directory to build directory
@@ -13,10 +14,10 @@ file(GLOB_RECURSE jsonFiles RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.json")
 foreach (jsonFile ${jsonFiles})
   file(COPY ${jsonFile} DESTINATION "${CMAKE_BINARY_DIR}")
 endforeach()
-
 file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/sample-team.txt" DESTINATION "${CMAKE_BINARY_DIR}")
 
 add_executable(JuniorDesign ${allCodeFiles})
+
 
 #Visual studio settings
 if(WIN32)

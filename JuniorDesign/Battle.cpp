@@ -11,6 +11,7 @@
   5. Player objects then handle updating states
 */
 #include "Battle.h"
+#include "Util.cpp"
 
 struct Battle {
   Player *p1;
@@ -29,16 +30,29 @@ struct Battle {
     }
   }
 
-  
-
+  /* Takes two moves with their damage filled in and determines which moves will
+     be executed.
+     Moves that will not be executed have their isSuccess value set to false */
   void validateMove(PlayerMove *p1Move, PlayerMove *p2Move) {
     std::vector<PlayerMove *> moves;
     moves.push_back(p1Move);
     moves.push_back(p2Move);
-    std::sort(moves.begin(), moves.end());
-    for (auto &move : moves) {
-      std::cout << move->pokemon->getName() + " used " + move->moveName + "\n";
+    std::sort(moves.begin(), moves.end(), compMoves);
+
+    if ((moves[1]->pokemon->getHP() - moves[0]->damage) <= 0) {
+      moves[1]->isSuccess = false;
     }
+    // std::cout << "\nDetermining order of moves...\n";
+    // for (auto &move : moves) {
+    //   std::cout << move->pokemon->getName() + " used " + move->moveName +
+    //   "\n";
+    // }
+    // std::cout << "------- end order computation --------\n\n";
+
+    // for (auto &move : moves) {
+    //   std::cout << move->pokemon->getName() + "'s " + move->moveName + " was
+    //   a " + BoolToString(move->isSuccess) + "\n";
+    // }
   }
 
   // Loops a battle until someone wins
@@ -47,8 +61,8 @@ struct Battle {
       printf("\n\nTurn %i:\n", turn);
       PlayerMove p1Move = p1->move();
       PlayerMove p2Move = p2->move();
-      validateMove(&p1Move, &p2Move);
       calcDamage(&p1Move, &p2Move);
+      validateMove(&p1Move, &p2Move);
       p1->processTurn(p1Move, p2Move);
       p2->processTurn(p2Move, p1Move);
       turn++;
@@ -57,7 +71,7 @@ struct Battle {
              p1->getCurrentOut().getName().c_str(), p1->getCurrentOut().getHP(),
              p2->getCurrentOut().getName().c_str(),
              p2->getCurrentOut().getHP());
-      usleep(3000000);
+      // usleep(3000000);
     }
   }
 };

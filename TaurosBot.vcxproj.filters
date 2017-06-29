@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="bin\cmakefiles\feature_tests.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bin\cmakefiles\feature_tests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bin\cmakefiles\3.5.1\compileridc\CMakeCCompilerId.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bin\cmakefiles\3.5.1\compileridcxx\CMakeCXXCompilerId.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bin\cmakefiles\3.7.2\compileridc\CMakeCCompilerId.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bin\cmakefiles\3.7.2\compileridcxx\CMakeCXXCompilerId.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bin\debug\cmakefiles\feature_tests.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bin\debug\cmakefiles\feature_tests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bin\debug\cmakefiles\3.5.1\compileridc\CMakeCCompilerId.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bin\debug\cmakefiles\3.5.1\compileridcxx\CMakeCXXCompilerId.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="juniordesign\Battle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="juniordesign\DamageCalculator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="juniordesign\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="juniordesign\Pokemon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="juniordesign\Util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="juniordesign\Battle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\DamageCalculator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\Pokemon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\json.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\jsoncons.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\jsoncons_config.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\jsoncons_util.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\json_container.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\json_decoder.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\json_deserializer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\json_error_category.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\json_filter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\json_input_handler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\json_output_handler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\json_parser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\json_reader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\json_serializer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\json_traits.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\json_type_traits.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\osequencestream.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\parse_error_handler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\serialization_options.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons\unicode_traits.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons_ext\csv\csv_error_category.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons_ext\csv\csv_parameters.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons_ext\csv\csv_parser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons_ext\csv\csv_reader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons_ext\csv\csv_serializer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons_ext\jsonpath\jsonpath_error_category.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons_ext\jsonpath\jsonpath_filter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons_ext\jsonpath\json_query.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons_ext\msgpack\binary_util.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juniordesign\libs\jsoncons_ext\msgpack\message_pack.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="python\battle\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\cmakefiles\feature_tests.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="bin\cmakefiles\3.5.1\CMakeDetermineCompilerABI_C.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="bin\cmakefiles\3.5.1\CMakeDetermineCompilerABI_CXX.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="bin\cmakefiles\3.7.2\CMakeDetermineCompilerABI_C.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="bin\cmakefiles\3.7.2\CMakeDetermineCompilerABI_CXX.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="bin\debug\cmakefiles\feature_tests.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="bin\debug\cmakefiles\3.5.1\CMakeDetermineCompilerABI_C.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="bin\debug\cmakefiles\3.5.1\CMakeDetermineCompilerABI_CXX.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="bin\cmakefiles\juniordesign.dir\CXX.includecache" />
+    <None Include="bin\debug\cmakefiles\juniordesign.dir\CXX.includecache" />
+  </ItemGroup>
+</Project>

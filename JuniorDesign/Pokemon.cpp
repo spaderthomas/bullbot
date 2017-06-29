@@ -74,6 +74,5 @@ bool Pokemon::isFainted() { return this->hp <= 0; }
 void Pokemon::setFainted(bool status) { this->fainted = status; }
 
 void Pokemon::takeDamage(int damage) {
-
   this->hp = this->hp - damage > 0 ? this->hp - damage : 0;
 }

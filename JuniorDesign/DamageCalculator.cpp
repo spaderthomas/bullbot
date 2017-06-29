@@ -1,4 +1,3 @@
-#pragma once
 #include "DamageCalculator.h"
 jsoncons::json types;
 jsoncons::json moves;

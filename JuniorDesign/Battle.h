@@ -1,3 +1,5 @@
+#pragma once
+
 #include "DamageCalculator.h"
 #include "Player.h"
 #include <cstdlib>
