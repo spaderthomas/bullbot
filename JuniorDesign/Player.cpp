@@ -1,12 +1,13 @@
 // Player function definitions
 #include "Player.h"
 
-Player::Player(std::string filepath) {
+Player::Player(std::string filepath, int id) {
   // srand((unsigned)time(nullptr)); //TODO: there is almost definitely a better
   // place for this
   this->hasWon = false;
   this->buildTeam(filepath);
   this->currentOut = this->team.begin()->first;
+  this->id = id;
 }
 
 /* Receives two moves that have had their damage calculated and their damage
@@ -23,9 +24,11 @@ void Player::processTurn(PlayerMove yourMove, PlayerMove opponentMove) {
     this->getCurrentOut()->takeDamage(opponentMove.damage);
     if (yourMove.pokemon->getHP() <= 0) {
       yourMove.pokemon->setFainted(true);
+      std::cout << "Player " << this->id << "'s " << this->currentOut << " fainted!\n";
       PlayerMove dummyOppMove;
       dummyOppMove.isSuccess = false;
-      this->processTurn(this->makeSwitchOnFaint(), dummyOppMove);
+      PlayerMove newMove = this->makeSwitchOnFaint();
+      this->processTurn(newMove, dummyOppMove);
       // this->team.erase(yourMove.pokemon->getName());
     }
   }
@@ -97,7 +100,7 @@ PlayerMove Player::move() {
   move.isSwitch = false;
   move.pokemon = &this->team[this->currentOut];
   move.moveName = this->team[this->currentOut].getMove(i);
-  std::cout << this->currentOut << " used "
+  std::cout << "Player " << this->id << "'s " << this->currentOut << " used "
             << this->team[this->currentOut].getMove(i) << std::endl;
   return move;
 }
@@ -106,8 +109,9 @@ PlayerMove Player::makeSwitchOnFaint() {
   PlayerMove move;
   std::string oldPokemon = this->currentOut;
   std::string switchPokemon = this->currentOut;
-  while (switchPokemon == this->currentOut &&
-         !this->team[switchPokemon].isFainted()) {
+  // Iterate randomly through valid Pokemon to switch.
+  while (switchPokemon == oldPokemon ||
+         this->team[switchPokemon].isFainted()) {
     int randomChoice = rand() % this->team.size();
     auto it = this->team.begin();
     for (int i = 0; i < randomChoice; i++) {
@@ -117,7 +121,7 @@ PlayerMove Player::makeSwitchOnFaint() {
   }
   move.isSwitch = true;
   move.pokemon = &this->team[switchPokemon];
-  std::cout << "Player switched from " << oldPokemon << " to " << switchPokemon
+  std::cout << "Player " << this->id << " switched from " << oldPokemon << " to " << switchPokemon
             << std::endl;
   return move;
 }

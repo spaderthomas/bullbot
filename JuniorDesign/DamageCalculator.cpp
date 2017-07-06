@@ -37,10 +37,12 @@ int calc(PlayerMove *attacker, PlayerMove *defender) {
   float mult = getMultiplier(attacker, defender);
   int damage = pow == 0 ? 0 : floor(DAMAGE(attack, defense, pow, random, mult));
 
+  /*
   printf("%s used %s against %s. The multiplier was %.3f. The base power was "
          "%i. The damage was %i.\n",
          attacker->pokemon->getName().c_str(), attacker->moveName.c_str(),
          defender->pokemon->getName().c_str(), mult, pow, damage);
+  */
   return damage;
 }
 

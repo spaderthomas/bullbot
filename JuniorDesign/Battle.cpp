@@ -23,10 +23,10 @@ struct Battle {
     p1 = initP1;
     p2 = initP2;
     if (!p1) {
-      p1 = new Player("sample-team.txt");
+      p1 = new Player("sample-team.txt", 1);
     }
     if (!p2) {
-      p2 = new Player("sample-team.txt");
+      p2 = new Player("sample-team.txt", 2);
     }
   }
 
@@ -68,11 +68,11 @@ struct Battle {
   void battleLoop() {
     while (!p1->isWinner() && !p2->isWinner() && turn < 20) {
       printf("\n\nTurn %i:\n", turn);
-      PlayerMove p1Move = p1->move();
+      PlayerMove p1Move = p1->move(); // Prints what player's pokemon used what move
       PlayerMove p2Move = p2->move();
-      calcDamage(&p1Move, &p2Move);
+      calcDamage(&p1Move, &p2Move); // Prints damage calculation info
       validateMove(&p1Move, &p2Move);
-      p1->processTurn(p1Move, p2Move);
+      p1->processTurn(p1Move, p2Move); // Prints faint information and switch on faint
       p2->processTurn(p2Move, p1Move);
       turn++;
       printf("Player 1's %s has %i HP remaining.\nPlayer 2's %s has %i HP "

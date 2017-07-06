@@ -21,7 +21,7 @@ bool compMoves(PlayerMove *p1Move, PlayerMove *p2Move);
 
 class Player {
 public:
-  Player(std::string filepath);
+  Player(std::string filepath, int id);
   Pokemon* getCurrentOut();
   Pokemon getPokemon(std::string name);
   void setCurrentOut(PlayerMove move);
@@ -29,6 +29,7 @@ public:
   bool isWinner();
   PlayerMove move();
   PlayerMove makeSwitchOnFaint();
+  int id;
 private:
   std::unordered_map<std::string, Pokemon> team;
   bool hasWon;
