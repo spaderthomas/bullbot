@@ -22,7 +22,7 @@ bool compMoves(PlayerMove *p1Move, PlayerMove *p2Move);
 class Player {
 public:
   Player(std::string filepath);
-  Pokemon getCurrentOut();
+  Pokemon* getCurrentOut();
   Pokemon getPokemon(std::string name);
   void setCurrentOut(PlayerMove move);
   void processTurn(PlayerMove yourMove, PlayerMove opponentMove);

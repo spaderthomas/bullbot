@@ -20,7 +20,7 @@ opponent's move.
 void Player::processTurn(PlayerMove yourMove, PlayerMove opponentMove) {
   this->setCurrentOut(yourMove);
   if (opponentMove.isSuccess == true) {
-    this->getCurrentOut().takeDamage(opponentMove.damage);
+    this->getCurrentOut()->takeDamage(opponentMove.damage);
     if (yourMove.pokemon->getHP() <= 0) {
       yourMove.pokemon->setFainted(true);
       PlayerMove dummyOppMove;
@@ -31,7 +31,9 @@ void Player::processTurn(PlayerMove yourMove, PlayerMove opponentMove) {
   }
 }
 
-Pokemon Player::getCurrentOut() { return this->team[currentOut]; }
+Pokemon* Player::getCurrentOut() {
+  return &(this->team[currentOut]);
+}
 
 void Player::setCurrentOut(PlayerMove move) {
   if (move.isSwitch)
@@ -41,15 +43,14 @@ void Player::setCurrentOut(PlayerMove move) {
 bool compMoves(PlayerMove *p1Move, PlayerMove *p2Move) {
   // switches always go first-- both switching is irrelevant
   if (p1Move->isSwitch) { return true; }
-  else if (p2Move->isSwitch) {
-    return false;
-  }
+  else if (p2Move->isSwitch) { return false; }
 
   int p1speed = p1Move->pokemon->getStats()["speed"];
   int p2speed = p2Move->pokemon->getStats()["speed"];
 
   // handle speed ties TODO: more random RNG
   if (p1speed == p2speed) {
+    
     int random = rand() % 2;
     if ((random % 2) == 1) {
       return true;

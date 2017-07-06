@@ -35,10 +35,19 @@ struct Battle {
      Moves that will not be executed have their isSuccess value set to false */
   void validateMove(PlayerMove *p1Move, PlayerMove *p2Move) {
     std::vector<PlayerMove *> moves;
-    moves.push_back(p1Move);
-    moves.push_back(p2Move);
-    std::sort(moves.begin(), moves.end(), compMoves);
+    // Sort the moves. std::sort doesn't work here because random nature of sorting
+    // causes undefined behavior
+    if (compMoves(p1Move, p2Move)) { // p1Move will go first
+      moves.push_back(p1Move);
+      moves.push_back(p2Move);
+    } else {                         // p2Move will go first
+      moves.push_back(p2Move);
+      moves.push_back(p1Move);      
+    }
 
+    if (moves[0]->pokemon->getHP() <= 0) {
+      moves[0]->isSuccess = false;
+    }
     if ((moves[1]->pokemon->getHP() - moves[0]->damage) <= 0) {
       moves[1]->isSuccess = false;
     }
@@ -68,9 +77,10 @@ struct Battle {
       turn++;
       printf("Player 1's %s has %i HP remaining.\nPlayer 2's %s has %i HP "
              "remaining.\n",
-             p1->getCurrentOut().getName().c_str(), p1->getCurrentOut().getHP(),
-             p2->getCurrentOut().getName().c_str(),
-             p2->getCurrentOut().getHP());
+             p1->getCurrentOut()->getName().c_str(),
+	     p1->getCurrentOut()->getHP(),
+             p2->getCurrentOut()->getName().c_str(),
+             p2->getCurrentOut()->getHP());
       // usleep(3000000);
     }
   }
@@ -78,5 +88,6 @@ struct Battle {
 
 int main() {
   Battle battle;
+  std::srand(time(0));
   battle.battleLoop();
 }
