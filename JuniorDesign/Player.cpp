@@ -2,8 +2,6 @@
 #include "Player.h"
 
 Player::Player(std::string filepath, int id) {
-  // srand((unsigned)time(nullptr)); //TODO: there is almost definitely a better
-  // place for this
   this->hasWon = false;
   this->buildTeam(filepath);
   this->currentOut = this->team.begin()->first;
@@ -34,15 +32,23 @@ void Player::processTurn(PlayerMove yourMove, PlayerMove opponentMove) {
   }
 }
 
+/* Returns a pointer to the currently active Pokemon */
 Pokemon* Player::getCurrentOut() {
   return &(this->team[currentOut]);
 }
 
+/* Handles setting currently active Pokemon by means of looking at the player's move */
 void Player::setCurrentOut(PlayerMove move) {
   if (move.isSwitch)
     this->currentOut = move.pokemon->getName();
 }
 
+/* Behavior of this comparison is as follows:
+   1. If one move is a switch, it will be greater than the other (higher priority)
+   2. If both moves are switches, the first move will be greater (arbitrary -- this ordering
+      doesn't matter. Two switches will always happen simultaneously.)
+   3. If both moves are attacks, the attacker with higher speed will go first
+*/
 bool compMoves(PlayerMove *p1Move, PlayerMove *p2Move) {
   // switches always go first-- both switching is irrelevant
   if (p1Move->isSwitch) { return true; }
@@ -51,9 +57,7 @@ bool compMoves(PlayerMove *p1Move, PlayerMove *p2Move) {
   int p1speed = p1Move->pokemon->getStats()["speed"];
   int p2speed = p2Move->pokemon->getStats()["speed"];
 
-  // handle speed ties TODO: more random RNG
-  if (p1speed == p2speed) {
-    
+  if (p1speed == p2speed) { // Handle speed ties    
     int random = rand() % 2;
     if ((random % 2) == 1) {
       return true;
@@ -65,6 +69,7 @@ bool compMoves(PlayerMove *p1Move, PlayerMove *p2Move) {
   return p1speed > p2speed;
 }
 
+/* Move method that performs switches and moves, both randomly */
 // PlayerMove Player::move() {
 //   int moveType = rand() % 2;
 //   PlayerMove move;
@@ -94,6 +99,8 @@ bool compMoves(PlayerMove *p1Move, PlayerMove *p2Move) {
 //   return move;
 // }
 
+/* Chooses a random move from the player's current Pokemon, constructs a new
+   PlayerMove object, sets fields, and returns. */
 PlayerMove Player::move() {
   PlayerMove move;
   int i = rand() % 4;
@@ -105,6 +112,7 @@ PlayerMove Player::move() {
   return move;
 }
 
+/* Returns a PlayerMove representing a switch to a valid Pokemon */
 PlayerMove Player::makeSwitchOnFaint() {
   PlayerMove move;
   std::string oldPokemon = this->currentOut;
@@ -126,10 +134,16 @@ PlayerMove Player::makeSwitchOnFaint() {
   return move;
 }
 
-Pokemon Player::getPokemon(std::string name) { return this->team[name]; }
-
-bool Player::isWinner() { return this->hasWon; }
-
+/* Builds a team from a Pokemon Showdown formatted team string.
+	The format of each individual pokemon is this:
+	Jynx
+	Blizzard
+	Psychic
+	Lovely Kiss
+	Rest
+	newline
+	...
+*/
 void Player::buildTeam(std::string filepath) {
   std::ifstream infile(filepath);
   std::string line;
@@ -153,3 +167,10 @@ void Player::buildTeam(std::string filepath) {
     }
   }
 }
+
+/* Gets a Pokemon object from a player's team given a corresponding string of the
+   Pokemon's name*/
+Pokemon Player::getPokemon(std::string name) { return this->team[name]; }
+
+bool Player::isWinner() { return this->hasWon; }
+

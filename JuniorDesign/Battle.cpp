@@ -11,7 +11,7 @@
   5. Player objects then handle updating states
 */
 #include "Battle.h"
-#include "Util.cpp"
+#include "Util.h"
 
 struct Battle {
   Player *p1;
@@ -37,10 +37,10 @@ struct Battle {
     std::vector<PlayerMove *> moves;
     // Sort the moves. std::sort doesn't work here because random nature of sorting
     // causes undefined behavior
-    if (compMoves(p1Move, p2Move)) { // p1Move will go first
+    if (compMoves(p1Move, p2Move)) { // p1Move has higher priority, goes first
       moves.push_back(p1Move);
       moves.push_back(p2Move);
-    } else {                         // p2Move will go first
+    } else {                         // p2Move has higher priority, goes first
       moves.push_back(p2Move);
       moves.push_back(p1Move);      
     }
@@ -51,6 +51,8 @@ struct Battle {
     if ((moves[1]->pokemon->getHP() - moves[0]->damage) <= 0) {
       moves[1]->isSuccess = false;
     }
+
+    // Print moves in order with their success status attached
     // std::cout << "\nDetermining order of moves...\n";
     // for (auto &move : moves) {
     //   std::cout << move->pokemon->getName() + " used " + move->moveName +
