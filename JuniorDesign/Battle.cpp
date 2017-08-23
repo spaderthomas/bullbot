@@ -30,13 +30,11 @@ struct Battle {
     }
   }
 
-  /* Takes two moves with their damage filled in and determines which moves will
-     be executed.
+  /* Takes two moves with their damage filled in and determines which moves will be executed.
      Moves that will not be executed have their isSuccess value set to false */
   void validateMove(PlayerMove *p1Move, PlayerMove *p2Move) {
     std::vector<PlayerMove *> moves;
-    // Sort the moves. std::sort doesn't work here because random nature of sorting
-    // causes undefined behavior
+    // Sort the moves. std::sort doesn't work here because random nature of sorting causes undefined behavior
     if (compMoves(p1Move, p2Move)) { // p1Move has higher priority, goes first
       moves.push_back(p1Move);
       moves.push_back(p2Move);
@@ -68,13 +66,13 @@ struct Battle {
 
   // Loops a battle until someone wins
   void battleLoop() {
-    while (!p1->isWinner() && !p2->isWinner() && turn < 20) {
+    while (!p1->hasLost && !p2->hasLost) {
       printf("\n\nTurn %i:\n", turn);
       PlayerMove p1Move = p1->move(); // Prints what player's pokemon used what move
       PlayerMove p2Move = p2->move();
       calcDamage(&p1Move, &p2Move); // Prints damage calculation info
       validateMove(&p1Move, &p2Move);
-      p1->processTurn(p1Move, p2Move); // Prints faint information and switch on faint
+      p1->processTurn(p1Move, p2Move); // Prints faint information, switch on faint, and Pokemon remaining
       p2->processTurn(p2Move, p1Move);
       turn++;
       printf("Player 1's %s has %i HP remaining.\nPlayer 2's %s has %i HP "
@@ -85,6 +83,8 @@ struct Battle {
              p2->getCurrentOut()->getHP());
       // usleep(3000000);
     }
+
+    printf("Player %i has %s \nPlayer %i has %s \n", p1->id, p1->hasLost ? "lost" : "won", p2->id, p2->hasLost ? "lost" : "won");
   }
 };
 

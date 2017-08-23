@@ -2,7 +2,7 @@
 #include "Player.h"
 
 Player::Player(std::string filepath, int id) {
-  this->hasWon = false;
+  this->hasLost = false;
   this->buildTeam(filepath);
   this->currentOut = this->team.begin()->first;
   this->id = id;
@@ -23,6 +23,18 @@ void Player::processTurn(PlayerMove yourMove, PlayerMove opponentMove) {
     if (yourMove.pokemon->getHP() <= 0) {
       yourMove.pokemon->setFainted(true);
       std::cout << "Player " << this->id << "'s " << this->currentOut << " fainted!\n";
+
+      int alive = 0;
+      for (auto it = this->team.begin(); it != team.end(); ++it) {
+        alive = it->second.isFainted() ? alive : alive + 1;
+      }
+      printf("Player %i has %i Pokemon remaining!\n", this->id, alive);
+      this->numAlive = alive;
+
+      if (this->numAlive == 0) {
+        this->hasLost = true;
+	return;
+      }
       PlayerMove dummyOppMove;
       dummyOppMove.isSuccess = false;
       PlayerMove newMove = this->makeSwitchOnFaint();
@@ -69,36 +81,6 @@ bool compMoves(PlayerMove *p1Move, PlayerMove *p2Move) {
   return p1speed > p2speed;
 }
 
-/* Move method that performs switches and moves, both randomly */
-// PlayerMove Player::move() {
-//   int moveType = rand() % 2;
-//   PlayerMove move;
-//   if (!moveType) {
-//     std::string oldPokemon = this->currentOut;
-//     std::string switchPokemon = this->currentOut;
-//     while (switchPokemon == this->currentOut) {
-//       int randomChoice = rand() % this->team.size();
-//       auto it = this->team.begin();
-//       for (int i = 0; i < randomChoice; i++) {
-//         switchPokemon = it->first;
-//         it++;
-//       }
-//     }
-//     move.isSwitch = true;
-//     move.pokemon = &this->team[switchPokemon];
-//     std::cout << "Player switched from " << oldPokemon << " to "
-//               << switchPokemon << std::endl;
-//   } else {
-//     int i = rand() % 4;
-//     move.isSwitch = false;
-//     move.pokemon = &this->team[this->currentOut];
-//     move.moveName = this->team[this->currentOut].getMove(i);
-//     std::cout << this->currentOut << " used "
-//               << this->team[this->currentOut].getMove(i) << std::endl;
-//   }
-//   return move;
-// }
-
 /* Chooses a random move from the player's current Pokemon, constructs a new
    PlayerMove object, sets fields, and returns. */
 PlayerMove Player::move() {
@@ -120,16 +102,12 @@ PlayerMove Player::makeSwitchOnFaint() {
   // Iterate randomly through valid Pokemon to switch.
   while (switchPokemon == oldPokemon ||
          this->team[switchPokemon].isFainted()) {
-    int randomChoice = rand() % this->team.size();
-    auto it = this->team.begin();
-    for (int i = 0; i < randomChoice; i++) {
-      switchPokemon = it->first;
-      it++;
-    }
+    auto it = std::next(team.begin(), rand() % team.size());
+    switchPokemon = it->first;
   }
   move.isSwitch = true;
   move.pokemon = &this->team[switchPokemon];
-  std::cout << "Player " << this->id << " switched from " << oldPokemon << " to " << switchPokemon
+  std::cout << "Player " << this->id << " switched from " << oldPokemon << " to " << switchPokemon << " after a faint!"
             << std::endl;
   return move;
 }
@@ -171,6 +149,3 @@ void Player::buildTeam(std::string filepath) {
 /* Gets a Pokemon object from a player's team given a corresponding string of the
    Pokemon's name*/
 Pokemon Player::getPokemon(std::string name) { return this->team[name]; }
-
-bool Player::isWinner() { return this->hasWon; }
-
