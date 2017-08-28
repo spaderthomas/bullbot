@@ -1,0 +1,11 @@
+﻿  main.cpp
+c:\users\allfather\documents\visual studio 2015\projects\bullbot\psuser.hpp(229): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+c:\users\allfather\documents\visual studio 2015\projects\bullbot\psuser.hpp(348): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\allfather\documents\visual studio 2015\projects\bullbot\psuser.hpp(349): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\allfather\documents\visual studio 2015\projects\bullbot\psuser.hpp(403): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\allfather\documents\visual studio 2015\projects\bullbot\psuser.hpp(417): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\allfather\documents\visual studio 2015\projects\bullbot\psuser.hpp(418): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\allfather\documents\visual studio 2015\projects\bullbot\psuser.hpp(430): warning C4267: '-=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\allfather\documents\visual studio 2015\projects\bullbot\main.cpp(16): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  bullbot.vcxproj -> C:\Users\AllFather\Documents\Visual Studio 2015\Projects\bullbot\x64\Debug\bullbot.exe
+  bullbot.vcxproj -> C:\Users\AllFather\Documents\Visual Studio 2015\Projects\bullbot\x64\Debug\bullbot.pdb (Partial PDB)
