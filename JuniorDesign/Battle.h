@@ -7,4 +7,4 @@
 #include <unistd.h>
 
 void validateMove(PlayerMove *p1Move, PlayerMove *p2Move);
-void battleLoop();
+int battleLoop();

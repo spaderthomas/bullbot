@@ -21,17 +21,18 @@ bool compMoves(PlayerMove *p1Move, PlayerMove *p2Move);
 
 class Player {
 public:
-  Player(std::string filepath, int id);
+  Player(std::string filepath, int id, PlayerMove (*moveFunc)(Player*));
   int id;
-  Pokemon* getCurrentOut();
+  Pokemon *getCurrentOut();
   Pokemon getPokemon(std::string name);
   void setCurrentOut(PlayerMove move);
   void processTurn(PlayerMove yourMove, PlayerMove opponentMove);
   PlayerMove move();
+  PlayerMove randomMove(Player *p);
   PlayerMove makeSwitchOnFaint();
   int numAlive;
   bool hasLost;
-private:
+  PlayerMove (*moveFunc)(Player*);
   std::unordered_map<std::string, Pokemon> team;
   std::string currentOut;
   void buildTeam(std::string filepath);

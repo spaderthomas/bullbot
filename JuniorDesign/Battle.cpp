@@ -11,6 +11,8 @@
   5. Player objects then handle updating states
 */
 #include "Battle.h"
+#include "Player.h"
+#include "Move.h"
 #include "Util.h"
 
 struct Battle {
@@ -23,10 +25,10 @@ struct Battle {
     p1 = initP1;
     p2 = initP2;
     if (!p1) {
-      p1 = new Player("sample-team.txt", 1);
+      p1 = new Player("sample-team.txt", 1, &randomAttack);
     }
     if (!p2) {
-      p2 = new Player("sample-team.txt", 2);
+      p2 = new Player("sample-team.txt", 2, &randomAttack);
     }
   }
 
@@ -65,7 +67,7 @@ struct Battle {
   }
 
   // Loops a battle until someone wins
-  void battleLoop() {
+  int battleLoop() {
     while (!p1->hasLost && !p2->hasLost) {
       printf("\n\nTurn %i:\n", turn);
       PlayerMove p1Move = p1->move(); // Prints what player's pokemon used what move
@@ -87,11 +89,13 @@ struct Battle {
     }
 
     printf("Player %i has %s \nPlayer %i has %s \n", p1->id, p1->hasLost ? "lost" : "won", p2->id, p2->hasLost ? "lost" : "won");
+    return p1->hasLost ? p2->id : p1->id;
   }
 };
 
 int main() {
   Battle battle;
   std::srand(time(0));
-  battle.battleLoop();
+  int winner = battle.battleLoop();
+  printf("Player %i is the winner", winner);
 }

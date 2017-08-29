@@ -1,12 +1,14 @@
 // Player function definitions
 #include "Player.h"
+#include "Move.h"
 
-Player::Player(std::string filepath, int id) {
+Player::Player(std::string filepath, int id, PlayerMove (*moveFunc)(Player*)) {
   this->hasLost = false;
   this->buildTeam(filepath);
   this->currentOut = this->team.begin()->first;
   this->id = id;
   this->numAlive = 6;
+  this->moveFunc = moveFunc;
 }
 
 /* Receives two moves that have had their damage calculated and their damage
@@ -84,13 +86,7 @@ bool compMoves(PlayerMove *p1Move, PlayerMove *p2Move) {
 /* Chooses a random move from the player's current Pokemon, constructs a new
    PlayerMove object, sets fields, and returns. */
 PlayerMove Player::move() {
-  PlayerMove move;
-  int i = rand() % 4;
-  move.isSwitch = false;
-  move.pokemon = &this->team[this->currentOut];
-  move.moveName = this->team[this->currentOut].getMove(i);
-  std::cout << "Player " << this->id << "'s " << this->currentOut << " used "
-            << this->team[this->currentOut].getMove(i) << std::endl;
+  PlayerMove move = this->moveFunc(this);
   return move;
 }
 
@@ -100,15 +96,14 @@ PlayerMove Player::makeSwitchOnFaint() {
   std::string oldPokemon = this->currentOut;
   std::string switchPokemon = this->currentOut;
   // Iterate randomly through valid Pokemon to switch.
-  while (switchPokemon == oldPokemon ||
-         this->team[switchPokemon].isFainted()) {
+  while (switchPokemon == oldPokemon || this->team[switchPokemon].isFainted()) {
     auto it = std::next(team.begin(), rand() % team.size());
     switchPokemon = it->first;
   }
   move.isSwitch = true;
   move.pokemon = &this->team[switchPokemon];
-  std::cout << "Player " << this->id << " switched from " << oldPokemon << " to " << switchPokemon << " after a faint!"
-            << std::endl;
+  std::cout << "Player " << this->id << " switched from " << oldPokemon
+            << " to " << switchPokemon << " after a faint!" << std::endl;
   return move;
 }
 
