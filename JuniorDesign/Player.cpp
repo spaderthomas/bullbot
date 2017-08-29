@@ -6,6 +6,7 @@ Player::Player(std::string filepath, int id) {
   this->buildTeam(filepath);
   this->currentOut = this->team.begin()->first;
   this->id = id;
+  this->numAlive = 6;
 }
 
 /* Receives two moves that have had their damage calculated and their damage
@@ -28,7 +29,6 @@ void Player::processTurn(PlayerMove yourMove, PlayerMove opponentMove) {
       for (auto it = this->team.begin(); it != team.end(); ++it) {
         alive = it->second.isFainted() ? alive : alive + 1;
       }
-      printf("Player %i has %i Pokemon remaining!\n", this->id, alive);
       this->numAlive = alive;
 
       if (this->numAlive == 0) {

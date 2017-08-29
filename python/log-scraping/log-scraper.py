@@ -54,4 +54,4 @@ def gatherLogs():
                     file.write(str(tag))
                 cleanLog(battleURL)
 
-cleanLog("test-log.txt")
+cleanLog("test-log-raw.txt")

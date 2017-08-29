@@ -81,6 +81,8 @@ struct Battle {
 	     p1->getCurrentOut()->getHP(),
              p2->getCurrentOut()->getName().c_str(),
              p2->getCurrentOut()->getHP());
+      printf("Player %i has %i Pokemon remaining!\n", p1->id, p1->numAlive);
+      printf("Player %i has %i Pokemon remaining!\n", p2->id, p2->numAlive);
       // usleep(3000000);
     }
 

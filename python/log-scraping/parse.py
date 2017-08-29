@@ -102,7 +102,8 @@ def parseLog(filename):
                 game['win'] = turn[1][:-8] # winner's name has '<script' at the end of it
                 return game
 
-parsedGame = parseLog("test-log.txt")
+parsedGame = parseLog("test-log-clean.txt")
 pp.pprint(parsedGame)
-gameJSON = json.dumps(parsedGame)
+with open("test-log.json", "w") as f:
+    gameJSON = json.dump(parsedGame, f)
     
