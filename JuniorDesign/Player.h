@@ -9,16 +9,6 @@
 #include <time.h>
 #include <unordered_map>
 
-struct PlayerMove {
-  bool isSwitch;
-  Pokemon *pokemon = NULL;
-  std::string moveName = "";
-  int damage = 0;
-  bool isSuccess = true;
-};
-
-bool compMoves(PlayerMove *p1Move, PlayerMove *p2Move);
-
 class Player {
 public:
   Player(std::string filepath, int id, PlayerMove (*moveFunc)(Player*));
