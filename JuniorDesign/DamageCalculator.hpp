@@ -1,6 +1,7 @@
-#include "DamageCalculator.h"
-jsoncons::json types;
-jsoncons::json moves;
+void calcDamage(PlayerMove *p1Move, PlayerMove *p2Move);
+int calc(PlayerMove *attacker, PlayerMove *defender);
+float getMultiplier(PlayerMove *attacker, PlayerMove *defender);
+
 
 /* Takes in pointers to two player moves. Uses RNG to calculate damage each of
  * these moves causes. Sets each move's damage field equal to amount of damage
@@ -27,11 +28,11 @@ int calc(PlayerMove *attacker, PlayerMove *defender) {
 
   // use the appropriate stats depending on whether move is physical or special
   int attack = moves[attacker->moveName]["category"] == "physical"
-                   ? attacker->pokemon->getStats()["attack"]
-                   : attacker->pokemon->getStats()["special"];
+                   ? attacker->pokemon->stats["attack"]
+                   : attacker->pokemon->stats["special"];
   int defense = moves[attacker->moveName]["category"] == "physical"
-                    ? defender->pokemon->getStats()["defense"]
-                    : defender->pokemon->getStats()["special"];
+                    ? defender->pokemon->stats["defense"]
+                    : defender->pokemon->stats["special"];
   int pow = moves[attacker->moveName]["power"].as<int>();
   int random = (rand() % 38) + 217;
   float mult = getMultiplier(attacker, defender);
@@ -51,7 +52,7 @@ int calc(PlayerMove *attacker, PlayerMove *defender) {
  * effectiveness multiplier*/
 float getMultiplier(PlayerMove *attacker, PlayerMove *defender) {
   float mult = 1.0;
-  std::vector<std::string> defenderTypes = defender->pokemon->getTypes();
+  std::vector<std::string> defenderTypes = defender->pokemon->types;
   std::string moveType = moves[attacker->moveName]["type"].as<std::string>();
 
   // check type matchup for move used against defender types
@@ -76,8 +77,8 @@ float getMultiplier(PlayerMove *attacker, PlayerMove *defender) {
   }
 
   // check for stab
-  for (int i = 0; i < attacker->pokemon->getTypes().size(); i++) {
-    if (moveType == attacker->pokemon->getTypes()[i]) {
+  for (int i = 0; i < attacker->pokemon->types.size(); i++) {
+    if (moveType == attacker->pokemon->types[i]) {
       mult *= 1.5;
     }
   }

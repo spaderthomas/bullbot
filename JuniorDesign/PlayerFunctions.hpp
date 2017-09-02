@@ -1,7 +1,3 @@
-// Player function definitions
-#include "Player.h"
-#include "Move.h"
-
 Player::Player(std::string filepath, int id, PlayerMove (*moveFunc)(Player*)) {
   this->hasLost = false;
   this->buildTeam(filepath);
@@ -19,17 +15,19 @@ This method returns true if a Player's active Pokemon faints as a result of the
 opponent's move.
 
  */
-void Player::processTurn(PlayerMove yourMove, PlayerMove opponentMove) {
+void Player::processTurn(PlayerMove move1, PlayerMove move2) {
+  PlayerMove yourMove = move1.id == this->id ? move1 : move2;
+  PlayerMove oppMove = move1.id == this->id ? move2 : move1;
   this->setCurrentOut(yourMove);
-  if (opponentMove.isSuccess == true) {
-    this->getCurrentOut()->takeDamage(opponentMove.damage);
-    if (yourMove.pokemon->getHP() <= 0) {
-      yourMove.pokemon->setFainted(true);
+  if (oppMove.isSuccess == true) {
+    this->getCurrentOut()->takeDamage(oppMove.damage);
+    if (yourMove.pokemon->hp <= 0) {
+      yourMove.pokemon->fainted = true;
       std::cout << "Player " << this->id << "'s " << this->currentOut << " fainted!\n";
 
       int alive = 0;
       for (auto it = this->team.begin(); it != team.end(); ++it) {
-        alive = it->second.isFainted() ? alive : alive + 1;
+        alive = it->second.fainted ? alive : alive + 1;
       }
       this->numAlive = alive;
 
@@ -54,7 +52,7 @@ Pokemon* Player::getCurrentOut() {
 /* Handles setting currently active Pokemon by means of looking at the player's move */
 void Player::setCurrentOut(PlayerMove move) {
   if (move.isSwitch)
-    this->currentOut = move.pokemon->getName();
+    this->currentOut = move.pokemon->name;
 }
 
 /* Behavior of this comparison is as follows:
@@ -68,8 +66,8 @@ bool compMoves(PlayerMove *p1Move, PlayerMove *p2Move) {
   if (p1Move->isSwitch) { return true; }
   else if (p2Move->isSwitch) { return false; }
 
-  int p1speed = p1Move->pokemon->getStats()["speed"];
-  int p2speed = p2Move->pokemon->getStats()["speed"];
+  int p1speed = p1Move->pokemon->stats["speed"];
+  int p2speed = p2Move->pokemon->stats["speed"];
 
   if (p1speed == p2speed) { // Handle speed ties    
     int random = rand() % 2;
@@ -96,7 +94,7 @@ PlayerMove Player::makeSwitchOnFaint() {
   std::string oldPokemon = this->currentOut;
   std::string switchPokemon = this->currentOut;
   // Iterate randomly through valid Pokemon to switch.
-  while (switchPokemon == oldPokemon || this->team[switchPokemon].isFainted()) {
+  while (switchPokemon == oldPokemon || this->team[switchPokemon].fainted) {
     auto it = std::next(team.begin(), rand() % team.size());
     switchPokemon = it->first;
   }
