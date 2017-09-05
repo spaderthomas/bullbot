@@ -20,11 +20,21 @@ struct PokemonData {
 	bool is_trapped = false;
 	bool is_fainted = false;
 	std::vector<MoveData> move_data;
-
+	enum KnowledgeState : short {
+		UNKNOWN,
+		KNOWN_ENEMY,
+		KNOWN
+	};
 	template<typename T>
 	std::vector<T> to_float_vec() {
 		int m_len = move_data.size();
 		// is_active, if move 1, move 1 data, if move x, move x data, 
-		return { (T)active, (mlen > 0 ? 1.f : 0.f),  (mlen > 1 ? 1.f : 0.f), (mlen > 2 ? 1.f : 0.f), (mlen > 3 ? 1.f : 0.f) };
+		return { 
+			(T)active, 
+			(T)(mlen > 0 ? 1.f : 0.f),
+			(T)(mlen > 1 ? 1.f : 0.f),
+			(T)(mlen > 2 ? 1.f : 0.f),
+			(T)(mlen > 3 ? 1.f : 0.f)
+		};
 	}
 };

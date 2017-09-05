@@ -85,14 +85,10 @@ struct PSUser : BasePSUser {
 	void handle_message(std::string message) {
 		static const std::string battle_prefix = "battle";
 		if (message.length() == 0) return;
-		if (message == "Timeout") {
-			std::cout << "timed out!" << std::endl;
-		}
 
 		std::istringstream ss(message);
 		std::string line;
 		std::unique_ptr<Room> room;
-		std::printf("--begin of cmd--\n");
 		std::string room_name = "";
 		BattleRoom* battle_room = nullptr;
 		while (std::getline(ss, line)) {
@@ -108,22 +104,30 @@ struct PSUser : BasePSUser {
 			std::lock_guard<std::mutex> lock(*data_mutex.get());
 			if (cmd_pos.size()) {
 				auto& cmd = cmd_pos[0];
+				/**
+					COMMANDS sent to this client
+					update user - updates user information
+					challstr - challenge string
+					formats - formats available on the server
+					c: - chat user sending a message
+					j  - a user joined a room
+					l  - a user left the room
+				**/
 				if (cmd == "updateuser") {
-					//std::printf("username set to %s\n", cmd_pos[1].c_str());
 					username = cmd_pos[1];
 					is_guest = !(bool(std::stoi(cmd_pos[2])));
 					avatar = cmd_pos[3];
 				} else if (cmd == "challstr") {
-					std::cout << "update challstr: " << cmd_pos[2] << std::endl;
 					chall_id = cmd_pos[1];
 					chall_str = cmd_pos[2];
 				} else if (cmd == "formats") {
-					std::cout << "formats available" << std::endl;
-					for (auto each = cmd_pos.begin() + 1; each != cmd_pos.end(); ++each) {
-						std::cout << "[" << each->c_str() << "] ";
-					}
-					std::cout << std::endl;
-				} else if (cmd == "c:") { //need to ensure message is sent entirely
+					//std::cout << "formats:";
+					//for (auto each = cmd_pos.begin() + 1; each != cmd_pos.end(); ++each) {
+					//	std::cout << "[" << each->c_str() << "] ";
+					//}
+					//std::cout << std::endl;
+				} else if (cmd == "c:") {
+					//need to ensure message is sent entirely
 					if (cmd_pos.size() > 3) {
 						cmd_pos[2].erase(std::remove(cmd_pos[2].begin(), cmd_pos[2].end(), ' '), cmd_pos[2].end());
 						std::printf("[%s] %s: %s\n", cmd_pos[1].c_str(), cmd_pos[2].c_str(), cmd_pos[3].c_str());
@@ -139,7 +143,6 @@ struct PSUser : BasePSUser {
 						//std::printf("%s joined the room.\n", cmd_pos[1].c_str());
 					}
 				} else if (cmd == "updatechallenges") {
-					std::printf("challenges updated : %s\n", cmd_pos[1].c_str());
 					Parser parser;
 					Object::Ptr challenges = parser.parse(cmd_pos[1]).extract<Object::Ptr>();
 					auto challengesFrom = challenges->get("challengesFrom").extract<Object::Ptr>();
@@ -174,10 +177,6 @@ struct PSUser : BasePSUser {
 					}
 					std::cout << std::endl;
 				} 
-				//else if (cmd == "turn") {
-
-
-				//}
 				else if (cmd == "request") {
 					//there is a "wait:true" line in msg
 					Parser parser;
@@ -257,7 +256,6 @@ struct PSUser : BasePSUser {
 						p.speed = stats->getValue<short>("spe");
 						//auto val = pokeobj->get("")->extract <Value::Ptr> ;
 
-						std::cout << p.ident << std::endl;
 						poke_team.push_back(p);
 					}
 					battle_room->teamdata = poke_team;
@@ -310,29 +308,27 @@ struct PSUser : BasePSUser {
 
 					if (aa < available_moves.size()) {
 						auto ostrng = room_name + "|/choose move " + available_moves[aa] + "|" + battle_room->rq_id;
-						std::cout << ostrng << std::endl;
+						//std::cout << ostrng << std::endl;
 						connection.send_msg(ostrng);
 					} else if (available_switches.size() > 0) {
 						aa -= available_moves.size();
 						auto ostrng = room_name + "|/choose switch " + available_switches[aa] + "|" + battle_room->rq_id;
-						std::cout << ostrng << std::endl;
+						//std::cout << ostrng << std::endl;
 						connection.send_msg(ostrng);
 					} else {
 						auto ostrng = room_name + "|/choose pass" + "|" + battle_room->rq_id;
-						std::cout << ostrng << std::endl;
+						//std::cout << ostrng << std::endl;
 						connection.send_msg(ostrng);
 					}
 
 				} else {
 					for (auto each : cmd_pos) {
-						std::cout << "[" << each.c_str() << "] ";
+						std::cout << "-[" << each.c_str() << "]- ";
 					}
 					std::cout << std::endl;
 				}
 			}
 		}
-
-		std::printf("--end of cmd--\n");
 		//std::cout << message.c_str() << std::endl;
 	}
 };

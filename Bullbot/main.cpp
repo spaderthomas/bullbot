@@ -16,7 +16,7 @@
 int main() {
 
 	std::vector<PSUser> agents;
-	agents.resize(3);
+	agents.resize(2);
 	for (int i = 0; i < agents.size(); ++i) {
 		PSUser& agent = agents[i];
 		agent.set_turn_callback([](std::vector<float> data, std::size_t action_size) {
@@ -43,6 +43,5 @@ int main() {
 	while (true) {
 		std::cin.get();
 	}
-	std::cin.get();
 	return 0;
 }

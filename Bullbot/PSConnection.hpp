@@ -39,6 +39,7 @@ struct PSConnection {
 	void send_msg(std::string &message) {
 		ws->sendFrame(message.data(), (int)message.size());
 	}
+
 private:
 	SocketAddress uri;
 	std::unique_ptr<WebSocket> ws;
@@ -46,6 +47,7 @@ private:
 	std::function<void(std::string)> on_message = 0;
 	std::thread rcv_thread;
 	std::string buffer;
+
 	void rcv_message_loop() {
 		while (!ws) {} // wait until websocket appears
 		while (ws) {
@@ -55,6 +57,9 @@ private:
 					n = ws->receiveFrame((void*)buffer.data(), (int)buffer.size(), flags);
 					std::string msg = buffer.substr(0, n);
 					if (on_message) {
+						//temporary mutex lock so that std::out data is readable
+						static std::mutex message_mtx;
+						std::lock_guard<std::mutex> guard(message_mtx);
 						on_message(msg);
 					}
 				} catch (Poco::Net::NetException &e) {
