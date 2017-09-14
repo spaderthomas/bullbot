@@ -1,0 +1,151 @@
+﻿  main.cpp
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\random.hpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\main.cpp(14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\main.cpp(15): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(159): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(158): note: while compiling class template member function 'double MLP<float,float,float>::fit(std::vector<OutputType,std::allocator<_Ty>>,std::vector<_Ty,std::allocator<_Ty>>)'
+          with
+          [
+              OutputType=float,
+              _Ty=float
+          ]
+  c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\tdlearner.hpp(40): note: see reference to function template instantiation 'double MLP<float,float,float>::fit(std::vector<OutputType,std::allocator<_Ty>>,std::vector<_Ty,std::allocator<_Ty>>)' being compiled
+          with
+          [
+              OutputType=float,
+              _Ty=float
+          ]
+  c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\tdlearner.hpp(7): note: see reference to class template instantiation 'MLP<float,float,float>' being compiled
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(120): warning C4018: '<': signed/unsigned mismatch
+  c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(109): note: while compiling class template member function 'double MLP<float,float,float>::backpropagate(std::vector<OutputType,std::allocator<_Ty>>,std::vector<_Ty,std::allocator<_Ty>>,float)'
+          with
+          [
+              OutputType=float,
+              _Ty=float
+          ]
+  c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(159): note: see reference to function template instantiation 'double MLP<float,float,float>::backpropagate(std::vector<OutputType,std::allocator<_Ty>>,std::vector<_Ty,std::allocator<_Ty>>,float)' being compiled
+          with
+          [
+              OutputType=float,
+              _Ty=float
+          ]
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(129): warning C4018: '<': signed/unsigned mismatch
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(131): warning C4018: '<': signed/unsigned mismatch
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(138): warning C4018: '<': signed/unsigned mismatch
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(142): warning C4018: '<': signed/unsigned mismatch
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(143): warning C4018: '<': signed/unsigned mismatch
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(146): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(84): warning C4018: '<': signed/unsigned mismatch
+  c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(75): note: while compiling class template member function 'std::array<std::vector<std::vector<OutputType,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>>,2> MLP<float,OutputType,float>::propagate(std::vector<_Ty,std::allocator<_Ty>>,float)'
+          with
+          [
+              OutputType=float,
+              _Ty=float
+          ]
+  c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(155): note: see reference to function template instantiation 'std::array<std::vector<std::vector<OutputType,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>>,2> MLP<float,OutputType,float>::propagate(std::vector<_Ty,std::allocator<_Ty>>,float)' being compiled
+          with
+          [
+              OutputType=float,
+              _Ty=float
+          ]
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(92): warning C4018: '<': signed/unsigned mismatch
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(98): warning C4018: '<': signed/unsigned mismatch
+c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(99): warning C4018: '<': signed/unsigned mismatch
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\type_traits(1468): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional(213): note: see reference to function template instantiation '_Rx std::_Invoke_ret<_Rx,_Callable&,_Ty>(std::_Forced<_Rx,false>,_Callable &,_Ty &&)' being compiled
+          with
+          [
+              _Rx=float,
+              _Callable=_Decayed,
+              _Ty=float
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional(211): note: while compiling class template member function 'float std::_Func_impl<_Decayed,_Alloc,_Ret,WeightType>::_Do_call(WeightType &&)'
+          with
+          [
+              _Alloc=std::allocator<int>,
+              _Ret=float,
+              WeightType=float
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional(137): note: see reference to class template instantiation 'std::_Func_impl<_Decayed,_Alloc,_Ret,WeightType>' being compiled
+          with
+          [
+              _Alloc=std::allocator<int>,
+              _Ret=float,
+              WeightType=float
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional(348): note: see reference to class template instantiation 'std::_Is_large<_Myimpl>' being compiled
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional(327): note: see reference to function template instantiation 'void std::_Func_class<_Ret,WeightType>::_Reset_alloc<_Ty,std::allocator<int>>(_Fx &&,const _Alloc &)' being compiled
+          with
+          [
+              _Ret=float,
+              WeightType=float,
+              _Ty=LinearActivation<float>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>,
+              _Fx=LinearActivation<float>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>,
+              _Alloc=std::allocator<int>
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional(327): note: see reference to function template instantiation 'void std::_Func_class<_Ret,WeightType>::_Reset_alloc<_Ty,std::allocator<int>>(_Fx &&,const _Alloc &)' being compiled
+          with
+          [
+              _Ret=float,
+              WeightType=float,
+              _Ty=LinearActivation<float>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>,
+              _Fx=LinearActivation<float>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>,
+              _Alloc=std::allocator<int>
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional(498): note: see reference to function template instantiation 'void std::_Func_class<_Ret,WeightType>::_Reset<LinearActivation<WeightType>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>>(_Fx &&)' being compiled
+          with
+          [
+              _Ret=float,
+              WeightType=float,
+              _Fx=LinearActivation<float>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional(498): note: see reference to function template instantiation 'void std::_Func_class<_Ret,WeightType>::_Reset<LinearActivation<WeightType>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>>(_Fx &&)' being compiled
+          with
+          [
+              _Ret=float,
+              WeightType=float,
+              _Fx=LinearActivation<float>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional(562): note: see reference to function template instantiation 'std::function<WeightType (WeightType)>::function<LinearActivation<WeightType>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>,double,void>(_Fx)' being compiled
+          with
+          [
+              WeightType=float,
+              _Fx=LinearActivation<float>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\functional(562): note: see reference to function template instantiation 'std::function<WeightType (WeightType)>::function<LinearActivation<WeightType>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>,double,void>(_Fx)' being compiled
+          with
+          [
+              WeightType=float,
+              _Fx=LinearActivation<float>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>
+          ]
+  c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\activation.hpp(17): note: see reference to function template instantiation 'std::function<WeightType (WeightType)> &std::function<WeightType (WeightType)>::operator =<LinearActivation<WeightType>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>,double,void>(_Fx &&)' being compiled
+          with
+          [
+              WeightType=float,
+              _Fx=LinearActivation<float>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>
+          ]
+  c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\activation.hpp(17): note: see reference to function template instantiation 'std::function<WeightType (WeightType)> &std::function<WeightType (WeightType)>::operator =<LinearActivation<WeightType>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>,double,void>(_Fx &&)' being compiled
+          with
+          [
+              WeightType=float,
+              _Fx=LinearActivation<float>::{ctor}::<lambda_ef5d7faa936f83e3f16c8a5c31afcbe0>
+          ]
+  c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\activation.hpp(15): note: while compiling class template member function 'LinearActivation<WeightType>::LinearActivation(void)'
+          with
+          [
+              WeightType=float
+          ]
+  c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(247): note: see reference to function template instantiation 'LinearActivation<WeightType>::LinearActivation(void)' being compiled
+          with
+          [
+              WeightType=float
+          ]
+  c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(247): note: see reference to class template instantiation 'LinearActivation<WeightType>' being compiled
+          with
+          [
+              WeightType=float
+          ]
+  c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\agent\neuralnetwork\multilayerperceptron.hpp(229): note: while compiling class template member function 'void MLP<float,float,float>::load(const char *)'
+  c:\users\allfather\documents\visual studio 2015\projects\nemesis\nemesis\main.cpp(29): note: see reference to function template instantiation 'void MLP<float,float,float>::load(const char *)' being compiled
+  Nemesis.vcxproj -> C:\Users\AllFather\Documents\Visual Studio 2015\Projects\Nemesis\Debug\Nemesis.exe
+  Nemesis.vcxproj -> C:\Users\AllFather\Documents\Visual Studio 2015\Projects\Nemesis\Debug\Nemesis.pdb (Partial PDB)
