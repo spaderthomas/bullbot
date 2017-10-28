@@ -1,0 +1,10 @@
+﻿  main.cpp
+e:\users\allfather\projects\bullbot\bullbot\PSUser.hpp(136): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+e:\users\allfather\projects\bullbot\bullbot\PSUser.hpp(281): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+  Generating code
+  2 of 1438 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    31 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  bullbot.vcxproj -> E:\Users\AllFather\Projects\bullbot\Release\bullbot.exe
+  bullbot.vcxproj -> E:\Users\AllFather\Projects\bullbot\Release\bullbot.pdb (Full PDB)

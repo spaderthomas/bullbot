@@ -127,11 +127,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullbot\BasePSUser.hpp" />
-    <ClInclude Include="Bullbot\MoveData.hpp" />
-    <ClInclude Include="Bullbot\PokemonData.hpp" />
+    <ClInclude Include="Bullbot\Definitions.hpp" />
+    <ClInclude Include="Bullbot\EnvironmentData.hpp" />
+    <ClInclude Include="Bullbot\EnvironmentSettings.hpp" />
     <ClInclude Include="Bullbot\PSConnection.hpp" />
     <ClInclude Include="Bullbot\PSUser.hpp" />
-    <ClInclude Include="Bullbot\Room.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

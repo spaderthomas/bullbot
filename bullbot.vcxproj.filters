@@ -26,16 +26,16 @@
     <ClInclude Include="Bullbot\PSConnection.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bullbot\PokemonData.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullbot\MoveData.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Bullbot\BasePSUser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bullbot\Room.hpp">
+    <ClInclude Include="Bullbot\Definitions.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullbot\EnvironmentData.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullbot\EnvironmentSettings.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

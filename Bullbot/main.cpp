@@ -19,12 +19,12 @@ int main() {
 	agents.resize(2);
 	for (int i = 0; i < agents.size(); ++i) {
 		PSUser& agent = agents[i];
-		agent.set_turn_callback([](std::vector<float> data, std::size_t action_size) {
-			int action_ciel = action_size - 1;
-			std::mt19937 rng(std::time(0));
-			std::uniform_int_distribution<> rdist(0, action_ciel);
-			return rdist(rng);// random choice
-		});
+		//agent.set_turn_callback([](std::vector<float> data, std::size_t action_size) {
+		//	int action_ciel = action_size - 1;
+		//	std::mt19937 rng(std::time(0));
+		//	std::uniform_int_distribution<> rdist(0, action_ciel);
+		//	return rdist(rng);// random choice
+		//});
 		agent.connect("localhost:8000");
 		auto name = "Carbon12345" + std::to_string(i);
 		agent.login(name);
