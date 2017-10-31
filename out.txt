@@ -1,0 +1,40 @@
+-[customgroups]- -[[{"symbol":"~","name":"Administrator","type":"leadership"},{"symbol":"&","name":"Leader","type":"leadership"},{"symbol":"#","name":"Room Owner","type":"leadership"},{"symbol":"@","name":"Moderator","type":"staff"},{"symbol":"%","name":"Driver","type":"staff"},{"symbol":"☆","name":"Player","type":"normal"},{"symbol":"*","name":"Bot","type":"normal"},{"symbol":"+","name":"Voice","type":"normal"},{"symbol":" ","name":null,"type":"normal"},{"symbol":"‽","name":"Locked","type":"punishment"},{"symbol":"!","name":"Muted","type":"punishment"}]]- 
+-[updatesearch]- -[{"searching":[],"games":null}]- 
+-[updatesearch]- -[{"searching":[],"games":{"battle-gen1randombattle-37":"[Gen 1] Random Battle","battle-gen1randombattle-38":"[Gen 1] Random Battle","battle-gen1randombattle-39":"[Gen 1] Random Battle"}}]- 
+[init] [chat] -[users]- -[1, Carbon123450]- 
+-[:]- -[1508473169]- 
+-[b]- -[battle-gen1randombattle-34]- -[ Carbon123451]- -[ Carbon123450]- 
+-[b]- -[battle-gen1randombattle-35]- -[ Carbon123450]- -[ Carbon123451]- 
+-[b]- -[battle-gen1randombattle-36]- -[ Carbon123450]- -[ Carbon123451]- 
+-[b]- -[battle-gen1randombattle-37]- -[ Carbon123450]- -[ Carbon123451]- 
+-[b]- -[battle-gen1randombattle-38]- -[ Carbon123450]- -[ Carbon123451]- 
+-[b]- -[battle-gen1randombattle-39]- -[ Carbon123450]- -[ Carbon123451]- 
+-[customgroups]- -[[{"symbol":"~","name":"Administrator","type":"leadership"},{"symbol":"&","name":"Leader","type":"leadership"},{"symbol":"#","name":"Room Owner","type":"leadership"},{"symbol":"@","name":"Moderator","type":"staff"},{"symbol":"%","name":"Driver","type":"staff"},{"symbol":"☆","name":"Player","type":"normal"},{"symbol":"*","name":"Bot","type":"normal"},{"symbol":"+","name":"Voice","type":"normal"},{"symbol":" ","name":null,"type":"normal"},{"symbol":"‽","name":"Locked","type":"punishment"},{"symbol":"!","name":"Muted","type":"punishment"}]]- 
+-[updatesearch]- -[{"searching":[],"games":null}]- 
+-[updatesearch]- -[{"searching":[],"games":{"battle-gen1randombattle-37":"[Gen 1] Random Battle","battle-gen1randombattle-38":"[Gen 1] Random Battle","battle-gen1randombattle-39":"[Gen 1] Random Battle"}}]- 
+[init] [chat] -[users]- -[2, Carbon123450, Carbon123451]- 
+-[:]- -[1508473170]- 
+-[b]- -[battle-gen1randombattle-34]- -[ Carbon123451]- -[ Carbon123450]- 
+-[b]- -[battle-gen1randombattle-35]- -[ Carbon123450]- -[ Carbon123451]- 
+-[b]- -[battle-gen1randombattle-36]- -[ Carbon123450]- -[ Carbon123451]- 
+-[b]- -[battle-gen1randombattle-37]- -[ Carbon123450]- -[ Carbon123451]- 
+-[b]- -[battle-gen1randombattle-38]- -[ Carbon123450]- -[ Carbon123451]- 
+-[b]- -[battle-gen1randombattle-39]- -[ Carbon123450]- -[ Carbon123451]- 
+accepted gen1randombattle from carbon123451
+-[updatesearch]- -[{"searching":[],"games":{"battle-gen1randombattle-37":"[Gen 1] Random Battle","battle-gen1randombattle-38":"[Gen 1] Random Battle","battle-gen1randombattle-39":"[Gen 1] Random Battle","battle-gen1randombattle-40":"[Gen 1] Random Battle"}}]- 
+[>battle-gen1randombattle-40] 
+[init] [battle] [>battle-gen1randombattle-40] 
+[>battle-gen1randombattle-40] 
+-[b]- -[battle-gen1randombattle-40]- -[ Carbon123450]- -[ Carbon123451]- 
+-[updatesearch]- -[{"searching":[],"games":{"battle-gen1randombattle-37":"[Gen 1] Random Battle","battle-gen1randombattle-38":"[Gen 1] Random Battle","battle-gen1randombattle-39":"[Gen 1] Random Battle","battle-gen1randombattle-40":"[Gen 1] Random Battle"}}]- 
+[>battle-gen1randombattle-40] 
+[init] [battle] [>battle-gen1randombattle-40] 
+-[b]- -[battle-gen1randombattle-40]- -[ Carbon123450]- -[ Carbon123451]- 
+[>battle-gen1randombattle-40] 
+-[player]- -[p1]- -[Carbon123450]- -[101]- 
+-[teamsize]- -[p1]- -[6]- 
+[>battle-gen1randombattle-40] 
+-[player]- -[p1]- -[Carbon123450]- -[101]- 
+-[teamsize]- -[p1]- -[6]- 
+[>battle-gen1randombattle-40] 
+{"active":[{"moves":[{"move":"Hydro Pump","id":"hydropump","pp":8,"maxpp":8,"target":"normal","disabled":false},{"move":"Surf","id":"surf","pp":24,"maxpp":24,"target":"allAdjacentFoes","disabled":false},{"move":"Blizzard","id":"blizzard","pp":8,"maxpp":8,"target":"normal","disabled":false},{"move":"Rest","id":"rest","pp":16,"maxpp":16,"target":"self","disabled":false}]}],"side":{"name":"Carbon123450","id":"p1","pokemon":[{"ident":"p1: Vaporeon","details":", L74","condition":"345/345","active":true,"stats":{"atk":170,"def":162,"spa":236,"spd":236,"spe":170},"moves":["hydropump","surf","blizzard","rest"],"baseAbility":"none","item":"","pokeball":"pokeball"},{"ident":"p1: Gastly","details":", L88","condition":"232/232","active":false,"stats":{"atk":148,"def":139,"spa":262,"spd":262,"spe":227},"moves":["hypnosis","thunderbolt","megadrain","psychic"],"baseAbility":"none","item":"","pokeball":"pokeball"},{"ident":"p1: Marowak","details":", L74","condition":"241/241","active":false,"stats":{"atk":192,"def":236,"spa":147,"spd":147,"spe":140},"moves":["earthquake","blizzard","bodyslam","seismictoss"],"baseAbility":"none","item":"","pokeball":"pokeball"},{"ident":"p1: Electabuzz","details":", L74","condition":"249/249","active":false,"stats":{"atk":196,"def":158,"spa":199,"spd":199,"spe":229},"moves":["thunderwave","psychic","thunderbolt","seismictoss"],"baseAbility":"none","item":"","pokeball":"pokeball"},{"ident":"p1: Mewtwo","details":", L62","condition":"261/261","active":false,"stats":{"atk":199,"def":174,"spa":253,"spd":253,"spe":223},"moves":["psychic","amnesia","thunderbolt","recover"],"baseAbility":"none","item":"","pokeball":"pokeball"},{"ident":"p1: Articuno","details":", L74","condition":"286/286","active":false,"stats":{"atk":199,"def":221,"spa":258,"spd":258,"spe":199},"moves":["blizzard","icebeam","hyperbeam","reflect"],"baseAbility":"none","item":"","pokeball":"pokeball"}]},"rqid":2}

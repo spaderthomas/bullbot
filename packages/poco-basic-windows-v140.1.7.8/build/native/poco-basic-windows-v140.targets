@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- Add include files to compiler path -->
+	<ItemDefinitionGroup>
+		<ClCompile>
+			<AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\lib\native\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+		</ClCompile>
+	</ItemDefinitionGroup>
+
+	<!-- Copies dynamic libraries to output directory on shared runtime builds -->
+	<Target Name="CopyDynamicLibraries" AfterTargets="AfterBuild">
+	
+		<!-- Check if the runtime link is dynamic or static -->
+		<CreateProperty Value="%(ClCompile.RuntimeLibrary)">
+			<Output TaskParameter="Value" PropertyName="POCO_RuntimeLibrary" />
+		</CreateProperty>
+
+		<!-- POCO_RuntimeLink corresponds to /MDd, /MD, /MTd and /MT options -->
+		<CreateProperty Condition="($(POCO_RuntimeLibrary.ToLower().IndexOf('dll')) &gt; -1) And ($(Configuration.ToLower().IndexOf('debug')) &gt; -1)" Value="mdd">
+			<Output TaskParameter="Value" PropertyName="POCO_RuntimeLink" />
+		</CreateProperty>
+		<CreateProperty Condition="($(POCO_RuntimeLibrary.ToLower().IndexOf('dll')) &gt; -1) And ($(Configuration.ToLower().IndexOf('debug')) == -1)" Value="md">
+			<Output TaskParameter="Value" PropertyName="POCO_RuntimeLink" />
+		</CreateProperty>
+		<CreateProperty Condition="($(POCO_RuntimeLibrary.ToLower().IndexOf('dll')) == -1) And ($(Configuration.ToLower().IndexOf('debug')) &gt; -1)" Value="mtd">
+			<Output TaskParameter="Value" PropertyName="POCO_RuntimeLink" />
+		</CreateProperty>
+		<CreateProperty Condition="($(POCO_RuntimeLibrary.ToLower().IndexOf('dll')) == -1) And ($(Configuration.ToLower().IndexOf('debug')) == -1)" Value="mt">
+			<Output TaskParameter="Value" PropertyName="POCO_RuntimeLink" />
+		</CreateProperty>
+
+		<!-- POCO_Platform is CPU architecture. "x86" or "x64". -->
+		<CreateProperty Condition="$(Platform.ToLower()) == 'win32'" Value="x86">
+			<Output TaskParameter="Value" PropertyName="POCO_Platform" />
+		</CreateProperty>
+		<CreateProperty Condition="$(Platform.ToLower()) == 'x64'" Value="x64">
+			<Output TaskParameter="Value" PropertyName="POCO_Platform" />
+		</CreateProperty>
+
+		<!-- POCO_DynamicLibPath is set according to CPU architecture -->
+		<CreateProperty Condition="$(POCO_Platform) == 'x86'" Value="$(MSBuildThisFileDirectory)..\..\build\native\x86">
+			<Output TaskParameter="Value" PropertyName="POCO_DynamicLibPath" />
+		</CreateProperty>
+		<CreateProperty Condition="$(POCO_Platform) == 'x64'" Value="$(MSBuildThisFileDirectory)..\..\build\native\x64">
+			<Output TaskParameter="Value" PropertyName="POCO_DynamicLibPath" />
+		</CreateProperty>
+
+		<!-- Get list of DLL files -->
+		<ItemGroup>
+			<DynamicLibs Include="$(POCO_DynamicLibPath)\*.dll" />
+		</ItemGroup>
+
+		<!-- Copy dynamic libraries to output folder -->
+		<Copy Condition="($(POCO_RuntimeLink) == 'mdd') Or ($(POCO_RuntimeLink) == 'md')" SourceFiles="@(DynamicLibs)" DestinationFolder="$(OutDir)" />
+
+	</Target>
+
+	<!-- Gets invoked before linker runs -->
+	<Target Name="SetupLibPath" BeforeTargets="Link">
+	
+		<!-- POCO_Platform is CPU architecture. "x86" or "x64". -->
+		<CreateProperty Condition="$(Platform.ToLower()) == 'win32'" Value="x86">
+			<Output TaskParameter="Value" PropertyName="POCO_Platform" />
+		</CreateProperty>
+		<CreateProperty Condition="$(Platform.ToLower()) == 'x64'" Value="x64">
+			<Output TaskParameter="Value" PropertyName="POCO_Platform" />
+		</CreateProperty>
+
+		<!-- POCO_LibPath is set according to CPU architecture -->
+		<CreateProperty Condition="$(POCO_Platform) == 'x86'" Value="$(MSBuildThisFileDirectory)..\..\lib\native\lib">
+			<Output TaskParameter="Value" PropertyName="POCO_LibPath" />
+		</CreateProperty>
+		<CreateProperty Condition="$(POCO_Platform) == 'x64'" Value="$(MSBuildThisFileDirectory)..\..\lib\native\lib64">
+			<Output TaskParameter="Value" PropertyName="POCO_LibPath" />
+		</CreateProperty>
+
+		<!-- Add POCO_LibPath to linker directory -->
+		<ItemGroup>
+			<Link>
+				<AdditionalLibraryDirectories>$(POCO_LibPath);%(Link.AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+			</Link>
+		</ItemGroup>
+
+	</Target>
+</Project>

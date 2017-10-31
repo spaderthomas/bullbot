@@ -45,7 +45,7 @@ private:
 	std::unique_ptr<WebSocket> ws;
 	const std::string conn_string = std::string("/showdown/websocket");
 	std::function<void(std::string)> on_message = 0;
-	std::thread rcv_thread;
+ 	std::thread rcv_thread;
 	std::string buffer;
 
 	void rcv_message_loop() {

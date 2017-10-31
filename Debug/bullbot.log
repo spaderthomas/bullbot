@@ -1,6 +1,4 @@
 ﻿  main.cpp
-c:\users\allfather\documents\visual studio 2015\projects\bullbot\bullbot\psuser.hpp(118): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-c:\users\allfather\documents\visual studio 2015\projects\bullbot\bullbot\psuser.hpp(300): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\allfather\documents\visual studio 2015\projects\bullbot\bullbot\main.cpp(24): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  bullbot.vcxproj -> C:\Users\AllFather\Documents\Visual Studio 2015\Projects\bullbot\Debug\bullbot.exe
-  bullbot.vcxproj -> C:\Users\AllFather\Documents\Visual Studio 2015\Projects\bullbot\Debug\bullbot.pdb (Partial PDB)
+c:\programming\psbot\bullbot\psuser.hpp(253): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\programming\psbot\bullbot\main.cpp(34): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  bullbot.vcxproj -> C:\Programming\PSBot\Debug\bullbot.exe

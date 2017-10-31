@@ -17,8 +17,7 @@
 #include <Poco/Net/NetException.h>
 #include <Poco/JSON/Parser.h>
 #include "PSConnection.hpp"
-#include "MoveData.hpp"
-#include "PokemonData.hpp"
+#include "Data.hpp"
 #include "Room.hpp"
 
 using namespace Poco::Net;
