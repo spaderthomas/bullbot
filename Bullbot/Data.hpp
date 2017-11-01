@@ -22,11 +22,20 @@ struct Turn {
 
 struct {
   json moveData;
+  json pokemonData;
+  json typeData;
 
   void initGameData() {
 	  std::ifstream moveDataStream;
-	moveDataStream.open("move-data.json");
+    moveDataStream.open("move-data.json");
     moveDataStream >> moveData;
-	auto x = moveData["absorb"]["accuracy"];
+
+    std::ifstream pokemonDataStream;
+    pokemonDataStream.open("pokemon.json");
+    pokemonDataStream >> pokemonData;
+
+    std::ifstream typeDataStream;
+    typeDataStream.open("type-chart.json");
+    typeDataStream >> typeData;
   }
 } globalGameData;

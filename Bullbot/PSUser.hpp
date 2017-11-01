@@ -1,7 +1,9 @@
+// look at updating challenges. make the iteration code work.
+
 #pragma once
 
 #include <string>
-#include <iostream>
+#include <iostream>	
 #include <fstream>
 #include <random>
 #include <ctime>
@@ -89,10 +91,9 @@ struct PSUser : BasePSUser {
 
     std::istringstream messageStream(rawMessage);
     std::string line;
-    
-    std::unique_ptr<Room> room;
-    std::string room_name = "";
-    BattleRoom *battle_room = nullptr;
+
+    // PS requires messages to be prefixed with active room
+    std::string room = "";
 
     //Look through each line of the message
     while (std::getline(messageStream, line)) {
@@ -143,70 +144,58 @@ struct PSUser : BasePSUser {
                 parsedMessage[1].end());
           }
         } else if (messageType == "updatechallenges") {
-          Parser parser;
-          Object::Ptr challenges = parser.parse(parsedMessage[1]).extract<Object::Ptr>();
-          auto challengesFrom = challenges->get("challengesFrom").extract<Object::Ptr>();
+          json challenges;
+          std::istringstream challengeMessage(parsedMessage[1]);
+		  std::cout << parsedMessage[1];
+          challengeMessage >> challenges;
           
-          for (auto piter = challengesFrom->begin(); piter != challengesFrom->end(); ++piter) {
-            auto battletype = piter->second.convert<std::string>();
+          auto receivedChallenges = challenges["challengesFrom"];
+
+          fox_iter_json(challIter, receivedChallenges) {
+            auto battletype = challIter->second.convert<std::string>();
             if (accepted_formats.count(battletype)) {
-              std::printf("accepted %s from %s\n", battletype.c_str(), piter->first.c_str());
-              connection.send_msg("|/accept " + piter->first);
+              std::printf("accepted %s from %s\n", battletype.c_str(), challIter->first.c_str());
+              connection.send_msg("|/accept " + challIter->first);
             }
           }
-        } else if (messageType == "init") {
-          for (auto each : parsedMessage) {
-            std::cout << "[" << each.c_str() << "] ";
-          }
-        } else if (messageType == "title") {
-          if (battle_room) {
-            battle_room->title = parsedMessage[1];
-          }
-        } else if (messageType[0] == '>') {
-          auto room_type = messageType.substr(1, battle_prefix.length());
-          room_name = messageType.substr(1);
-          if (room_type == battle_prefix) {
-            if (!battlerooms.count(room_type)) {
-              battlerooms[room_name] = BattleRoom();
-            }
-            battle_room = &battlerooms[room_type];
-          } else {
-            chatrooms[room_name] = ChatRoom();
-          }
-          for (auto each : parsedMessage) {
-            std::cout << "[" << each.c_str() << "] ";
-          }
-          std::cout << std::endl;
+        } else if (messageType[0] == '>') { // Message is '>roomid'
+          room = messageType.substr(1);
         } else if (messageType == "request") { //Requests a move, sends game state
           if (parsedMessage.size() < 2) { // there is a "wait:true" line in msg
             continue;
           }
-          
-          Parser parser;
-          json gameStateAsJSON;
-          std::istringstream gameStateStream(parsedMessage[1]);
-          gameStateStream >> gameStateAsJSON;
 
           std::cout << "\n---REQUEST BEGIN---\n";
           std::cout << parsedMessage[1].c_str() << std::endl;
           std::cout << "---REQUEST END---\n\n";
+          
+          json gameStateAsJSON;
+          std::istringstream gameStateStream(parsedMessage[1]);
+          gameStateStream >> gameStateAsJSON;
 
           PokemonData team[6];
           auto teamData = gameStateAsJSON["side"]["pokemon"];
           for (int indxPkmn = 0; indxPkmn < teamData.size(); ++indxPkmn) {
             PokemonData newPokemon;
-            auto&newPokemonData = teamData[indxPkmn];
+            auto &newPokemonData = teamData[indxPkmn];
             std::string name = newPokemonData["ident"];
             name = name.substr(4, -1); //Remove "p1: "
 
-            //Get types and ID from pokemon.json
-            //beep boop code here
-            
+            newPokemon.id = globalGameData.pokemonData[name]["index"];
+            std::vector<std::string> types = globalGameData.pokemonData[name]["type"];
+            fox_for(indxType, types.size()) {
+              auto type = types[indxType];
+              newPokemon.types[indxType] = globalGameData.typeData[type]["index"];
+            }
+
+            if (types.size() == 1) {
+              newPokemon.types[1] = -1;
+            }
+
             auto moves = newPokemonData["moves"];
             for (int indxMove = 0; indxMove < moves.size(); ++indxMove) {
               std::string curMove = moves[indxMove];
-              //index into JSON to get index
-              newPokemon.moves[indxMove] = indxMove; //placeholder
+              newPokemon.moves[indxMove] = globalGameData.moveData[curMove]["index"];
             }
 
             auto stats = newPokemonData["stats"];
@@ -217,13 +206,14 @@ struct PSUser : BasePSUser {
             newPokemon.stats[4] = stats["spe"];
             
             //Parse weird condition (aka HP) string into HP
-			std::string conditionString = newPokemonData["condition"];
-			const char* condition = conditionString.c_str();
+            std::string conditionString = newPokemonData["condition"];
+            const char* condition = conditionString.c_str();
             int numNumbers = 0;
-            for (int indxChar = 0; indxChar < sizeof(*condition)/sizeof(condition[0]); indxChar++) {
-              char c = condition[indxChar];
+            int indxChar = 0;
+            while(char c = condition[indxChar]) {
               if (c - '0' >= 0 && c - '0' <= 9) {
                 numNumbers++;
+                indxChar++;
               } else {
                 break;
               }
@@ -234,57 +224,36 @@ struct PSUser : BasePSUser {
             newPokemon.active = newPokemonData["active"];
 
             team[indxPkmn] = newPokemon;
+          }
+
+          std::string outstring = room + "|/choose_move " + "0" + "|";
+          connection.send_msg(outstring);
+
+      //   if (aa < available_moves.size()) {
+      //     auto ostrng = room_name + "|/choose move " + available_moves[aa] +
+      //                   "|" + battle_room->rq_id;
+      //     // std::cout << ostrng << std::endl;
+      //     connection.send_msg(ostrng);
+      //   } else if (available_switches.size() > 0) {
+      //     aa -= available_moves.size();
+      //     auto ostrng = room_name + "|/choose switch " +
+      //                   available_switches[aa] + "|" + battle_room->rq_id;
+      //     // std::cout << ostrng << std::endl;
+      //     connection.send_msg(ostrng);
+      //   } else {
+      //     auto ostrng = room_name + "|/choose pass" + "|" + battle_room->rq_id;
+      //     // std::cout << ostrng << std::endl;
+      //     connection.send_msg(ostrng);
+      //   }
+
+        // } else {
+        //   for (auto each : parsedMessage) {
+        //     std::cout << "-[" << each.c_str() << "]- ";
+        //   }
+        //   std::cout << std::endl;
+        // }
         }
-
-        // originally from turn command
-        // send battle data to agent
-        // get battle action values
-        // choose action
-        auto &pmon = battle_room->teamdata;
-        std::vector<std::string> available_moves;
-        std::vector<std::string> available_switches;
-        int mv_size = 0;
-        int m_index = 1;
-        int p_index = 1;
-        // choose
-        bool can_switch = true;
-
-
-        std::mt19937 rng(std::time(0));
-        int action_ciel = available_switches.size() + available_moves.size();
-        // give movedata
-        // std::uniform_int_distribution<> rdist(0, action_ciel);
-        // auto aa = rdist(rng);// choice
-        auto aa = turn_callback(std::vector<float>(), action_ciel);
-        // std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        // std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
-        if (aa < available_moves.size()) {
-          auto ostrng = room_name + "|/choose move " + available_moves[aa] +
-                        "|" + battle_room->rq_id;
-          // std::cout << ostrng << std::endl;
-          connection.send_msg(ostrng);
-        } else if (available_switches.size() > 0) {
-          aa -= available_moves.size();
-          auto ostrng = room_name + "|/choose switch " +
-                        available_switches[aa] + "|" + battle_room->rq_id;
-          // std::cout << ostrng << std::endl;
-          connection.send_msg(ostrng);
-        } else {
-          auto ostrng = room_name + "|/choose pass" + "|" + battle_room->rq_id;
-          // std::cout << ostrng << std::endl;
-          connection.send_msg(ostrng);
-        }
-
-      } else {
-        for (auto each : parsedMessage) {
-          std::cout << "-[" << each.c_str() << "]- ";
-        }
-        std::cout << std::endl;
       }
     }
   }
-  // std::cout << message.c_str() << std::endl;
-}
-}
-;
+};

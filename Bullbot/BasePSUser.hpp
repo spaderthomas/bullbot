@@ -18,7 +18,6 @@
 #include <Poco/JSON/Parser.h>
 #include "PSConnection.hpp"
 #include "Data.hpp"
-#include "Room.hpp"
 
 using namespace Poco::Net;
 using namespace Poco::JSON;
@@ -92,9 +91,6 @@ protected:
 	std::unique_ptr<std::mutex> data_mutex;
 
 	std::string uri = "localhost:8000";
-
-	std::unordered_map<std::string, BattleRoom> battlerooms;
-	std::unordered_map<std::string, ChatRoom> chatrooms;
 
 	std::string username;
 	std::string avatar;

@@ -16,11 +16,17 @@
 #include "json.hpp"
 using json = nlohmann::json;
 
+// Defines
+typedef unsigned int fuint;
+#define fox_for(iterName, iterCount) for (fuint iterName = 0; iterName < (iterCount); ++iterName)
+#define fox_iter(iterator, iterable) for (auto iterator = iterable.begin(); iterator != iterable.end(); ++iterator) 
+#define fox_iter_json(iter, iterable) for (json::iterator iter = iterable.begin(); iter != iterable.end(); ++iter) 
+
 #include "Data.hpp"
-#include "Room.hpp"
 #include "PSConnection.hpp"
 #include "BasePSUser.hpp"
 #include "PSUser.hpp"
+
 
 int main() {
   globalGameData.initGameData();
