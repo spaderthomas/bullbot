@@ -228,10 +228,10 @@ struct PSUser : BasePSUser {
 							auto lvl_string = obj->getValue<std::string>("details");
 							p.lvl = std::stoi(lvl_string.substr(lvl_string.find("L") + 1));
 							p.ident = obj->getValue<std::string>("ident");
+							p.ident = p.ident.substr(p.ident.find(" ") + 1);
 							p.item = obj->getValue<std::string>("item");
 							p.pokeball = obj->getValue<std::string>("pokeball");
-							auto ident = obj->getValue<std::string>("ident");
-							p.name = ident.substr(ident.find(" ") + 1);
+							p.name = p.ident;
 
 							poke_team[i] = p;
 						}
@@ -262,7 +262,6 @@ struct PSUser : BasePSUser {
 										}
 									}
 								} else if (can_switch) {
-									std::printf("test %s\n", each.name.c_str());
 									available_actions[i + 3] = each.name;
 								}
 							}

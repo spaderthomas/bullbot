@@ -59,8 +59,8 @@ struct PokemonData : HasFloatDataRepresentation {
 			(float)(lvl)
 		};
 		if (pokedex.count(ident)) {
-			auto& mdata = movedex.at(name);
-			data.insert(data.end(), mdata.begin(), mdata.end());
+			auto& pdata = pokedex.at(name);
+			data.insert(data.end(), pdata.begin(), pdata.end());
 		} else {
 			fvec_t empty_vec(6, -1);
 			data.insert(data.end(), empty_vec.begin(), empty_vec.end());
