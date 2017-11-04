@@ -25,7 +25,7 @@ int main() {
 		//	std::uniform_int_distribution<> rdist(0, action_ciel);
 		//	return rdist(rng);// random choice
 		//});
-		agent.connect("localhost:8000");
+		agent.connect("localhost:7000");
 		auto name = "Carbon12345" + std::to_string(i);
 		agent.login(name);
 		agent.send("|/autojoin lobby");

@@ -1,4 +1,5 @@
 #pragma once
+#include <algorithm>
 #include <string>
 #include <iostream>
 #include <random>
@@ -18,133 +19,27 @@
 #include <Poco/JSON/Parser.h>
 #include "BasePSUser.hpp"
 #include "EnvironmentData.hpp"
+#include <locale>
 
-std::string OrderedCallbackCode(std::string raw_state) {
-	Parser parser;
-	Object::Ptr data = parser.parse(raw_state).extract<Object::Ptr>();
-	auto force_switch = data->has("forceSwitch") ? true: false; //todo-expand this
-	auto side = data->get("side").extract<Object::Ptr>();
-	auto pokedata = side->get("pokemon").extract<Array::Ptr>();
-
-	std::vector<PokemonData> poke_team;
-	for (int i = 0; i < pokedata->size(); ++i) {
-		PokemonData p;
-		auto obj = pokedata->getObject(i);
-		p.active = obj->getValue<bool>("active");
-		if (p.active && data->has("active")) {
-			auto active_pmons = data->get("active").extract<Array::Ptr>();
-			auto active_first = active_pmons->getObject(0);
-			if (active_first->has("trapped")) {
-				p.is_trapped = active_first->getValue<bool>("trapped");
-			}
-			if (active_first->has("moves")) {
-				auto active_moves = active_first->getArray("moves");
-				for (int j = 0; j < active_moves->size(); ++j) {
-					auto active_move = active_moves->getObject(j);
-					MoveData m;
-					m.name = active_move->getValue<std::string>("id");
-					if (active_move->has("pp")) {
-						m.pp = active_move->getValue<short>("pp");
-					}
-					p.move_data.push_back(m);
-				}
-			}
-		} else {
-			auto moves = obj->getArray("moves");
-			p.move_data.clear();
-			for (int j = 0; j < moves->size(); ++j) {
-				MoveData m;
-				auto movename = moves->getElement<std::string>(j);
-				m.name = movename;
-				m.pp = 16; //assume 16
-				p.move_data.push_back(m);
-			}
-		}
-
-		auto stats = obj->getObject("stats");
-		p.base_ability = obj->getValue<std::string>("baseAbility");
-		auto cond_string = obj->getValue<std::string>("condition");
-		auto cond_stream = std::stringstream(cond_string);
-		std::string cond_token;
-
-		//hp
-		std::getline(cond_stream, cond_token, ' ');
-		int cpos = std::string::npos;
-		if ((cpos = cond_token.find('/')) == std::string::npos) {
-			p.curr_condition = 0;
-			p.best_condition = 0;
-		} else {
-			p.curr_condition = std::stoi(cond_token.substr(0, cpos));
-			p.best_condition = std::stoi(cond_token.substr(cpos + 1));
-		}
-
-		//status
-		std::getline(cond_stream, cond_token, ' ');
-		if (cond_token == "fnt") {
-			p.is_fainted = true;
-		}
-
-		auto lvl_string = obj->getValue<std::string>("details");
-		p.lvl = std::stoi(lvl_string.substr(lvl_string.find("L") + 1));
-		p.ident = obj->getValue<std::string>("ident");
-		p.item = obj->getValue<std::string>("item");
-		p.pokeball = obj->getValue<std::string>("pokeball");
-		p.attack = stats->getValue<short>("atk");
-		p.defense = stats->getValue<short>("def");
-		p.special_attack = stats->getValue<short>("spa");
-		p.special_defense = stats->getValue<short>("spd");
-		p.speed = stats->getValue<short>("spe");
-
-		poke_team.push_back(p);
+std::string OrderedCallbackCode(fvec_t state, action_arr_t available_actions) {
+	for (auto each : state) {
+		std::cout << each << ", ";
+	}
+	std::cout << std::endl;
+	std::mt19937 rng((unsigned int)std::time(0));
+	std::vector<unsigned int> valid_actions;
+	bool valid_exist = false;
+	for (auto each : available_actions) {
+		std::printf("%s\n", each.c_str());
+		valid_actions.push_back((each != "") ? 1 : 0);
+		valid_exist |= (each != "") ? 1 : 0;
+	}
+	if (valid_exist) {
+		std::discrete_distribution<int> dist(valid_actions.begin(), valid_actions.end());
+		auto aa = dist(rng);
+		return ((aa < 4) ? std::string("move ") + std::to_string(aa + 1) : std::string("switch ") + std::to_string(aa-2));
 	}
 
-	// originally from turn command
-	// send battle data to agent
-	// get battle action values
-	// choose action
-	auto& pmon = poke_team;
-	std::vector<std::string> available_moves;
-	std::vector<std::string> available_switches;
-	int mv_size = 0;
-	int m_index = 1;
-	int p_index = 1;
-	bool can_switch = true;
-
-	for (auto each : pmon) {
-		if (each.active && each.is_trapped) {
-			can_switch = false;
-			break;
-		}
-	}
-
-	for (auto each : pmon) {
-		if (!each.is_fainted) {
-			if (each.active) {
-				mv_size = each.move_data.size();
-				for (auto mv : each.move_data) {
-					if (!force_switch) {
-						available_moves.push_back(std::to_string(m_index));
-					}
-					m_index++;
-				}
-			} else if (can_switch) {
-				available_switches.push_back(std::to_string(p_index));
-			}
-		}
-		p_index++;
-	}
-
-	std::mt19937 rng(std::time(0));
-	// moves 0-5 + switches 0-4 
-	int action_ciel = available_switches.size() + available_moves.size() - 1;
-	std::uniform_int_distribution<int> dist(0, action_ciel);
-	auto aa = dist(rng);
-	if (aa < available_moves.size()) {
-		return "move " + available_moves[aa];
-	} else if (available_switches.size() > 0) {
-		aa -= available_moves.size();
-		return "switch " + available_switches[aa];
-	}
 	return "pass";
 }
 
@@ -167,8 +62,9 @@ struct PSUser : BasePSUser {
 
 	std::string state_str="";
 	std::string last_action_str;
+	std::unordered_map<std::string, EnvironmentData> battle_data;
 
-	void set_turn_callback(action_callback_t turn_callback) {
+	void set_action_callback(action_callback_t turn_callback) {
 		this->action_callback = turn_callback;
 	}
 	
@@ -250,6 +146,12 @@ struct PSUser : BasePSUser {
 
 		if (cmd_line[0][0].substr(0,1) == ">") {// check if the first string is a room name
 			room = cmd_line[0][0].substr(1);// grabs the room name
+			if (room.find("battle") != std::string::npos) {
+				std::cout << room << std::endl;
+				if (!battle_data.count(room)) {
+					battle_data[room] = EnvironmentData();
+				}
+			}
 			if (cmd_line[1].size() > 1) {//ensure the command has an argument
 				if (cmd_line[1][0] == "request") {
 					std::cout << cmd_line[1][1] << std::endl;
@@ -257,7 +159,117 @@ struct PSUser : BasePSUser {
 					Object::Ptr data = parser.parse(cmd_line[1][1]).extract<Object::Ptr>();
 					auto wait = data->has("wait") ? true : false;
 					if (!wait) {
-						connection.send_msg(room + "|/choose " + action_callback(cmd_line[1][1]) + "|" + "");
+						auto force_switch = data->has("forceSwitch") ? true : false; //todo-expand this
+						auto side = data->get("side").extract<Object::Ptr>();
+						auto pokedata = side->get("pokemon").extract<Array::Ptr>();
+						battle_data[room].player_id = side->get("id").extract<std::string>();
+
+						std::array<PokemonData, 6>& poke_team = battle_data[room].player_team;
+						for (int i = 0; i < pokedata->size(); ++i) {
+							PokemonData p;
+							auto obj = pokedata->getObject(i);
+							p.active = obj->getValue<bool>("active");
+							if (p.active && data->has("active")) {
+								auto active_pmons = data->get("active").extract<Array::Ptr>();
+								//the first is normally the active pokemon if there is an active pokemon
+								auto active_first = active_pmons->getObject(0);
+								if (active_first->has("trapped")) {
+									p.is_trapped = active_first->getValue<bool>("trapped");
+								} else {
+									p.is_trapped = false;
+								}
+								if (active_first->has("moves")) {
+									auto active_moves = active_first->getArray("moves");
+									for (int j = 0; j < active_moves->size(); ++j) {
+										auto active_move = active_moves->getObject(j);
+										MoveData m;
+										m.name = active_move->getValue<std::string>("id");
+										if (active_move->has("pp")) {
+											m.pp = active_move->getValue<short>("pp");
+										}
+										if (active_move->has("disabled")) {
+											m.disabled = active_move->getValue<bool>("disabled");
+										}
+										p.move_data[j] = m;
+									}
+								}
+							} else {
+								auto moves = obj->getArray("moves");
+								for (int j = 0; j < moves->size(); ++j) {
+									MoveData m;
+									auto movename = moves->getElement<std::string>(j);
+									m.name = movename;
+									m.pp = 16; //assume 16
+									p.move_data[j] = m;
+								}
+							}
+
+							auto stats = obj->getObject("stats");
+							p.base_ability = obj->getValue<std::string>("baseAbility");
+							auto cond_string = obj->getValue<std::string>("condition");
+							auto cond_stream = std::stringstream(cond_string);
+							std::string cond_token;
+
+							//hp
+							std::getline(cond_stream, cond_token, ' ');
+							int cpos = std::string::npos;
+							if ((cpos = cond_token.find('/')) == std::string::npos) {
+								p.curr_condition = 0;
+							} else {
+								p.curr_condition = std::stoi(cond_token.substr(0, cpos));
+							}
+
+							//status
+							std::getline(cond_stream, cond_token, ' ');
+							if (cond_token == "fnt") {
+								p.is_fainted = true;
+							}
+
+							auto lvl_string = obj->getValue<std::string>("details");
+							p.lvl = std::stoi(lvl_string.substr(lvl_string.find("L") + 1));
+							p.ident = obj->getValue<std::string>("ident");
+							p.item = obj->getValue<std::string>("item");
+							p.pokeball = obj->getValue<std::string>("pokeball");
+							auto ident = obj->getValue<std::string>("ident");
+							p.name = ident.substr(ident.find(" ") + 1);
+
+							poke_team[i] = p;
+						}
+
+						// purpose of this section: creating a validity vector of strings, empty strings should be considered false;
+						// the strings are also ordered properly(if you'd rather take that approach, which may be better for this problem)
+						auto& pmon = poke_team;
+						std::array<std::string, 10> available_moves;
+						std::fill(available_moves.begin(), available_moves.end(), "");
+
+						bool can_switch = true;
+						for (auto each : pmon) {
+							if (each.active && each.is_trapped) {
+								can_switch = false;
+								break;
+							}
+						}
+						
+						action_arr_t available_actions;
+						std::fill(available_actions.begin(), available_actions.end(), "");
+						for (int i = 0; i < pmon.size(); ++i) {
+							auto& each = pmon[i];
+							if (!each.is_fainted) {
+								if (each.active) {
+									for (int mv = 0; mv < each.move_data.size(); ++mv) {
+										if (!force_switch && !each.move_data[mv].disabled) {
+											available_actions[mv] = each.move_data[mv].name;
+										}
+									}
+								} else if (can_switch) {
+									std::printf("test %s\n", each.name.c_str());
+									available_actions[i + 3] = each.name;
+								}
+							}
+						}
+						auto cmd_msg = room + "|/choose " + action_callback(battle_data[room].as_vector(), available_actions) + "|" + "";
+						std::cout << cmd_msg << std::endl;
+						connection.send_msg(cmd_msg);
 					}
 					std::cout << std::endl;
 				} else if (cmd_line[1][0] == "error") {
@@ -268,11 +280,22 @@ struct PSUser : BasePSUser {
 					}
 				} else {
 					for (auto each : cmd_line) {
-						if (each[0] == "choice") {
-							std::cout << "choice" << std::endl;
-						} else if (each[0] == "") {
+						std::vector<float> result_data;
 						
+						if (each[0] == "choice") {
+							std::cout << "choice: " << each[1]<< std::endl;
+						} else if (each[0] == "switch") {
+							std::cout << "switched: " << each[1] << std::endl;
+						} else if (each[0] == "-damage") {
+							std::cout << "damage-: " << each[1] << std::endl;
+						} else if (each[0] == "-heal") {
+							std::cout << "healed-: " << each[1] << std::endl;
 						} else if (each[0] == "") {
+						} else {
+							std::cout << "something " << each[0] << std::endl;
+						}
+						if (observation_callback) {
+							observation_callback(battle_data[room].as_vector(), result_data);
 						}
 					}
 				}
