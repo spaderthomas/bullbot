@@ -27,6 +27,7 @@ struct MoveData : HasFloatDataRepresentation {
 			auto& mdata = movedex.at(name);
 			data.insert(data.end(), mdata.begin(), mdata.end());
 		} else {
+			//std::cout << "couldn't find move " << name.c_str() << std::endl;
 			fvec_t empty_vec(8, -1);
 			data.insert(data.end(), empty_vec.begin(), empty_vec.end());
 		}
@@ -59,9 +60,10 @@ struct PokemonData : HasFloatDataRepresentation {
 			(float)(lvl)
 		};
 		if (pokedex.count(ident)) {
-			auto& pdata = pokedex.at(name);
+			auto& pdata = pokedex.at(ident);
 			data.insert(data.end(), pdata.begin(), pdata.end());
 		} else {
+			std::cout << "couldn't find pokemon: " << ident.c_str() << std::endl;
 			fvec_t empty_vec(6, -1);
 			data.insert(data.end(), empty_vec.begin(), empty_vec.end());
 		}
@@ -83,9 +85,6 @@ struct EnvironmentData : HasFloatDataRepresentation {
 	std::string player_id;
 	std::array<PokemonData, 6> player_team;
 	std::array<PokemonData, 6> opponent_team;
-	action_arr_t get_available_actions() {
-
-	}
 
 	fvec_t as_vector() {
 		fvec_t data;

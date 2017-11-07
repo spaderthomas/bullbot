@@ -21,48 +21,41 @@
 #include "EnvironmentData.hpp"
 #include <locale>
 
-std::string OrderedCallbackCode(fvec_t state, action_arr_t available_actions) {
+int RandomAICallback(fvec_t state, action_arr_t available_actions) {
 	for (auto each : state) {
 		std::cout << each << ", ";
 	}
 	std::cout << std::endl;
 	std::mt19937 rng((unsigned int)std::time(0));
-	std::vector<unsigned int> valid_actions;
+	std::vector<unsigned int> valid_actions(available_actions.size());
 	bool valid_exist = false;
-	for (auto each : available_actions) {
-		std::printf("%s\n", each.c_str());
-		valid_actions.push_back((each != "") ? 1 : 0);
-		valid_exist |= (each != "") ? 1 : 0;
+	for (int i = 0; i < available_actions.size(); ++i) {
+		auto is_valid = (available_actions[i] != "") ? 1 : 0;
+		valid_actions[i] = is_valid;
+		valid_exist |= is_valid;
 	}
+	//for (int i = 0; i<available_actions.size(); ++i) {
+	//	std::cout<<"move: " << std::to_string(valid_actions[i]) <<" " << available_actions[i]<<std::endl;
+	//}
 	if (valid_exist) {
-		std::discrete_distribution<int> dist(valid_actions.begin(), valid_actions.end());
-		auto aa = dist(rng);
-		return ((aa < 4) ? std::string("move ") + std::to_string(aa + 1) : std::string("switch ") + std::to_string(aa-2));
+		std::discrete_distribution<unsigned int> dist(valid_actions.begin(), valid_actions.end());
+		return dist(rng);
 	}
-
-	return "pass";
+	return -1;
 }
-
-
-
-struct RawState {
-	std::string environment_data;
-	std::string action_data;
-	std::string result;
-};
 
 struct PSUser : BasePSUser {
 	PSUser() {
 		connection.set_on_message(std::bind(&PSUser::handle_message, this, std::placeholders::_1));
 	}
-	action_callback_t action_callback = OrderedCallbackCode;
+	action_callback_t action_callback = RandomAICallback;
 	observation_callback_t observation_callback;
 
 	std::unordered_set<std::string> accepted_formats;
 
-	std::string state_str="";
-	std::string last_action_str;
-	std::unordered_map<std::string, EnvironmentData> battle_data;
+	std::unordered_map<std::string, EnvironmentData> battle_data; // will optimize
+	std::unordered_map<std::string, EnvironmentData> old_battle_data;
+	unsigned int last_action;
 
 	void set_action_callback(action_callback_t turn_callback) {
 		this->action_callback = turn_callback;
@@ -150,8 +143,10 @@ struct PSUser : BasePSUser {
 				std::cout << room << std::endl;
 				if (!battle_data.count(room)) {
 					battle_data[room] = EnvironmentData();
+					old_battle_data[room] = EnvironmentData();
 				}
 			}
+			EnvironmentData& curr_battle = battle_data[room];
 			if (cmd_line[1].size() > 1) {//ensure the command has an argument
 				if (cmd_line[1][0] == "request") {
 					std::cout << cmd_line[1][1] << std::endl;
@@ -159,6 +154,7 @@ struct PSUser : BasePSUser {
 					Object::Ptr data = parser.parse(cmd_line[1][1]).extract<Object::Ptr>();
 					auto wait = data->has("wait") ? true : false;
 					if (!wait) {
+						old_battle_data[room] = battle_data[room];
 						auto force_switch = data->has("forceSwitch") ? true : false; //todo-expand this
 						auto side = data->get("side").extract<Object::Ptr>();
 						auto pokedata = side->get("pokemon").extract<Array::Ptr>();
@@ -266,11 +262,13 @@ struct PSUser : BasePSUser {
 								}
 							}
 						}
-						auto cmd_msg = room + "|/choose " + action_callback(battle_data[room].as_vector(), available_actions) + "|" + "";
-						std::cout << cmd_msg << std::endl;
+						auto aa = action_callback(old_battle_data[room].as_vector(), available_actions);
+						auto action_str = (aa < 0) ? std::string("pass"):
+							((aa < 4) ? std::string("move ") + std::to_string(aa + 1)
+							 : std::string("switch ") + std::to_string(aa - 2));
+						std::string cmd_msg = room + "|/choose " + action_str + "|" + "";
 						connection.send_msg(cmd_msg);
 					}
-					std::cout << std::endl;
 				} else if (cmd_line[1][0] == "error") {
 					for (int i = 0; i < cmd_line.size(); ++i) {
 						for (int j = 0; j < cmd_line[i].size(); ++j) {
@@ -279,17 +277,53 @@ struct PSUser : BasePSUser {
 					}
 				} else {
 					for (auto each : cmd_line) {
-						std::vector<float> result_data;
-						
+						std::vector<float> result_data(4);
+						for (auto& each : result_data) {
+							each = 0;
+						}
+						// player damage, player knocked out, enemy damage, enemy knocked out
 						if (each[0] == "choice") {
 							std::cout << "choice: " << each[1]<< std::endl;
 						} else if (each[0] == "switch") {
 							std::cout << "switched: " << each[1] << std::endl;
+							// add to opponents known pokemon
+
+							if (each[1].find(curr_battle.player_id) == std::string::npos) {
+								auto ident = each[1].substr(each[1].find(" ") + 1);
+								if (std::none_of(curr_battle.opponent_team.begin(), curr_battle.opponent_team.end(), [&ident](PokemonData& p) {
+									return p.ident == ident;
+								})) {
+									for (auto& pmon : curr_battle.opponent_team) {
+										if (pmon.ident == "") {
+											pmon.ident = ident;
+											pmon.name = ident;
+											break;
+										}
+									}
+								}
+							
+							}
 						} else if (each[0] == "-damage") {
-							std::cout << "damage-: " << each[1] << std::endl;
+							std::cout << "damage-: " << each[1] << ": " << each[2] << std::endl;
+							if (each[1].find(curr_battle.player_id) == std::string::npos) {
+								result_data[2] -= 1; // todo: update damage
+							} else {
+								result_data[0] -= 1;
+							}
+							//
 						} else if (each[0] == "-heal") {
-							std::cout << "healed-: " << each[1] << std::endl;
-						} else if (each[0] == "") {
+							std::cout << "healed-: " << each[1] << ": " << each[2] << std::endl;
+							if (each[1].find(curr_battle.player_id) == std::string::npos) {
+								result_data[2] += 1;
+							} else {
+								result_data[0] += 1;
+							}
+						} else if (each[0] == "faint") {
+							std::cout << "fainted " << each[1] << std::endl;
+						} else if (each[0] == "win") {
+							std::cout << "win " << each[1] << std::endl;
+						} else if (each[0] == "player") {
+							std::cout << "You are player: " << each[1] << std::endl;
 						} else {
 							std::cout << "something " << each[0] << std::endl;
 						}

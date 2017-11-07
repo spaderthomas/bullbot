@@ -5,7 +5,7 @@
 
 // DO NOT CHANGE THIS FILE IF YOU HAVE ALREADY TRAINED DATA
 
-std::unordered_map < std::string, std::array<int, 8> > movedex = {
+std::unordered_map < std::string, std::array<short, 8> > movedex = {
 	{ "eerieimpulse", { 598,1,3,2,0,100,0,15 } },
 	{ "Eerie Impulse", { 598,1,3,2,0,100,0,15 } },
 	{ "anchorshot", { 677,2,16,2,0,100,80,20 } },
@@ -1448,7 +1448,7 @@ std::unordered_map < std::string, std::array<int, 8> > movedex = {
 	{ "Stockpile", { 254,1,12,1,0,100,0,20 } },
 };
 
-std::unordered_map<std::string, int> type_index = {
+std::unordered_map<std::string, short> type_index = {
 	{ "Bug", 0 },
 	{ "Dark", 1 },
 	{ "Dragon", 2 },
@@ -1469,7 +1469,7 @@ std::unordered_map<std::string, int> type_index = {
 	{ "Water", 17 }
 };
 
-std::unordered_map<std::string, std::array<int, 8>> pokedex= {
+std::unordered_map<std::string, std::array<short, 8>> pokedex= {
 	{ "gardevoirmega", { 14,4,68,85,165,135,100,65 } },
 	{ "Gardevoir-Mega", { 14,4,68,85,165,135,100,65 } },
 	{ "snubbull", { 4,-1,60,80,40,40,30,50 } },
