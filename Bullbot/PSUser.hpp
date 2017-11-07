@@ -147,16 +147,16 @@ struct PSUser : BasePSUser {
           json challenges;
           std::istringstream challengeMessage(parsedMessage[1]);
 		  std::cout << parsedMessage[1];
-          challengeMessage >> challenges;
+	          challengeMessage >> challenges;
           
           auto receivedChallenges = challenges["challengesFrom"];
 
           fox_iter_json(challIter, receivedChallenges) {
-            auto battletype = challIter->second.convert<std::string>();
-            if (accepted_formats.count(battletype)) {
-              std::printf("accepted %s from %s\n", battletype.c_str(), challIter->first.c_str());
-              connection.send_msg("|/accept " + challIter->first);
-            }
+            //auto battletype = challIter->second.convert<std::string>();
+            //if (accepted_formats.count(battletype)) {
+              //std::printf("accepted %s from %s\n", battletype.c_str(), challIter->first.c_str());
+              //connection.send_msg("|/accept " + challIter->first);
+            //}
           }
         } else if (messageType[0] == '>') { // Message is '>roomid'
           room = messageType.substr(1);
