@@ -1,25 +1,4 @@
 #pragma once
-#include <algorithm>
-#include <string>
-#include <iostream>
-#include <random>
-#include <ctime>
-#include <functional>
-#include <algorithm>
-#include <memory>
-#include <thread>
-#include <chrono>
-#include <sstream>
-#include <mutex>
-#include <unordered_set>
-#include <unordered_map>
-#include <cassert>
-#include <experimental/coroutine>
-#include <Poco/Net/NetException.h>
-#include <Poco/JSON/Parser.h>
-#include "BasePSUser.hpp"
-#include "EnvironmentData.hpp"
-#include <locale>
 
 int RandomAICallback(fvec_t state, action_arr_t available_actions) {
 	for (auto each : state) {
@@ -53,8 +32,9 @@ struct PSUser : BasePSUser {
 
 	std::unordered_set<std::string> accepted_formats;
 
-	std::unordered_map<std::string, EnvironmentData> battle_data; // will optimize
-	std::unordered_map<std::string, EnvironmentData> old_battle_data;
+  // Maps room IDs to 
+	std::unordered_map<std::string, EnvironmentData> battleData;
+	std::unordered_map<std::string, EnvironmentData> oldbattleData;
 	unsigned int last_action;
 
 	void set_action_callback(action_callback_t turn_callback) {
@@ -111,125 +91,122 @@ struct PSUser : BasePSUser {
 		accepted_formats.insert(format);
 	}
 
-	void handle_message(std::string message) {
+	void handle_message(std::string rawMessage) {
 		static const std::string battle_prefix = "battle";
-		if (message.length() == 0) return;
+		if (rawMessage.length() == 0) return;
 		std::string room = "";
 
-		std::istringstream ss(message);
+		std::istringstream messageStream(rawMessage);
 		std::string line;
+    
 		int i = 0;
-		std::vector<std::vector<std::string>> cmd_line;
-		while (std::getline(ss, line)) {
-			if (line.length() > 0) {
-				std::vector<std::string> cmd_pos;
-				std::istringstream line_string(line);
-				std::string token;
-				while (std::getline(line_string, token, '|')) {
-					if (token.length() > 0) {
-						cmd_pos.push_back(token);
-					}
-				}
-				if (cmd_pos.size() > 0) {
-					cmd_line.push_back(cmd_pos);
-				}
-			}
-		}
-		mutex_guard lock(*data_mutex_ptr.get());
+		std::vector<std::vector<std::string>> allCurMessageCommands;
+    
+		//Look through each line of the message
+    while (std::getline(messageStream, line)) {
+      if (line.length() < 1) {
+        continue;
+      }
 
-		if (cmd_line[0][0].substr(0,1) == ">") {// check if the first string is a room name
-			room = cmd_line[0][0].substr(1);// grabs the room name
-			if (room.find("battle") != std::string::npos) {
-				std::cout << room << std::endl;
-				if (!battle_data.count(room)) {
-					battle_data[room] = EnvironmentData();
-					old_battle_data[room] = EnvironmentData();
-				}
-			}
-			EnvironmentData& curr_battle = battle_data[room];
-			if (cmd_line[1].size() > 1) {//ensure the command has an argument
-				if (cmd_line[1][0] == "request") {
-					std::cout << cmd_line[1][1] << std::endl;
-					Parser parser;
-					Object::Ptr data = parser.parse(cmd_line[1][1]).extract<Object::Ptr>();
-					auto wait = data->has("wait") ? true : false;
+      //Parse message based on PS delimiter '|'
+      std::istringstream lineStream(line);
+      std::vector<std::string> parsedMessage;
+      std::string token;
+      while (std::getline(lineStream, token, '|')) {
+        if (token.length() > 0) {
+          parsedMessage.push_back(token);
+        }
+      }
+
+      if (parsedMessage.size() > 0) {
+        allCurMessageCommands.push_back(parsedMessage);
+      }
+    }
+      mutex_guard lock(*data_mutex_ptr.get());
+
+      auto parsedMessage = allCurMessageCommands[0]; //kill this
+			if (parsedMessage.size() > 0) {
+        auto messageType = parsedMessage[0];
+        
+				if (messageType == "request") {
+					std::cout << parsedMessage[1] << std::endl;
+
+          json gameStateAsJSON;
+          std::istringstream gameStateStream(parsedMessage[1]);
+          gameStateStream >> gameStateAsJSON;
+
+          PokemonData team[6];
+          bool wait = false; // figure out what this does?
 					if (!wait) {
-						old_battle_data[room] = battle_data[room];
-						auto force_switch = data->has("forceSwitch") ? true : false; //todo-expand this
-						auto side = data->get("side").extract<Object::Ptr>();
-						auto pokedata = side->get("pokemon").extract<Array::Ptr>();
-						battle_data[room].player_id = side->get("id").extract<std::string>();
+            auto teamData = gameStateAsJSON["side"]["pokemon"];
+						fox_for(indxPkmn, teamData.size()) {
+              PokemonData newPokemon;
+              auto &newPokemonData = teamData[indxPkmn];
+              std::string name = newPokemonData["ident"];
+              name = name.substr(4, -1); //Remove "p1: "
+              
+              newPokemon.id = globalGameData.pokemonData[name]["index"];
+              std::vector<std::string> types = globalGameData.pokemonData[name]["type"];
+              fox_for(indxType, types.size()) {
+                auto type = types[indxType];
+                newPokemon.types[indxType] = globalGameData.typeData[type]["index"];
+              }
+              
+              if (types.size() == 1) {
+                newPokemon.types[1] = -1;
+              }
+              
+              auto moves = newPokemonData["moves"];
+              for (int indxMove = 0; indxMove < moves.size(); ++indxMove) {
+                std::string curMove = moves[indxMove];
+                newPokemon.moves[indxMove] = globalGameData.moveData[curMove]["index"];
+              }
+              
+              auto stats = newPokemonData["stats"];
+              newPokemon.stats[0] = stats["atk"];
+              newPokemon.stats[1] = stats["def"];
+              newPokemon.stats[2] = stats["spa"];
+              newPokemon.stats[3] = stats["spd"];
+              newPokemon.stats[4] = stats["spe"];
 
-						std::array<PokemonData, 6>& poke_team = battle_data[room].player_team;
-						for (int i = 0; i < pokedata->size(); ++i) {
-							PokemonData p;
-							auto obj = pokedata->getObject(i);
-							p.active = obj->getValue<bool>("active");
-							if (p.active && data->has("active")) {
-								auto active_pmons = data->get("active").extract<Array::Ptr>();
-								//the first is normally the active pokemon if there is an active pokemon
-								auto active_first = active_pmons->getObject(0);
-								if (active_first->has("trapped")) {
-									p.is_trapped = active_first->getValue<bool>("trapped");
-								} else {
-									p.is_trapped = false;
-								}
-								if (active_first->has("moves")) {
-									auto active_moves = active_first->getArray("moves");
-									for (int j = 0; j < active_moves->size(); ++j) {
-										auto active_move = active_moves->getObject(j);
-										MoveData m;
-										m.name = active_move->getValue<std::string>("id");
-										if (active_move->has("pp")) {
-											m.pp = active_move->getValue<short>("pp");
-										}
-										if (active_move->has("disabled")) {
-											m.disabled = active_move->getValue<bool>("disabled");
-										}
-										p.move_data[j] = m;
-									}
-								}
-							} else {
-								auto moves = obj->getArray("moves");
-								for (int j = 0; j < moves->size(); ++j) {
-									MoveData m;
-									auto movename = moves->getElement<std::string>(j);
-									m.name = movename;
-									m.pp = 16; //assume 16
-									p.move_data[j] = m;
-								}
-							}
+              std::string conditionString = newPokemonData["condition"];
+              auto conditionStream = std::stringStream(conditionString);
+              std::string conditionToken;
 
-							auto stats = obj->getObject("stats");
-							p.base_ability = obj->getValue<std::string>("baseAbility");
-							auto cond_string = obj->getValue<std::string>("condition");
-							auto cond_stream = std::stringstream(cond_string);
-							std::string cond_token;
+							// Parse weird condition (aka HP) string into HP
+              std::getline(conditionStream, conditionToken, ' ');
+              const char* condition = conditionString.c_str();
+              int numNumbers = 0;
+              int indxChar = 0;
+              while(char c = condition[indxChar]) {
+                if (c - '0' >= 0 && c - '0' <= 9) {
+                  numNumbers++;
+                  indxChar++;
+                } else {
+                  break;
+                }
+              }
+              
+              std::string intString(condition, numNumbers);
+              newPokemon.hp = stoi(intString);
 
-							//hp
+              // check this to see if you really need to
 							std::getline(cond_stream, cond_token, ' ');
-							int cpos = std::string::npos;
-							if ((cpos = cond_token.find('/')) == std::string::npos) {
-								p.curr_condition = 0;
-							} else {
-								p.curr_condition = std::stoi(cond_token.substr(0, cpos));
-							}
-
-							//status
+              
+							// Parse out if fainted
 							std::getline(cond_stream, cond_token, ' ');
 							if (cond_token == "fnt") {
-								p.is_fainted = true;
+                newPokemon.fainted = true;
 							}
 
-							auto lvl_string = obj->getValue<std::string>("details");
-							p.lvl = std::stoi(lvl_string.substr(lvl_string.find("L") + 1));
-							p.ident = obj->getValue<std::string>("ident");
-							p.ident = p.ident.substr(p.ident.find(" ") + 1);
-							p.item = obj->getValue<std::string>("item");
-							p.pokeball = obj->getValue<std::string>("pokeball");
-							p.name = p.ident;
+              
+              std::string lvl_string = newPokemonData["details"];
+							newPokemon.level = std::stoi(lvl_string.substr(lvl_string.find("L") + 1));
+              
+							newPokemon.name = obj->getValue<std::string>("ident");
+							newPokemon.name = newPokemon.name.substr(newPokemon.ident.find(" ") + 1);
 
-							poke_team[i] = p;
+							team[indxPokemon] = newPokemon;
 						}
 
 						// purpose of this section: creating a validity vector of strings, empty strings should be considered false;
@@ -262,7 +239,7 @@ struct PSUser : BasePSUser {
 								}
 							}
 						}
-						auto aa = action_callback(old_battle_data[room].as_vector(), available_actions);
+						auto aa = action_callback(oldbattleData[room].as_vector(), available_actions);
 						auto action_str = (aa < 0) ? std::string("pass"):
 							((aa < 4) ? std::string("move ") + std::to_string(aa + 1)
 							 : std::string("switch ") + std::to_string(aa - 2));
@@ -291,7 +268,7 @@ struct PSUser : BasePSUser {
 							if (each[1].find(curr_battle.player_id) == std::string::npos) {
 								auto ident = each[1].substr(each[1].find(" ") + 1);
 								if (std::none_of(curr_battle.opponent_team.begin(), curr_battle.opponent_team.end(), [&ident](PokemonData& p) {
-									return p.ident == ident;
+									return newPokemon.ident == ident;
 								})) {
 									for (auto& pmon : curr_battle.opponent_team) {
 										if (pmon.ident == "") {
@@ -328,42 +305,41 @@ struct PSUser : BasePSUser {
 							std::cout << "something " << each[0] << std::endl;
 						}
 						if (observation_callback) {
-							observation_callback(battle_data[room].as_vector(), result_data);
+							observation_callback(battleData[room].as_vector(), result_data);
 						}
 					}
 				}
-			} 
-		} else {
-			std::cout << cmd_line[0][0];
+			} else {
+        std::cout << cmd_line[0][0];
 
-			auto& cmd = cmd_line[0][0];
+        auto& cmd = cmd_line[0][0];
+      
+        if (cmd_line[0].size() > 1) {
+          std::cout << "r " << cmd_line[0][1] << std::endl;
+        }
 
-			if (cmd_line[0].size() > 1) {
-				std::cout << "r " << cmd_line[0][1] << std::endl;
-			}
-
-			if (cmd == "updateuser") {
-				username = cmd_line[0][1];
-				is_guest = !(bool(std::stoi(cmd_line[0][2])));
-				avatar = cmd_line[0][3];
-			} else if (cmd == "challstr") {
-				chall_id = cmd_line[0][1];
-				chall_str = cmd_line[0][2];
-			} else if (cmd == "updatechallenges") {
-				Parser parser;
-				Object::Ptr challenges = parser.parse(cmd_line[0][1]).extract<Object::Ptr>();
-				auto challengesFrom = challenges->get("challengesFrom").extract<Object::Ptr>();
-				for (auto piter = challengesFrom->begin(); piter != challengesFrom->end(); ++piter) {
-					auto battletype = piter->second.convert<std::string>();
-					if (accepted_formats.count(battletype)) {
-						std::printf("accepted %s from %s\n", battletype.c_str(), piter->first.c_str());
-						connection.send_msg("|/accept " + piter->first);
-					}
-				}
-			}
-		
-		}
-		std::cout << "--------------------------------------" << std::endl;
+        if (cmd == "updateuser") {
+          username = cmd_line[0][1];
+          is_guest = !(bool(std::stoi(cmd_line[0][2])));
+          avatar = cmd_line[0][3];
+        } else if (cmd == "challstr") {
+          chall_id = cmd_line[0][1];
+          chall_str = cmd_line[0][2];
+        } else if (cmd == "updatechallenges") {
+          Parser parser;
+          Object::Ptr challenges = parser.parse(cmd_line[0][1]).extract<Object::Ptr>();
+          auto challengesFrom = challenges->get("challengesFrom").extract<Object::Ptr>();
+          for (auto piter = challengesFrom->begin(); piter != challengesFrom->end(); ++piter) {
+            auto battletype = piter->second.convert<std::string>();
+            if (accepted_formats.count(battletype)) {
+              std::printf("accepted %s from %s\n", battletype.c_str(), piter->first.c_str());
+              connection.send_msg("|/accept " + piter->first);
+            }
+          }
+        }
+      }
+      std::cout << "--------------------------------------" << std::endl;
 		//std::cout << message.c_str() << std::endl;
-	}
+
+  }
 };

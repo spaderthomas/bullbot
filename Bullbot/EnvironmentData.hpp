@@ -1,9 +1,4 @@
 #pragma once
-#include <vector>
-#include <string>
-#include <array>
-#include "Definitions.hpp"
-#include "EnvironmentSettings.hpp"
 
 template<typename T>
 struct HasDataRepresentation {
@@ -11,6 +6,26 @@ struct HasDataRepresentation {
 };
 
 struct HasFloatDataRepresentation : HasDataRepresentation<float> {};
+
+struct {
+  json moveData;
+  json pokemonData;
+  json typeData;
+
+  void initGameData() {
+	  std::ifstream moveDataStream;
+    moveDataStream.open("move-data.json");
+    moveDataStream >> moveData;
+
+    std::ifstream pokemonDataStream;
+    pokemonDataStream.open("pokemon.json");
+    pokemonDataStream >> pokemonData;
+
+    std::ifstream typeDataStream;
+    typeDataStream.open("type-chart.json");
+    typeDataStream >> typeData;
+  }
+} globalGameData;
 
 struct MoveData : HasFloatDataRepresentation {
 	std::string name;
@@ -37,41 +52,34 @@ struct MoveData : HasFloatDataRepresentation {
 
 
 struct PokemonData : HasFloatDataRepresentation {
-	// attributes passed
+  int id;
+  int types[2];
+  int moves[4];
+  int stats[5];
+  unsigned int level = 0;
+  int hp;
+  uint8_t burned; // one bit for each
+  uint8_t paralyzed;
+  uint8_t asleep;
+  uint8_t frozen;
+  bool fainted;
 	bool active = false;
-	short curr_condition = 0;
-	short lvl = 0;
-	std::array<MoveData, 4> move_data;
 
-	// attributes not passed directly
-	std::string name = "";
-	std::string ident = "";
-	std::string item = "";
-	std::string pokeball = "";
-	std::string base_ability = "";
-	bool is_trapped = false;
-	bool is_fainted = false;
+  std::string name;
 
 	fvec_t as_vector() {
-		int m_len = move_data.size();
 		fvec_t data = {
-			(float)active,
-			(float)(curr_condition),
-			(float)(lvl)
+      (float) id,
+			(float) level,
+      (float) hp,
+      (float) (burned | paralyzed | asleep | frozen),
+      (float) fainted,
+      (float) active
 		};
-		if (pokedex.count(ident)) {
-			auto& pdata = pokedex.at(ident);
-			data.insert(data.end(), pdata.begin(), pdata.end());
-		} else {
-			std::cout << "couldn't find pokemon: " << ident.c_str() << std::endl;
-			fvec_t empty_vec(6, -1);
-			data.insert(data.end(), empty_vec.begin(), empty_vec.end());
-		}
 
-		for (auto each : move_data) {
-			auto e = each.as_vector();
-			data.insert(data.end(), e.begin(), e.end());
-		}
+		data.insert(data.end(), std::begin(types), std::end(types));
+		data.insert(data.end(), std::begin(moves), std::end(moves));
+		data.insert(data.end(), std::begin(stats), std::end(stats));
 
 		return data;
 	}
@@ -79,12 +87,9 @@ struct PokemonData : HasFloatDataRepresentation {
 
 struct EnvironmentData : HasFloatDataRepresentation {
 	bool game_over = false;
-	// the maximum number of moves a pokemon can have is 4
-	// the maximum number of pokemon a player can *switch* to is 5 pokemon; the player can only have up to 5 non-active pokemon after the initial swutcg
-	// kept as strings to be friendly with other implementations
 	std::string player_id;
-	std::array<PokemonData, 6> player_team;
-	std::array<PokemonData, 6> opponent_team;
+	PokemonData player_team[6];
+	PokemonData opponent_team[6];
 
 	fvec_t as_vector() {
 		fvec_t data;
