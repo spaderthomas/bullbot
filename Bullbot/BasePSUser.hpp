@@ -1,25 +1,3 @@
-#pragma once
-#include <string>
-#include <iostream>
-#include <random>
-#include <ctime>
-#include <functional>
-#include <algorithm>
-#include <thread>
-#include <chrono>
-#include <sstream>
-#include <unordered_set>
-#include <unordered_map>
-#include <cassert>
-#include <experimental/coroutine>
-#include <Poco/Net/NetException.h>
-#include <Poco/JSON/Parser.h>
-#include "Definitions.hpp"
-#include "PSConnection.hpp"
-#include "EnvironmentData.hpp"
-
-using namespace Poco::Net;
-using namespace Poco::JSON;
 struct BasePSUser {
 	//creates a new base user with its own mutex
 	BasePSUser() {

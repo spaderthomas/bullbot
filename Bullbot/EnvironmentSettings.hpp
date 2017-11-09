@@ -1,8 +1,3 @@
-#pragma once
-#include <string>
-#include <vector>
-#include <unordered_map>
-
 // DO NOT CHANGE THIS FILE IF YOU HAVE ALREADY TRAINED DATA
 
 std::unordered_map < std::string, std::array<short, 8> > movedex = {

@@ -1,20 +1,7 @@
-
-#pragma once
-#include <memory>
-#include <thread>
-#include <string>
-#include <Poco/StreamCopier.h>
-#include <Poco/Net/HTTPClientSession.h>
-#include <Poco/Net/HTTPRequest.h>
-#include <Poco/Net/HTTPResponse.h>
-#include <Poco/Net/SocketAddress.h>
-#include <Poco/Net/WebSocket.h>
-#include <Poco/Net/NetException.h>
-#include "Definitions.hpp"
 using namespace Poco::Net;
 struct PSConnection {
 	PSConnection() {}
-
+  
 	PSConnection(std::string uri, std::function<void(std::string)> on_msg = 0) {
 		set_on_message(on_msg);
 		connect(uri);

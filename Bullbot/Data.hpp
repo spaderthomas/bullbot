@@ -1,12 +1,3 @@
-#pragma once
-
-template<typename T>
-struct HasDataRepresentation {
-	virtual std::vector<T> as_vector() = 0;
-};
-
-struct HasFloatDataRepresentation : HasDataRepresentation<float> {};
-
 struct {
   json moveData;
   json pokemonData;
@@ -27,34 +18,24 @@ struct {
   }
 } globalGameData;
 
-struct MoveData : HasFloatDataRepresentation {
+struct MoveData {
+  int id;
+  short pp = 16;
 	std::string name;
-	short pp = 16;
-	// attributes not passed directly
-	bool disabled = false;
 
 	fvec_t as_vector() {
-		fvec_t data;
-		data.push_back((float)pp);
-
-		// add movedex data
-		if (movedex.count(name)) {
-			auto& mdata = movedex.at(name);
-			data.insert(data.end(), mdata.begin(), mdata.end());
-		} else {
-			//std::cout << "couldn't find move " << name.c_str() << std::endl;
-			fvec_t empty_vec(8, -1);
-			data.insert(data.end(), empty_vec.begin(), empty_vec.end());
-		}
+		fvec_t data = {
+      (float)id,
+      (float)pp
+    };
 		return data;
 	}
 };
 
-
-struct PokemonData : HasFloatDataRepresentation {
+struct PokemonData {
   int id;
   int types[2];
-  int moves[4];
+  MoveData moves[4];
   int stats[5];
   unsigned int level = 0;
   int hp;
@@ -85,22 +66,21 @@ struct PokemonData : HasFloatDataRepresentation {
 	}
 };
 
-struct EnvironmentData : HasFloatDataRepresentation {
-	bool game_over = false;
-	std::string player_id;
-	PokemonData player_team[6];
-	PokemonData opponent_team[6];
+struct EnvironmentData {
+	PokemonData playerTeam[6];
+	PokemonData opponentTeam[6];
 
 	fvec_t as_vector() {
 		fvec_t data;
-		for (auto each: player_team) {
-			auto evec = each.as_vector();
-			data.insert(data.end(), evec.begin(), evec.end());
+		for (auto pokemon : playerTeam) {
+			fvec_t pokemonVec = pokemon.as_vector();
+			data.insert(data.end(), pokemonVec.begin(), pokemonVec.end());
 		}
-		for (auto each : opponent_team) {
-			auto evec = each.as_vector();
-			data.insert(data.end(), evec.begin(), evec.end());
+    for (auto pokemon : opponentTeam) {
+			fvec_t pokemonVec = pokemon.as_vector();
+			data.insert(data.end(), pokemonVec.begin(), pokemonVec.end());
 		}
+    
 		return data;
 	}
 };

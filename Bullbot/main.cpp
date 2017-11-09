@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <cassert>
 #include <random>
 #include <ctime>
@@ -10,7 +11,6 @@
 #include <memory>
 #include <thread>
 #include <chrono>
-#include <sstream>
 #include <mutex>
 #include <unordered_set>
 #include <unordered_map>
@@ -20,19 +20,39 @@
 #include "json.hpp"
 using json = nlohmann::json;
 
-// Source code
-#include "Definitions.hpp"
-#include "EnvironmentSettings.hpp"
-#include "EnvironmentData.hpp"
-#include "PSConnection.hpp"
-#include "BasePSUser.hpp"
-#include "PSUser.hpp"
+#include <Poco/StreamCopier.h>
+#include <Poco/Net/HTTPClientSession.h>
+#include <Poco/Net/HTTPRequest.h>
+#include <Poco/Net/HTTPResponse.h>
+#include <Poco/Net/SocketAddress.h>
+#include <Poco/Net/WebSocket.h>
+#include <Poco/Net/NetException.h>
+#include <Poco/Net/NetException.h>
+#include <Poco/JSON/Parser.h>
+using namespace Poco::Net;
+using namespace Poco::JSON;
 
-// Defines
+// Typedefs and defines
 typedef unsigned int fuint;
 #define fox_for(iterName, iterCount) for (fuint iterName = 0; iterName < (iterCount); ++iterName)
 #define fox_iter(iterator, iterable) for (auto iterator = iterable.begin(); iterator != iterable.end(); ++iterator) 
-#define fox_iter_json(iter, iterable) for (json::iterator iter = iterable.begin(); iter != iterable.end(); ++iter) 
+#define fox_iter_json(iter, iterable) for (json::iterator iter = iterable.begin(); iter != iterable.end(); ++iter)
+
+typedef std::unique_ptr<std::mutex> mutex_ptr;
+typedef std::lock_guard<std::mutex> mutex_guard;
+
+typedef std::vector<std::string> action_arr_t; // 9 action slots
+typedef std::vector<float> fvec_t;
+
+typedef std::function<int(fvec_t&, action_arr_t&)> action_callback_t;
+typedef std::function<void(fvec_t&, fvec_t&)> observation_callback_t;
+
+// Source code
+#include "EnvironmentSettings.hpp"
+#include "Data.hpp"
+#include "PSConnection.hpp"
+#include "BasePSUser.hpp"
+#include "PSUser.hpp"
 
 int main() {
 	std::vector<PSUser> agents;
@@ -54,6 +74,7 @@ int main() {
 			agents[i].send("|/challenge " + agents[j].get_username() + ", gen1randombattle");
 		}
 	}
+  
 	while (true) {
 		std::cin.get();
 	}
