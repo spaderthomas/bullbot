@@ -58,15 +58,22 @@ struct PokemonData {
       (float) active
 		};
 
-		data.insert(data.end(), std::begin(types), std::end(types));
-		data.insert(data.end(), std::begin(moves), std::end(moves));
-		data.insert(data.end(), std::begin(stats), std::end(stats));
+    fox_for(indxType, 2) {
+      data.push_back((float) types[indxType]);
+    }
+    fox_for(indxMove, 4) {
+      fvec_t moveVec = moves[indxMove].as_vector();
+      data.insert(data.begin(), moveVec.begin(), moveVec.end());
+    }
+    fox_for(indxStat, 5) {
+      data.push_back((float) stats[indxStat]);
+    }
 
 		return data;
 	}
 };
 
-struct EnvironmentData {
+struct GameState {
 	PokemonData playerTeam[6];
 	PokemonData opponentTeam[6];
 

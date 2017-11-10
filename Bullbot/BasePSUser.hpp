@@ -4,6 +4,20 @@ struct BasePSUser {
 		data_mutex_ptr.reset(new std::mutex());
 	}
 
+	PSConnection connection;
+	mutex_ptr data_mutex_ptr;
+
+	std::string uri = "localhost:8000";
+	std::string username;
+	std::string avatar;
+	std::string chall_str;
+	std::string chall_id;
+	std::string assertion;
+
+	bool autojoin = false;
+	bool is_guest = true;
+
+
 	std::string request_action(std::string request_type, std::string action, std::string additional_args) {
 		static const std::string server_url = "play.pokemonshowdown.com";
 		static const std::string path = "/action.php";
@@ -58,17 +72,4 @@ struct BasePSUser {
 		return chall_id;
 	}
 
-protected:
-	PSConnection connection;
-	mutex_ptr data_mutex_ptr;
-
-	std::string uri = "localhost:8000";
-	std::string username;
-	std::string avatar;
-	std::string chall_str;
-	std::string chall_id;
-	std::string assertion;
-
-	bool autojoin = false;
-	bool is_guest = true;
 };

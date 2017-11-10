@@ -1,5 +1,6 @@
 // STL
 #include <string>
+#include <vector>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -44,8 +45,12 @@ typedef std::lock_guard<std::mutex> mutex_guard;
 typedef std::vector<std::string> action_arr_t; // 9 action slots
 typedef std::vector<float> fvec_t;
 
-typedef std::function<int(fvec_t&, action_arr_t&)> action_callback_t;
-typedef std::function<void(fvec_t&, fvec_t&)> observation_callback_t;
+
+// typedef int (*action_callback_t)(fvec_t*, action_arr_t*);
+// typedef int (*observation_callback_t)(fvec_t*, fvec_t*);
+
+typedef std::function<int(fvec_t*, action_arr_t*)> action_callback_t;
+typedef std::function<void(fvec_t*, fvec_t*)> observation_callback_t;
 
 // Source code
 #include "EnvironmentSettings.hpp"
@@ -55,13 +60,14 @@ typedef std::function<void(fvec_t&, fvec_t&)> observation_callback_t;
 #include "PSUser.hpp"
 
 int main() {
+	globalGameData.initGameData();
 	std::vector<PSUser> agents;
 	agents.resize(2);
 	for (int i = 0; i < agents.size(); ++i) {
 		PSUser& agent = agents[i];
 		agent.connect("localhost:8000");
-		auto name = "Carbon12345" + std::to_string(i);
-		agent.login(name);
+		agent.username = "Carbon12345" + std::to_string(i);
+		agent.login(agent.username);
 		agent.send("|/autojoin lobby");
 		agent.accept_format("gen1randombattle");
 	}
