@@ -30,19 +30,27 @@ struct MoveData {
     };
 		return data;
 	}
+
+  void initFromName(std::string moveName) {
+    id = globalGameData.moveData[moveName]["index"];
+    name = moveName;
+  }
 };
 
 struct PokemonData {
   int id;
   int types[2];
-  MoveData moves[4];
-  int stats[5];
+  std::vector<MoveData> moves;
+  int stats[5] = {};
   unsigned int level = 0;
   int hp;
-  uint8_t burned; // one bit for each
-  uint8_t paralyzed;
-  uint8_t asleep;
-  uint8_t frozen;
+
+  // one bit for each minor status
+  uint8_t burned = 0x0;
+  uint8_t paralyzed = 0x0;
+  uint8_t asleep = 0x0;
+  uint8_t frozen = 0x0;
+
   bool fainted = false;
 	bool active = false;
   bool trapped = false;
@@ -73,6 +81,16 @@ struct PokemonData {
 
 		return data;
 	}
+
+  int hasMove(std::string moveName) {
+    fox_for(indxMove, moves.size()) {
+      if (moves[indxMove].name == moveName) {
+        return indxMove;
+      }
+    }
+
+    return -1;
+  }
 };
 
 struct GameState {
@@ -92,6 +110,26 @@ struct GameState {
     
 		return data;
 	}
+  
+  PokemonData* getOpponentPokemon(std::string pokemonName) {
+    fox_for(indxPkmn, opponentTeam.size()) {
+      if (opponentTeam[indxPkmn].name == pokemonName) {
+        return &opponentTeam[indxPkmn];
+      }
+    }
+
+    return nullptr;
+  }
+
+  PokemonData* getPlayerPokemon(std::string pokemonName) {
+    fox_for(indxPkmn, playerTeam.size()) {
+      if (playerTeam[indxPkmn].name == pokemonName) {
+        return &playerTeam[indxPkmn];
+      }
+    }
+
+    return nullptr;
+  }
 };
 
 struct PSBattleData {

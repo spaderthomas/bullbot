@@ -137,6 +137,7 @@ struct PSUser : BasePSUser {
       }
     }
     
+    // Loop through each individual message
     fox_for(indxMessage, parsedMessages.size()) {
       auto parsedMessage = parsedMessages[indxMessage];
       if (parsedMessage.size() > 0) {
@@ -161,14 +162,15 @@ struct PSUser : BasePSUser {
           if (gameStateAsJSON.find("forceSwitch") != gameStateAsJSON.end()) {
             forcedToSwitch = true;
           }
-		  if (gameStateAsJSON.find("active") != gameStateAsJSON.end()) {
-			auto activeData = gameStateAsJSON["active"].at(0); // PS stores this as a list?
-			if (activeData.find("trapped") != activeData.end()) {
-			  trapped = true;
-		    }
-		  }
-		  
+          if (gameStateAsJSON.find("active") != gameStateAsJSON.end()) {
+            auto activeData =
+                gameStateAsJSON["active"].at(0); // PS stores this as a list?
+            if (activeData.find("trapped") != activeData.end()) {
+              trapped = true;
+            }
+          }
 
+          // Construct full player team
           std::vector<PokemonData> team;
           action_arr_t availableActions; // [0:3] are moves, [4:8] are switches
           if (!waitForServer) {
@@ -180,7 +182,7 @@ struct PSUser : BasePSUser {
               fox_for(indxMove, validMoves.size()) {
                 availableActions.push_back(indxMove);
               }
-            }   
+            }
 
             fox_for(indxPkmn, teamData.size()) {
               PokemonData newPokemon;
@@ -195,9 +197,11 @@ struct PSUser : BasePSUser {
               auto moves = newPokemonData["moves"];
               for (int indxMove = 0; indxMove < moves.size(); ++indxMove) {
                 MoveData newMove;
-                newMove.name = moves[indxMove];
-                newMove.id = globalGameData.moveData[newMove.name]["index"];
-                newPokemon.moves[indxMove] = newMove;
+                newMove.initFromName(moves[indxMove]);
+                //                newMove.name = moves[indxMove];
+                //              newMove.id =
+                //              globalGameData.moveData[newMove.name]["index"];
+                newPokemon.moves.push_back(newMove);
               }
 
               // Stats
@@ -209,7 +213,7 @@ struct PSUser : BasePSUser {
               newPokemon.stats[4] = stats["spe"];
               std::string levelString = newPokemonData["details"];
               newPokemon.level =
-                std::stoi(levelString.substr(levelString.find("L") + 1));
+                  std::stoi(levelString.substr(levelString.find("L") + 1));
 
               std::string conditionString = newPokemonData["condition"];
               std::istringstream conditionStream(conditionString);
@@ -230,11 +234,15 @@ struct PSUser : BasePSUser {
 
               // Add new Pokemon to available actions
               if (!newPokemon.active && !newPokemon.fainted && !trapped) {
-                availableActions.push_back(indxPkmn + 3); // map indxPkmn=1 to switch=4 (first switch slot)
+                availableActions.push_back(
+                    indxPkmn +
+                    3); // map indxPkmn=1 to switch=4 (first switch slot)
               }
 
               team.push_back(newPokemon);
             }
+
+            battleData[curRoom].state.playerTeam = team;
 
             // Choose move
             fvec_t dontForgetToMessWithGameState;
@@ -243,17 +251,20 @@ struct PSUser : BasePSUser {
             std::string actionString;
             if (actionChoice >= 0) {
               if (actionChoice < 4) { // attack
-                actionString = "move " + std::to_string(actionChoice + 1); // PS uses [1:4]
-              } else { // switch
+                actionString =
+                    "move " + std::to_string(actionChoice + 1); // PS uses [1:4]
+              } else {                                          // switch
                 actionString = "switch " + std::to_string(actionChoice - 2);
               }
             } else {
               actionString = "pass";
             }
 
-            std::string actionResponse = curRoom + "|/choose " + actionString + "|" + "";
+            std::string actionResponse =
+                curRoom + "|/choose " + actionString + "|" + "";
             connection.send_msg(actionResponse);
-            std::cout << "Sent action to server. Action was:\n" << actionResponse << "\n\n";
+            std::cout << "Sent action to server. Action was:\n"
+                      << actionResponse << "\n\n";
           }
         } else if (messageType == "error") {
           for (int i = 0; i < parsedMessages.size(); ++i) {
@@ -266,19 +277,19 @@ struct PSUser : BasePSUser {
           chall_id = parsedMessage[1];
         } else if (messageType == "updateuser") {
           username = parsedMessage[1];
-        } else if (messageType == "updatechallenges") { // check for valid challenges
+        } else if (messageType ==
+                   "updatechallenges") { // check for valid challenges
           json challenges;
           std::istringstream challengeStream(parsedMessage[1]);
           challengeStream >> challenges;
-          
+
           auto challengesFrom = challenges["challengesFrom"];
           fox_iter_json(challIter, challengesFrom) {
             std::string challengingUser = challIter.key();
             std::string battleType = challIter.value();
             if (accepted_formats.count(battleType)) {
               printf("> accepted a challenge of format: %s from user %s\n",
-                     battleType.c_str(),
-                     challengingUser.c_str());
+                     battleType.c_str(), challengingUser.c_str());
               connection.send_msg("|/accept " + challengingUser);
             }
           }
@@ -294,13 +305,10 @@ struct PSUser : BasePSUser {
           std::string switchTo = parsedMessage[1].substr(5);
           if (!(curPlayer == battleData[curRoom].playerID)) { // check who switched
             bool switchPokemonExists = false;
-            fox_for(indxPkmn, battleData[curRoom].state.opponentTeam.size()) {
-              if (battleData[curRoom].state.opponentTeam[indxPkmn].name == switchTo) {
-                switchPokemonExists = true;
-                break;
-              }
+            if (battleData[curRoom].state.getOpponentPokemon(switchTo)) {
+              switchPokemonExists = true;
             }
-            
+
             if (!switchPokemonExists) {
               PokemonData newPokemon;
               initPokemonFromName(&newPokemon, switchTo);
@@ -308,111 +316,43 @@ struct PSUser : BasePSUser {
               int levelBeginPos = parsedMessage[2].find("L");
               int level = stoi(parsedMessage[2].substr(levelBeginPos + 1, 2));
               newPokemon.active = true;
+              battleData[curRoom].state.opponentTeam.push_back(newPokemon);
             }
           }
+        } else if (messageType == "move") {
+          std::string curPlayer = parsedMessage[1].substr(0, 2);
+          std::string attackingPokemon = parsedMessage[1].substr(5);
+          std::string moveName = parsedMessage[2];
+
+          // move name should be lowercase no spaces to match json
+          std::string::iterator endPos = std::remove(moveName.begin(), moveName.end(), ' ');
+          moveName.erase(endPos, moveName.end());
+          std::transform(moveName.begin(), moveName.end(), // input beginning and end
+                         moveName.begin(), // output beginning
+                         ::tolower); // function
+
+          // Check if opponent's pokemon has used this move before. If not, add it
+          if (!(curPlayer == battleData[curRoom].playerID)) {
+            PokemonData* activePkmn = battleData[curRoom].state.getOpponentPokemon(attackingPokemon);
+            if (activePkmn->hasMove(moveName) == -1) {
+              MoveData newMove;
+              newMove.initFromName(moveName);
+			  activePkmn->moves.push_back(newMove);
+            }
+          }
+        } else if (messageType == "faint") {
+          std::string curPlayer = parsedMessage[1].substr(0, 2);          
+          if (!(curPlayer == battleData[curRoom].playerID)) {
+//            PokemonData* faintedPokemon = battleData[curRoom].state.getOpponentPokemon();
+          }
+        } else {
+          // this makes a lot of spam for chat joins and whatnot
+          //std::cout << "Unhandled message type. Message type was:\n" << parsedMessage[0] << "\n\n";
         }
+      } else {
+        std::cout << "Message was empty!\n\n";
       }
-    // else {
-    // for (auto each : parsedMessages) {
-    //   std::vector<float> result_data(4);
-    //   for (auto& each : result_data) {
-    //     each = 0;
-    //   }
-    //   // player damage, player knocked out, enemy damage, enemy knocked out
-    //   if (each[0] == "choice") {
-    //     std::cout << "choice: " << each[1]<< std::endl;
-    //   } else if (each[0] == "switch") {
-    //     std::cout << "switched: " << each[1] << std::endl;
-    // add to opponents known pokemon
-
-    //         if (each[1].find(curr_battle.player_id) == std::string::npos) {
-    //           auto ident = each[1].substr(each[1].find(" ") + 1);
-    //           if (std::none_of(curr_battle.opponent_team.begin(),
-    //           curr_battle.opponent_team.end(), [&ident](PokemonData& p) {
-    //						return newPokemon.ident ==
-    //ident;
-    //					})) {
-    //						for (auto& pmon : curr_battle.opponent_team)
-    //{
-    //							if (pmon.ident == "") {
-    //								pmon.ident =
-    //ident;
-    //								pmon.name =
-    //ident;
-    //								break;
-    //							}
-    //						}
-    //					}
-    //
-    //				}
-    //			} else if (each[0] == "-damage") {
-    //				std::cout << "damage-: " << each[1] << ": " << each[2] <<
-    //std::endl;
-    //				if (each[1].find(curr_battle.player_id) == std::string::npos)
-    //{
-    //					result_data[2] -= 1; // todo: update
-    //damage
-    //				} else {
-    //					result_data[0] -= 1;
-    //				}
-    //				//
-    //			} else if (each[0] == "-heal") {
-    //				std::cout << "healed-: " << each[1] << ": " << each[2] <<
-    //std::endl;
-    //				if (each[1].find(curr_battle.player_id) == std::string::npos)
-    //{
-    //					result_data[2] += 1;
-    //				} else {
-    //					result_data[0] += 1;
-    //				}
-    //			} else if (each[0] == "faint") {
-    //				std::cout << "fainted " << each[1] << std::endl;
-    //			} else if (each[0] == "win") {
-    //				std::cout << "win " << each[1] << std::endl;
-    //			} else if (each[0] == "player") {
-    //				std::cout << "You are player: " << each[1] <<
-    //std::endl;
-    //			} else {
-    //				std::cout << "something " << each[0] <<
-    //std::endl;
-    //			}
-    //			if (observation_callback) {
-    //				observation_callback(battleData[room].as_vector(),
-    //result_data);
-    //			}
-    //		}
-    //	}
-    //} else {
-    // std::cout << parsedMessages[0][0];
-
-      //     auto& cmd = parsedMessages[0][0];
-      
-      //   if (parsedMessages[0].size() > 1) {
-      //     std::cout << "r " << parsedMessages[0][1] << std::endl;
-      //   }
-
-      //   if (cmd == "updateuser") {
-      //     username = parsedMessages[0][1];
-      //     is_guest = !(bool(std::stoi(parsedMessages[0][2])));
-      //     avatar = parsedMessages[0][3];
-      //   } else if (cmd == "challstr") {
-      //     chall_id = parsedMessages[0][1];
-      //     chall_str = parsedMessages[0][2];
-      //   } else if (cmd == "updatechallenges") {
-      //     Parser parser;
-      //     Object::Ptr challenges = parser.parse(parsedMessages[0][1]).extract<Object::Ptr>();
-      //     auto challengesFrom = challenges->get("challengesFrom").extract<Object::Ptr>();
-      //     for (auto piter = challengesFrom->begin(); piter != challengesFrom->end(); ++piter) {
-      //       auto battletype = piter->second.convert<std::string>();
-      //       if (accepted_formats.count(battletype)) {
-      //         std::printf("accepted %s from %s\n", battletype.c_str(), piter->first.c_str());
-      //         connection.send_msg("|/accept " + piter->first);
-      //       }
-      //     }
-      //   }
-      //   }
-      //   std::cout << "--------------------------------------" << std::endl;
-      // }
     }
   }
+
 };
