@@ -1,2 +1,0 @@
-C:/Users/AllFather/Documents/Visual Studio 2015/Projects/bullbot/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/AllFather/Documents/Visual Studio 2015/Projects/bullbot/cmake-build-debug/CMakeFiles/rebuild_cache.dir

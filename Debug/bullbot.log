@@ -1,5 +1,0 @@
-﻿  main.cpp
-e:\users\allfather\projects\bullbot\bullbot\psuser.hpp(137): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-e:\users\allfather\projects\bullbot\bullbot\psuser.hpp(285): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-  bullbot.vcxproj -> E:\Users\AllFather\Projects\bullbot\Debug\bullbot.exe
-  bullbot.vcxproj -> E:\Users\AllFather\Projects\bullbot\Debug\bullbot.pdb (Partial PDB)
