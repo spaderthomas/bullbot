@@ -42,7 +42,7 @@ typedef unsigned int fuint;
 typedef std::unique_ptr<std::mutex> mutex_ptr;
 typedef std::lock_guard<std::mutex> mutex_guard;
 
-typedef std::vector<std::string> action_arr_t; // 9 action slots
+typedef std::vector<int> action_arr_t; 
 typedef std::vector<float> fvec_t;
 
 

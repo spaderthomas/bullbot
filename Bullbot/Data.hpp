@@ -43,8 +43,9 @@ struct PokemonData {
   uint8_t paralyzed;
   uint8_t asleep;
   uint8_t frozen;
-  bool fainted;
+  bool fainted = false;
 	bool active = false;
+  bool trapped = false;
 
   std::string name;
 
@@ -55,7 +56,8 @@ struct PokemonData {
       (float) hp,
       (float) (burned | paralyzed | asleep | frozen),
       (float) fainted,
-      (float) active
+      (float) active,
+      (float) trapped
 		};
 
     fox_for(indxType, 2) {
@@ -74,8 +76,8 @@ struct PokemonData {
 };
 
 struct GameState {
-	PokemonData playerTeam[6];
-	PokemonData opponentTeam[6];
+	std::vector<PokemonData> playerTeam;
+	std::vector<PokemonData> opponentTeam;
 
 	fvec_t as_vector() {
 		fvec_t data;
@@ -90,4 +92,9 @@ struct GameState {
     
 		return data;
 	}
+};
+
+struct PSBattleData {
+  GameState state;
+  std::string playerID;
 };

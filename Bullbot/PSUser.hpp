@@ -1,22 +1,11 @@
 int RandomAICallback(fvec_t* state, action_arr_t* available_actions) {
-	for (auto each : *state) {
-		std::cout << each << ", ";
-	}
-	std::cout << std::endl;
-  
-	std::mt19937 rng((unsigned int)std::time(0));
-	std::vector<fuint> valid_actions(available_actions->size());
-	bool valid_exist = false;
-	for (int i = 0; i < available_actions->size(); ++i) {
-		auto is_valid = ((*available_actions)[i] != "") ? 1 : 0;
-		valid_actions[i] = is_valid;
-		valid_exist |= is_valid;
-	}
-	if (valid_exist) {
-		std::discrete_distribution<unsigned int> dist(valid_actions.begin(), valid_actions.end());
-		return dist(rng);
-	}
-	return -1;
+  if (!available_actions->size()) {
+    return -1;
+  }
+  std::random_device randSeed;
+	std::mt19937 engine{randSeed()};
+  std::uniform_int_distribution<int> rng(0, available_actions->size() - 1);
+  return (*available_actions)[rng(engine)];
 }
 
 struct PSUser : BasePSUser {
@@ -28,8 +17,8 @@ struct PSUser : BasePSUser {
   observation_callback_t observation_callback;
 	std::unordered_set<std::string> accepted_formats;
 
-  // Maps room IDs to game states
-	std::unordered_map<std::string, GameState> battleData;
+  // Maps room IDs to info for room
+	std::unordered_map<std::string, PSBattleData> battleData;
 
   // Basic web interaction functions
 	void connect(std::string uri) {
@@ -78,10 +67,44 @@ struct PSUser : BasePSUser {
 	void accept_format(std::string format) {
 		std::lock_guard<std::mutex> lock(*data_mutex_ptr.get());
 		accepted_formats.insert(format);
-	}
+  }
+
+	// Parse weird condition string into HP and various effects
+  int hpFromPSString(std::string PSString) {
+    const char *condition = PSString.c_str();
+    int numNumbers = 0;
+    int indxChar = 0;
+    while (char c = condition[indxChar]) {
+      if (c - '0' >= 0 && c - '0' <= 9) {
+        numNumbers++;
+        indxChar++;
+      } else {
+        break;
+      }
+    }
+
+    std::string intString(condition, numNumbers);
+    return stoi(intString);
+  }
+
+  void initPokemonFromName(PokemonData *newPokemon, std::string name) {
+    newPokemon->name = name;
+    newPokemon->id = globalGameData.pokemonData[name]["index"];
+
+    // Types
+    std::vector<std::string> types = globalGameData.pokemonData[name]["type"];
+    fox_for(indxType, types.size()) {
+      auto type = types[indxType];
+      newPokemon->types[indxType] = globalGameData.typeData[type]["index"];
+    }
+    if (types.size() == 1) {
+      newPokemon->types[1] = -1;
+    }
+  }
 
   // Main PS! interface function
 	void handle_message(std::string rawMessage) {
+    mutex_guard lock(*data_mutex_ptr.get());
     if (rawMessage.length() == 0) return;
 
 		static const std::string battle_prefix = "battle";
@@ -113,7 +136,6 @@ struct PSUser : BasePSUser {
         parsedMessages.push_back(parsedMessage);
       }
     }
-    mutex_guard lock(*data_mutex_ptr.get());
     
     fox_for(indxMessage, parsedMessages.size()) {
       auto parsedMessage = parsedMessages[indxMessage];
@@ -121,17 +143,45 @@ struct PSUser : BasePSUser {
         auto messageType = parsedMessage[0];
 
         if (messageType == "request" && parsedMessage.size() > 1) {
-          std::cout << parsedMessage[1] << std::endl;
+          printf("Received a request for an action\n");
+          std::cout << "|--------------------------------|\n";
+          std::cout << parsedMessage[1] << "\n";
+          std::cout << "|--------------------------------|\n";
 
           json gameStateAsJSON;
           std::istringstream gameStateStream(parsedMessage[1]);
           gameStateStream >> gameStateAsJSON;
 
-          PokemonData team[6];
-          bool wait = false; // figure out what this does?
-          action_arr_t availableActions;
-          if (!wait) {
+          bool waitForServer = false;
+          bool forcedToSwitch = false;
+          bool trapped = false;
+          if (gameStateAsJSON.find("wait") != gameStateAsJSON.end()) {
+            waitForServer = true;
+          }
+          if (gameStateAsJSON.find("forceSwitch") != gameStateAsJSON.end()) {
+            forcedToSwitch = true;
+          }
+		  if (gameStateAsJSON.find("active") != gameStateAsJSON.end()) {
+			auto activeData = gameStateAsJSON["active"].at(0); // PS stores this as a list?
+			if (activeData.find("trapped") != activeData.end()) {
+			  trapped = true;
+		    }
+		  }
+		  
+
+          std::vector<PokemonData> team;
+          action_arr_t availableActions; // [0:3] are moves, [4:8] are switches
+          if (!waitForServer) {
             auto teamData = gameStateAsJSON["side"]["pokemon"];
+
+            // Add current pokemon's moves if we aren't forced to switch
+            if (!forcedToSwitch) {
+              auto validMoves = gameStateAsJSON["active"][0]["moves"];
+              fox_for(indxMove, validMoves.size()) {
+                availableActions.push_back(indxMove);
+              }
+            }   
+
             fox_for(indxPkmn, teamData.size()) {
               PokemonData newPokemon;
               auto &newPokemonData = teamData[indxPkmn];
@@ -139,24 +189,10 @@ struct PSUser : BasePSUser {
               // Name and ID
               std::string name = newPokemonData["ident"];
               name = name.substr(4, -1); // Remove "p1: "
-              newPokemon.name = name;
-              newPokemon.id = globalGameData.pokemonData[name]["index"];
-
-              // Types
-              std::vector<std::string> types =
-                  globalGameData.pokemonData[name]["type"];
-              fox_for(indxType, types.size()) {
-                auto type = types[indxType];
-                newPokemon.types[indxType] =
-                    globalGameData.typeData[type]["index"];
-              }
-              if (types.size() == 1) {
-                newPokemon.types[1] = -1;
-              }
+              initPokemonFromName(&newPokemon, name);
 
               // Moves
               auto moves = newPokemonData["moves"];
-			  std::string temp = globalGameData.moveData.dump(2);
               for (int indxMove = 0; indxMove < moves.size(); ++indxMove) {
                 MoveData newMove;
                 newMove.name = moves[indxMove];
@@ -173,47 +209,31 @@ struct PSUser : BasePSUser {
               newPokemon.stats[4] = stats["spe"];
               std::string levelString = newPokemonData["details"];
               newPokemon.level =
-                  std::stoi(levelString.substr(levelString.find("L") + 1));
+                std::stoi(levelString.substr(levelString.find("L") + 1));
 
-              // Parse weird condition string into HP and various effects
               std::string conditionString = newPokemonData["condition"];
               std::istringstream conditionStream(conditionString);
               std::string conditionToken;
-
               std::getline(conditionStream, conditionToken, ' ');
-              const char *condition = conditionString.c_str();
-              int numNumbers = 0;
-              int indxChar = 0;
-              while (char c = condition[indxChar]) {
-                if (c - '0' >= 0 && c - '0' <= 9) {
-                  numNumbers++;
-                  indxChar++;
-                } else {
-                  break;
-                }
-              }
 
-              std::string intString(condition, numNumbers);
-              newPokemon.hp = stoi(intString);
-
-              // check this to see if you really need to
-              std::getline(conditionStream, conditionToken, ' ');
+              newPokemon.hp = hpFromPSString(conditionToken);
 
               std::getline(conditionStream, conditionToken, ' ');
               if (conditionToken == "fnt") {
                 newPokemon.fainted = true;
               }
 
-              // Add new Pokemon to available actions
-              if (newPokemon.active) {
-                fox_for(indxMove, 4) {
-                  availableActions.push_back(newPokemon.moves[indxMove].name);
-                }
-              } else {
-                availableActions.push_back(newPokemon.name);
+              if (bool active = newPokemonData["active"]) {
+                newPokemon.active = true;
+                newPokemon.trapped = trapped;
               }
 
-              team[indxPkmn] = newPokemon;
+              // Add new Pokemon to available actions
+              if (!newPokemon.active && !newPokemon.fainted && !trapped) {
+                availableActions.push_back(indxPkmn + 3); // map indxPkmn=1 to switch=4 (first switch slot)
+              }
+
+              team.push_back(newPokemon);
             }
 
             // Choose move
@@ -223,7 +243,7 @@ struct PSUser : BasePSUser {
             std::string actionString;
             if (actionChoice >= 0) {
               if (actionChoice < 4) { // attack
-                actionString = "move " + std::to_string(actionChoice + 1);
+                actionString = "move " + std::to_string(actionChoice + 1); // PS uses [1:4]
               } else { // switch
                 actionString = "switch " + std::to_string(actionChoice - 2);
               }
@@ -233,6 +253,7 @@ struct PSUser : BasePSUser {
 
             std::string actionResponse = curRoom + "|/choose " + actionString + "|" + "";
             connection.send_msg(actionResponse);
+            std::cout << "Sent action to server. Action was:\n" << actionResponse << "\n\n";
           }
         } else if (messageType == "error") {
           for (int i = 0; i < parsedMessages.size(); ++i) {
@@ -263,6 +284,32 @@ struct PSUser : BasePSUser {
           }
         } else if (messageType.substr(0, 1) == ">") { // PS sending room name
           curRoom = messageType.substr(1);
+        } else if (messageType == "player") {
+          if (parsedMessage[2] == username) {
+            battleData[curRoom].playerID = parsedMessage[1];
+          }
+        } else if (messageType == "switch") {
+          // example ["switch", "p1a: Muk", ", L74", "82/100 brn"]
+          std::string curPlayer = parsedMessage[1].substr(0, 2);
+          std::string switchTo = parsedMessage[1].substr(5);
+          if (!(curPlayer == battleData[curRoom].playerID)) { // check who switched
+            bool switchPokemonExists = false;
+            fox_for(indxPkmn, battleData[curRoom].state.opponentTeam.size()) {
+              if (battleData[curRoom].state.opponentTeam[indxPkmn].name == switchTo) {
+                switchPokemonExists = true;
+                break;
+              }
+            }
+            
+            if (!switchPokemonExists) {
+              PokemonData newPokemon;
+              initPokemonFromName(&newPokemon, switchTo);
+              newPokemon.hp = hpFromPSString(parsedMessage[3]); // Only a % for opponent
+              int levelBeginPos = parsedMessage[2].find("L");
+              int level = stoi(parsedMessage[2].substr(levelBeginPos + 1, 2));
+              newPokemon.active = true;
+            }
+          }
         }
       }
     // else {
