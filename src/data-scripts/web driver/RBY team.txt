@@ -1,0 +1,43 @@
+=== [gen1ou] DONK ===
+
+roots manuva (Exeggutor)
+- Explosion
+- Psychic
+- Sleep Powder
+- Stun Spore
+
+sensei (Alakazam)
+Ability: Synchronize
+- Psychic
+- Recover
+- Seismic Toss
+- Thunder Wave
+
+donkin (Tauros)
+Ability: Intimidate
+- Blizzard
+- Body Slam
+- Earthquake
+- Hyper Beam
+
+Bastard (Snorlax)
+Ability: Immunity
+- Body Slam
+- Earthquake
+- Hyper Beam
+- Self-Destruct
+
+LOLEM (Golem)
+Ability: Rock Head
+- Body Slam
+- Earthquake
+- Explosion
+- Rock Slide
+
+hedonked (Lapras)
+Ability: Water Absorb
+- Blizzard
+- Body Slam
+- Rest
+- Thunderbolt
+

@@ -1,0 +1,79 @@
+<script class="log" type="text/plain">|inactive|Battle timer is ON: inactive players will automatically lose when time's up.
+|J|bad ass
+|J|Casual Slay
+|player|p1|bad ass|275
+|player|p2|Casual Slay|1
+|gametype|singles
+|gen|1
+|tier|[Gen 1] OU
+|seed|9542,23869,55806,18540
+|rule|Sleep Clause Mod: Limit one foe put to sleep
+|rule|Freeze Clause Mod: Limit one foe frozen
+|rule|Species Clause: Limit one of each Pokemon
+|rule|OHKO Clause: OHKO moves are banned
+|rule|Evasion Moves Clause: Evasion moves are banned
+|rule|HP Percentage Mod: HP is shown in percentages
+|
+|start
+|switch|p1a: Alakazam|Alakazam|313\/313
+|switch|p2a: Alakazam|Alakazam|313\/313
+|turn|1
+|c|bad ass|just wanna use some moves
+|c|Casual Slay|lalright
+|c|bad ass|spam psychic imo
+|choice|move thunderwave|move psychic
+|
+|move|p1a: Alakazam|Thunder Wave|p2a: Alakazam
+|-status|p2a: Alakazam|par
+|cant|p2a: Alakazam|par
+|
+|upkeep
+|turn|2
+|J|ludicrousman
+|choice|move thunderwave|move psychic
+|
+|move|p1a: Alakazam|Thunder Wave|p2a: Alakazam
+|-fail|p2a: Alakazam|par
+|move|p2a: Alakazam|Psychic|p1a: Alakazam
+|-resisted|p1a: Alakazam
+|-damage|p1a: Alakazam|264\/313
+|
+|upkeep
+|turn|3
+|choice|move recover|move psychic
+|
+|move|p1a: Alakazam|Recover|p1a: Alakazam
+|-heal|p1a: Alakazam|313\/313
+|move|p2a: Alakazam|Psychic|p1a: Alakazam
+|-resisted|p1a: Alakazam
+|-damage|p1a: Alakazam|257\/313
+|
+|upkeep
+|turn|4
+|J|bro fist
+|L|bro fist
+|choice|switch 4|move psychic
+|
+|switch|p1a: Tauros|Tauros|353\/353
+|move|p2a: Alakazam|Psychic|p1a: Tauros
+|-crit|p1a: Tauros
+|-damage|p1a: Tauros|23\/353
+|
+|upkeep
+|turn|5
+|choice|move blizzard|move psychic
+|
+|move|p1a: Tauros|Blizzard|p2a: Alakazam
+|-crit|p2a: Alakazam
+|-damage|p2a: Alakazam|170\/313 par
+|move|p2a: Alakazam|Psychic|p1a: Tauros
+|-damage|p1a: Tauros|0 fnt
+|faint|p1a: Tauros
+|c|bad ass|alright
+|c|bad ass|that should be good
+|c|bad ass|thank you
+|c|bad ass|:)
+|c|Casual Slay|np
+|-message|bad ass forfeited.
+|
+|win|Casual Slay</script>
