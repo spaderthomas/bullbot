@@ -45,6 +45,10 @@ typedef std::lock_guard<std::mutex> mutex_guard;
 typedef std::vector<int> action_arr_t; 
 typedef std::vector<float> fvec_t;
 
+#define BURNED 1
+#define PARALYZED 2
+#define ASLEEP 4
+#define FROZEN 8
 
 // typedef int (*action_callback_t)(fvec_t*, action_arr_t*);
 // typedef int (*observation_callback_t)(fvec_t*, fvec_t*);

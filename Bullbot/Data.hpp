@@ -42,6 +42,7 @@ struct PokemonData {
   int types[2];
   std::vector<MoveData> moves;
   int stats[5] = {};
+  std::unordered_map<std::string, int> boosts;
   unsigned int level = 0;
   int hp;
 
