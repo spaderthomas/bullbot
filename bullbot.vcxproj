@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,36 +19,32 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{9EDB6BE3-D030-4FA6-B415-DEDE7CB51CEC}</ProjectGuid>
-    <RootNamespace>bullbot</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{87D49EB6-C124-4604-A702-B04583FE060A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -69,69 +65,120 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Libraries\vcpkg\installed\x86-windows\include;$(IncludePath)</IncludePath>
-    <ExecutablePath>$(VC_ExecutablePath_x86);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(SystemRoot)\SysWow64;$(FxCopDir);$(PATH);D:\Libraries\vcpkg\installed\x86-windows\bin</ExecutablePath>
-    <LibraryPath>D:\Libraries\vcpkg\installed\x86-windows\lib;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)libs\POCO\lib\native\include;$(SolutionDir)libs\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)libs\POCO\build\native\x86;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)bin\</OutDir>
+    <IntDir>$(SolutionDir)bin\tempfiles\</IntDir>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);D:\Libraries\vcpkg\installed\x64-windows\include</IncludePath>
-    <ExecutablePath>D:\Libraries\vcpkg\installed\x64-windows\bin;$(ExecutablePath)</ExecutablePath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
-    </ClCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_MBCS;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ssleay32.lib;libuv.lib;zlib.lib;boost_random-vc140-mt-1_64.lib;boost_system-vc140-mt-1_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\Libraries\vcpkg\installed\x64-windows\lib</AdditionalLibraryDirectories>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)libs\POCO\build\native\x86\;$(SolutionDir)libs\POCO\lib\native\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>cd ($(SolutionDir))
+copy libs\POCO\build\native\x86\*.dll bin\
+copy data\*.json bin\
+
+</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>file copy</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-    </ClCompile>
-    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Bullbot\main.cpp" />
+    <ClCompile Include="src\psbot\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bullbot\BasePSUser.hpp" />
-    <ClInclude Include="Bullbot\Definitions.hpp" />
-    <ClInclude Include="Bullbot\EnvironmentData.hpp" />
-    <ClInclude Include="Bullbot\EnvironmentSettings.hpp" />
-    <ClInclude Include="Bullbot\PSConnection.hpp" />
-    <ClInclude Include="Bullbot\PSUser.hpp" />
+    <ClInclude Include="src\nemesis\nemesis\agent\Estimator.hpp" />
+    <ClInclude Include="src\nemesis\nemesis\agent\Math.hpp" />
+    <ClInclude Include="src\nemesis\nemesis\agent\neuralnetwork\Activation.hpp" />
+    <ClInclude Include="src\nemesis\nemesis\agent\neuralnetwork\MultiLayerPerceptron.hpp" />
+    <ClInclude Include="src\nemesis\nemesis\agent\neuralnetwork\NeuralNetwork.hpp" />
+    <ClInclude Include="src\nemesis\nemesis\agent\Random.hpp" />
+    <ClInclude Include="src\nemesis\nemesis\agent\TDLearner.hpp" />
+    <ClInclude Include="src\nemesis\nemesis\environment\Environment.hpp" />
+    <ClInclude Include="src\nemesis\nemesis\external\json\json.hpp" />
+    <ClInclude Include="src\nemesis\nemesis\NemesisMain.hpp" />
+    <ClInclude Include="src\psbot\BasePSUser.hpp" />
+    <ClInclude Include="src\psbot\Data.hpp" />
+    <ClInclude Include="src\psbot\EnvironmentSettings.hpp" />
+    <ClInclude Include="src\psbot\PSConnection.hpp" />
+    <ClInclude Include="src\psbot\PSUser.hpp" />
+    <ClInclude Include="src\simulator\Battle.hpp" />
+    <ClInclude Include="src\simulator\BattleFunctions.hpp" />
+    <ClInclude Include="src\simulator\libs\foxlib\ADT.hpp" />
+    <ClInclude Include="src\simulator\libs\foxlib\Allocator.hpp" />
+    <ClInclude Include="src\simulator\libs\foxlib\Array.hpp" />
+    <ClInclude Include="src\simulator\libs\foxlib\FoxLib.hpp" />
+    <ClInclude Include="src\simulator\libs\foxlib\Log.hpp" />
+    <ClInclude Include="src\simulator\libs\foxlib\Macros.hpp" />
+    <ClInclude Include="src\simulator\libs\foxlib\String.hpp" />
+    <ClInclude Include="src\simulator\libs\foxlib\Types.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\json.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\jsoncons.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\jsoncons_config.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\jsoncons_util.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\json_container.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\json_decoder.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\json_deserializer.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\json_error_category.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\json_filter.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\json_input_handler.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\json_output_handler.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\json_parser.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\json_reader.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\json_serializer.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\json_traits.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\json_type_traits.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\osequencestream.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\parse_error_handler.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\serialization_options.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons\unicode_traits.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons_ext\csv\csv_error_category.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons_ext\csv\csv_parameters.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons_ext\csv\csv_parser.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons_ext\csv\csv_reader.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons_ext\csv\csv_serializer.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons_ext\jsonpath\jsonpath_error_category.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons_ext\jsonpath\jsonpath_filter.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons_ext\jsonpath\json_query.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons_ext\msgpack\binary_util.hpp" />
+    <ClInclude Include="src\simulator\libs\jsoncons_ext\msgpack\message_pack.hpp" />
+    <ClInclude Include="src\simulator\MoveFunctions.hpp" />
+    <ClInclude Include="src\simulator\Player.hpp" />
+    <ClInclude Include="src\simulator\PlayerFunctions.hpp" />
+    <ClInclude Include="src\simulator\Pokemon.hpp" />
+    <ClInclude Include="src\simulator\SimulatorMain.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
