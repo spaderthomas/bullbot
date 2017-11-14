@@ -1,0 +1,232 @@
+{
+  "bug": {
+    "immune": [
+      
+    ],
+    "nve": [
+      "fire",
+      "fighting",
+      "flying",
+      "ghost"
+    ],
+    "s-e": [
+      "grass",
+      "psychic",
+      "poison"
+    ],
+    "index": 0
+  },
+  "dragon": {
+    "immune": [
+      
+    ],
+    "nve": [
+      
+    ],
+    "s-e": [
+      "dragon"
+    ],
+    "index": 1
+  },
+  "electric": {
+    "immune": [
+      "ground"
+    ],
+    "nve": [
+      "electric",
+      "grass",
+      "dragon"
+    ],
+    "s-e": [
+      "water",
+      "flying"
+    ],
+    "index": 2
+  },
+  "fighting": {
+    "immune": [
+      "ghost"
+    ],
+    "nve": [
+      "poison",
+      "flying",
+      "psychic",
+      "bug"
+    ],
+    "s-e": [
+      "normal",
+      "ice",
+      "rock"
+    ],
+    "index": 3
+  },
+  "fire": {
+    "immune": [
+      
+    ],
+    "nve": [
+      "fire",
+      "water",
+      "rock",
+      "dragon"
+    ],
+    "s-e": [
+      "grass",
+      "ice",
+      "bug"
+    ],
+    "index": 4
+  },
+  "flying": {
+    "immune": [
+      
+    ],
+    "nve": [
+      "electric",
+      "rock"
+    ],
+    "s-e": [
+      "grass",
+      "fighting",
+      "bug"
+    ],
+    "index": 5
+  },
+  "ghost": {
+    "immune": [
+      "normal",
+      "psychic"
+    ],
+    "nve": [
+      
+    ],
+    "s-e": [
+      "ghost"
+    ],
+    "index": 6
+  },
+  "grass": {
+    "immune": [
+      
+    ],
+    "nve": [
+      "fire",
+      "grass",
+      "poison",
+      "flying",
+      "bug",
+      "dragon"
+    ],
+    "s-e": [
+      "water",
+      "ground",
+      "rock"
+    ],
+    "index": 7
+  },
+  "ground": {
+    "immune": [
+      "flying"
+    ],
+    "nve": [
+      "grass",
+      "bug"
+    ],
+    "s-e": [
+      "fire",
+      "electric",
+      "poison",
+      "rock"
+    ],
+    "index": 8
+  },
+  "ice": {
+    "immune": [
+      
+    ],
+    "nve": [
+      "water",
+      "ice"
+    ],
+    "s-e": [
+      "grass",
+      "ground",
+      "flying",
+      "dragon"
+    ],
+    "index": 9
+  },
+  "normal": {
+    "immune": [
+      "ghost"
+    ],
+    "nve": [
+      "rock"
+    ],
+    "s-e": [
+      
+    ],
+    "index": 10
+  },
+  "poison": {
+    "immune": [
+      
+    ],
+    "nve": [
+      "poison",
+      "ground",
+      "rock",
+      "ghost"
+    ],
+    "s-e": [
+      "bug",
+      "grass"
+    ],
+    "index": 11
+  },
+  "psychic": {
+    "immune": [
+      
+    ],
+    "nve": [
+      "psychic"
+    ],
+    "s-e": [
+      "fighting",
+      "poison"
+    ],
+    "index": 12
+  },
+  "rock": {
+    "immune": [
+      
+    ],
+    "nve": [
+      "fighting",
+      "ground"
+    ],
+    "s-e": [
+      "fire",
+      "ice",
+      "flying",
+      "bug"
+    ],
+    "index": 13
+  },
+  "water": {
+    "immune": [
+      
+    ],
+    "nve": [
+      "water",
+      "grass",
+      "dragon"
+    ],
+    "s-e": [
+      "fire",
+      "ground",
+      "rock"
+    ],
+    "index": 14
+  }
+}
