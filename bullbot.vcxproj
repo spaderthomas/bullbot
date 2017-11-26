@@ -66,7 +66,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)libs\POCO\lib\native\include;$(SolutionDir)libs\;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Programming\Bullbot\libs\dlib;$(SolutionDir)libs\POCO\lib\native\include;$(SolutionDir)libs\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)libs\POCO\build\native\x86;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)bin\tempfiles\</IntDir>

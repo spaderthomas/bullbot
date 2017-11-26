@@ -173,7 +173,6 @@ Player::PlayerMove MCTS(Player *p, Battle *battle) {
     }
 
     //-- simulation
-	//*battleCopy = *battle;
     Battle *battleCopy = (Battle *)malloc(sizeof(*battle));
     memcpy(battleCopy, battle, sizeof(*battle));
     battleCopy->players[0].moveFunc = &randomAttack;
@@ -183,8 +182,8 @@ Player::PlayerMove MCTS(Player *p, Battle *battle) {
     int curPlayer = p->id == battleCopy->players[0].id ? 0 : 1;
     Player::PlayerMove move = moveFromInt(battleCopy, indxBest, curPlayer);
     battleCopy->players[curPlayer].curMove = move;
-    battleCopy->players[!curPlayer].curMove =
-        battleCopy->players[!curPlayer].move(battleCopy);
+    battleCopy->players[!curPlayer].curMove = 
+      battleCopy->players[!curPlayer].move(battleCopy);
 
     // simulate and collect result
     battleCopy->battleLogic();

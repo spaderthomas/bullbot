@@ -6,6 +6,7 @@ struct Player {
   Pokemon team[6];
   int currentOut;
   int id;
+
   struct PlayerMove {
     bool isSwitch;
     int teamPos;

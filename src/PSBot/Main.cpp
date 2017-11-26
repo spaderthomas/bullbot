@@ -33,6 +33,8 @@ using json = nlohmann::json;
 using namespace Poco::Net;
 using namespace Poco::JSON;
 
+#include <dlib/bayes_utils/bayes_utils.h>
+
 // Typedefs and defines
 typedef unsigned int fuint;
 #define fox_for(iterName, iterCount) for (fuint iterName = 0; iterName < (iterCount); ++iterName)
@@ -63,11 +65,12 @@ typedef std::function<void(fvec_t*, fvec_t*)> observation_callback_t;
 int main() {
 	globalGameData.initGameData();
 	std::vector<PSUser> agents;
-	agents.resize(2);
+	agents.resize(1);
 	for (int i = 0; i < agents.size(); ++i) {
 		PSUser& agent = agents[i];
-		agent.connect("localhost:8000");
-		agent.username = "Carbon12345" + std::to_string(i);
+    agent.connect("sim.smogon.com:8000");
+		//agent.connect("localhost:8000");
+		agent.username = "spaderbot" + std::to_string(i);
 		agent.login(agent.username);
 		agent.send("|/autojoin lobby");
 		agent.accept_format("gen1randombattle");

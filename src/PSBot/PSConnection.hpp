@@ -9,7 +9,8 @@ struct PSConnection {
 
 	void connect(std::string uri) {
 		buffer.resize(4096);
-		this->uri = (SocketAddress)uri;
+    SocketAddress sockAddr(uri);
+		this->uri = sockAddr;
 		HTTPClientSession cs(this->uri);
 		HTTPRequest request(HTTPRequest::HTTP_GET, conn_string, HTTPRequest::HTTP_1_1);
 		HTTPResponse response;
@@ -55,7 +56,7 @@ private:
 					}
 				} catch (Poco::Net::NetException &e) {
 					std::cout << "WS ERROR: "<< e.what() << std::endl;
-					throw e;
+					// throw e;
 				}
 		}
 	}

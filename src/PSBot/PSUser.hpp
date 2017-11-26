@@ -144,7 +144,7 @@ struct PSUser : BasePSUser {
         auto messageType = parsedMessage[0];
 
         if (messageType == "request" && parsedMessage.size() > 1) {
-          printf("Received a request for an action\n");
+          std::cout << "Received a request for an action\n";
           std::cout << "|--------------------------------|\n";
           std::cout << parsedMessage[1] << "\n";
           std::cout << "|--------------------------------|\n";
@@ -198,9 +198,6 @@ struct PSUser : BasePSUser {
               for (int indxMove = 0; indxMove < moves.size(); ++indxMove) {
                 MoveData newMove;
                 newMove.initFromName(moves[indxMove]);
-                //                newMove.name = moves[indxMove];
-                //              newMove.id =
-                //              globalGameData.moveData[newMove.name]["index"];
                 newPokemon.moves.push_back(newMove);
               }
 
@@ -212,8 +209,7 @@ struct PSUser : BasePSUser {
               newPokemon.stats[3] = stats["spd"];
               newPokemon.stats[4] = stats["spe"];
               std::string levelString = newPokemonData["details"];
-              newPokemon.level =
-                  std::stoi(levelString.substr(levelString.find("L") + 1));
+              newPokemon.level = std::stoi(levelString.substr(levelString.find("L") + 1));
 
               std::string conditionString = newPokemonData["condition"];
               std::istringstream conditionStream(conditionString);
@@ -234,9 +230,7 @@ struct PSUser : BasePSUser {
 
               // Add new Pokemon to available actions
               if (!newPokemon.active && !newPokemon.fainted && !trapped) {
-                availableActions.push_back(
-                    indxPkmn +
-                    3); // map indxPkmn=1 to switch=4 (first switch slot)
+                availableActions.push_back(indxPkmn + 3); // map indxPkmn=1 to switch=4 (first switch slot)
               }
 
               team.push_back(newPokemon);
@@ -251,20 +245,32 @@ struct PSUser : BasePSUser {
             std::string actionString;
             if (actionChoice >= 0) {
               if (actionChoice < 4) { // attack
-                actionString =
-                    "move " + std::to_string(actionChoice + 1); // PS uses [1:4]
-              } else {                                          // switch
+                actionString = "move " + std::to_string(actionChoice + 1); // PS uses [1:4]
+              } else { // switch
                 actionString = "switch " + std::to_string(actionChoice - 2);
               }
             } else {
               actionString = "pass";
             }
 
-            std::string actionResponse =
-                curRoom + "|/choose " + actionString + "|" + "";
+            std::string actionResponse = curRoom + "|/choose " + actionString + "|" + "";
             connection.send_msg(actionResponse);
-            std::cout << "Sent action to server. Action was:\n"
-                      << actionResponse << "\n\n";
+            std::cout << "Sent action to server. Action was:\n" << actionResponse << "\n\n";
+
+            std::string fileHandle = username + std::string(".txt");
+            std::ofstream logFile(fileHandle, std::ios_base::app);
+            logFile << "New turn in room: " << curRoom << "\n";
+            logFile << "List of player Pokemon:\n";
+            fox_for(indxPkmn, team.size()) {
+              logFile << team[indxPkmn].name << ": " << team[indxPkmn].hp << " hit points remaining\n";
+            }
+            logFile << "\nList of known opponent Pokemon:\n";
+            std::vector<PokemonData> oppTeam = battleData[curRoom].state.opponentTeam;
+            fox_for(indxPkmn, oppTeam.size()) {
+              logFile << oppTeam[indxPkmn].name << ": " << oppTeam[indxPkmn].hp << " hit points remaining\n";
+            }
+						logFile << "|-----------------------|\n\n";
+						logFile.close();
           }
         } else if (messageType == "error") {
           for (int i = 0; i < parsedMessages.size(); ++i) {
@@ -277,8 +283,7 @@ struct PSUser : BasePSUser {
           chall_id = parsedMessage[1];
         } else if (messageType == "updateuser") {
           username = parsedMessage[1];
-        } else if (messageType ==
-                   "updatechallenges") { // check for valid challenges
+        } else if (messageType == "updatechallenges") { // check for valid challenges
           json challenges;
           std::istringstream challengeStream(parsedMessage[1]);
           challengeStream >> challenges;
@@ -288,8 +293,7 @@ struct PSUser : BasePSUser {
             std::string challengingUser = challIter.key();
             std::string battleType = challIter.value();
             if (accepted_formats.count(battleType)) {
-              printf("> accepted a challenge of format: %s from user %s\n",
-                     battleType.c_str(), challengingUser.c_str());
+              printf("> accepted a challenge of format: %s from user %s\n", battleType.c_str(), challengingUser.c_str());
               connection.send_msg("|/accept " + challengingUser);
             }
           }
@@ -300,7 +304,7 @@ struct PSUser : BasePSUser {
             battleData[curRoom].playerID = parsedMessage[1];
           }
         } else if (messageType == "switch") {
-          // example ["switch", "p1a: Muk", ", L74", "82/100 brn"]
+          // example ["sw	itch", "p1a: Muk", ", L74", "82/100 brn"]
           std::string curPlayer = parsedMessage[1].substr(0, 2);
           std::string switchTo = parsedMessage[1].substr(5);
           if (!(curPlayer == battleData[curRoom].playerID)) { // check who switched
@@ -344,8 +348,7 @@ struct PSUser : BasePSUser {
           std::string curPlayer = parsedMessage[1].substr(0, 2);          
           std::string attackingPokemon = parsedMessage[1].substr(5);
           if (!(curPlayer == battleData[curRoom].playerID)) {
-            PokemonData *faintedPokemon =
-                battleData[curRoom].state.getOpponentPokemon(attackingPokemon);
+            PokemonData *faintedPokemon = battleData[curRoom].state.getOpponentPokemon(attackingPokemon);
             faintedPokemon->fainted = true;
           }
         } else if ((messageType == "-damage") || (messageType == "-heal")) {

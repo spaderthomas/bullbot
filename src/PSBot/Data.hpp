@@ -136,4 +136,5 @@ struct GameState {
 struct PSBattleData {
   GameState state;
   std::string playerID;
+  std::ofstream eventLog;
 };

@@ -1,0 +1,200 @@
+New turn in room: battle-gen1randombattle-665109320
+List of player Pokemon:
+Magmar: 249 hit points remaining
+Pinsir: 0 hit points remaining
+Slowbro: 270 hit points remaining
+Rattata: 232 hit points remaining
+Beedrill: 249 hit points remaining
+Golem: 250 hit points remaining
+
+List of known opponent Pokemon:
+Psyduck: 53 hit points remaining
+New turn in room: battle-gen1randombattle-665111834
+List of player Pokemon:
+Kabuto: 232 hit points remaining
+Cubone: 267 hit points remaining
+Eevee: 276 hit points remaining
+Jigglypuff: 382 hit points remaining
+Weezing: 249 hit points remaining
+Machamp: 286 hit points remaining
+
+List of known opponent Pokemon:
+|-----------------------|
+
+New turn in room: battle-gen1randombattle-665111834
+List of player Pokemon:
+Cubone: 173 hit points remaining
+Kabuto: 232 hit points remaining
+Eevee: 276 hit points remaining
+Jigglypuff: 382 hit points remaining
+Weezing: 249 hit points remaining
+Machamp: 286 hit points remaining
+
+List of known opponent Pokemon:
+Parasect: 100 hit points remaining
+|-----------------------|
+
+New turn in room: battle-gen1randombattle-665111834
+List of player Pokemon:
+Cubone: 84 hit points remaining
+Kabuto: 232 hit points remaining
+Eevee: 276 hit points remaining
+Jigglypuff: 382 hit points remaining
+Weezing: 249 hit points remaining
+Machamp: 286 hit points remaining
+
+List of known opponent Pokemon:
+Parasect: 100 hit points remaining
+|-----------------------|
+
+New turn in room: battle-gen1randombattle-665111834
+List of player Pokemon:
+Cubone: 0 hit points remaining
+Kabuto: 232 hit points remaining
+Eevee: 276 hit points remaining
+Jigglypuff: 382 hit points remaining
+Weezing: 249 hit points remaining
+Machamp: 286 hit points remaining
+
+List of known opponent Pokemon:
+Parasect: 82 hit points remaining
+|-----------------------|
+
+New turn in room: battle-gen1randombattle-665111834
+List of player Pokemon:
+Weezing: 249 hit points remaining
+Kabuto: 232 hit points remaining
+Eevee: 276 hit points remaining
+Jigglypuff: 382 hit points remaining
+Cubone: 0 hit points remaining
+Machamp: 286 hit points remaining
+
+List of known opponent Pokemon:
+Parasect: 46 hit points remaining
+|-----------------------|
+
+New turn in room: battle-gen1randombattle-665111834
+List of player Pokemon:
+Weezing: 249 hit points remaining
+Kabuto: 232 hit points remaining
+Eevee: 276 hit points remaining
+Jigglypuff: 382 hit points remaining
+Cubone: 0 hit points remaining
+Machamp: 286 hit points remaining
+
+List of known opponent Pokemon:
+Parasect: 0 hit points remaining
+|-----------------------|
+
+New turn in room: battle-gen1randombattle-665111834
+List of player Pokemon:
+Weezing: 167 hit points remaining
+Kabuto: 232 hit points remaining
+Eevee: 276 hit points remaining
+Jigglypuff: 382 hit points remaining
+Cubone: 0 hit points remaining
+Machamp: 286 hit points remaining
+
+List of known opponent Pokemon:
+Parasect: 0 hit points remaining
+Raichu: 100 hit points remaining
+|-----------------------|
+
+New turn in room: battle-gen1randombattle-665111834
+List of player Pokemon:
+Weezing: 78 hit points remaining
+Kabuto: 232 hit points remaining
+Eevee: 276 hit points remaining
+Jigglypuff: 382 hit points remaining
+Cubone: 0 hit points remaining
+Machamp: 286 hit points remaining
+
+List of known opponent Pokemon:
+Parasect: 0 hit points remaining
+Raichu: 90 hit points remaining
+|-----------------------|
+
+New turn in room: battle-gen1randombattle-665111834
+List of player Pokemon:
+Jigglypuff: 116 hit points remaining
+Kabuto: 232 hit points remaining
+Eevee: 276 hit points remaining
+Weezing: 78 hit points remaining
+Cubone: 0 hit points remaining
+Machamp: 286 hit points remaining
+
+List of known opponent Pokemon:
+Parasect: 0 hit points remaining
+Raichu: 79 hit points remaining
+|-----------------------|
+
+New turn in room: battle-gen1randombattle-665111834
+List of player Pokemon:
+Kabuto: 8 hit points remaining
+Jigglypuff: 116 hit points remaining
+Eevee: 276 hit points remaining
+Weezing: 78 hit points remaining
+Cubone: 0 hit points remaining
+Machamp: 286 hit points remaining
+
+List of known opponent Pokemon:
+Parasect: 0 hit points remaining
+Raichu: 79 hit points remaining
+|-----------------------|
+
+New turn in room: battle-gen1randombattle-665111834
+List of player Pokemon:
+Eevee: 197 hit points remaining
+Jigglypuff: 116 hit points remaining
+Kabuto: 8 hit points remaining
+Weezing: 78 hit points remaining
+Cubone: 0 hit points remaining
+Machamp: 286 hit points remaining
+
+List of known opponent Pokemon:
+Parasect: 0 hit points remaining
+Raichu: 79 hit points remaining
+|-----------------------|
+
+New turn in room: battle-gen1randombattle-665111834
+List of player Pokemon:
+Eevee: 41 hit points remaining
+Jigglypuff: 116 hit points remaining
+Kabuto: 8 hit points remaining
+Weezing: 78 hit points remaining
+Cubone: 0 hit points remaining
+Machamp: 286 hit points remaining
+
+List of known opponent Pokemon:
+Parasect: 0 hit points remaining
+Raichu: 79 hit points remaining
+|-----------------------|
+
+New turn in room: battle-gen1randombattle-665111834
+List of player Pokemon:
+Weezing: 0 hit points remaining
+Jigglypuff: 116 hit points remaining
+Kabuto: 8 hit points remaining
+Eevee: 41 hit points remaining
+Cubone: 0 hit points remaining
+Machamp: 286 hit points remaining
+
+List of known opponent Pokemon:
+Parasect: 0 hit points remaining
+Raichu: 37 hit points remaining
+|-----------------------|
+
+New turn in room: battle-gen1randombattle-665111834
+List of player Pokemon:
+Kabuto: 8 hit points remaining
+Jigglypuff: 116 hit points remaining
+Weezing: 0 hit points remaining
+Eevee: 41 hit points remaining
+Cubone: 0 hit points remaining
+Machamp: 286 hit points remaining
+
+List of known opponent Pokemon:
+Parasect: 0 hit points remaining
+Raichu: 37 hit points remaining
+|-----------------------|
+
