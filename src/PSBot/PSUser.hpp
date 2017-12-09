@@ -1,12 +1,3 @@
-int RandomAICallback(fvec_t* state, action_arr_t* available_actions) {
-  if (!available_actions->size()) {
-    return -1;
-  }
-  std::random_device randSeed;
-	std::mt19937 engine{randSeed()};
-  std::uniform_int_distribution<int> rng(0, available_actions->size() - 1);
-  return (*available_actions)[rng(engine)];
-}
 
 struct PSUser : BasePSUser {
 	PSUser() {
@@ -93,13 +84,7 @@ struct PSUser : BasePSUser {
 
     // Types
     std::vector<std::string> types = globalGameData.pokemonData[name]["type"];
-    fox_for(indxType, types.size()) {
-      auto type = types[indxType];
-      newPokemon->types[indxType] = globalGameData.typeData[type]["index"];
-    }
-    if (types.size() == 1) {
-      newPokemon->types[1] = -1;
-    }
+    newPokemon.types = types;
   }
 
   // Main PS! interface function
@@ -203,11 +188,11 @@ struct PSUser : BasePSUser {
 
               // Stats
               auto stats = newPokemonData["stats"];
-              newPokemon.stats[0] = stats["atk"];
-              newPokemon.stats[1] = stats["def"];
-              newPokemon.stats[2] = stats["spa"];
-              newPokemon.stats[3] = stats["spd"];
-              newPokemon.stats[4] = stats["spe"];
+              newPokemon.insert({std::string("atk"), stats["atk"]});
+              newPokemon.insert({std::string("def"), stats["def"]});
+              newPokemon.insert({std::string("spatk"), stats["spa"]});
+              newPokemon.insert({std::string("spdef"), stats["spd"]});
+              newPokemon.insert({std::string("speed"), stats["spe"]});
               std::string levelString = newPokemonData["details"];
               newPokemon.level = std::stoi(levelString.substr(levelString.find("L") + 1));
 
@@ -256,21 +241,7 @@ struct PSUser : BasePSUser {
             std::string actionResponse = curRoom + "|/choose " + actionString + "|" + "";
             connection.send_msg(actionResponse);
             std::cout << "Sent action to server. Action was:\n" << actionResponse << "\n\n";
-
-            std::string fileHandle = username + std::string(".txt");
-            std::ofstream logFile(fileHandle, std::ios_base::app);
-            logFile << "New turn in room: " << curRoom << "\n";
-            logFile << "List of player Pokemon:\n";
-            fox_for(indxPkmn, team.size()) {
-              logFile << team[indxPkmn].name << ": " << team[indxPkmn].hp << " hit points remaining\n";
             }
-            logFile << "\nList of known opponent Pokemon:\n";
-            std::vector<PokemonData> oppTeam = battleData[curRoom].state.opponentTeam;
-            fox_for(indxPkmn, oppTeam.size()) {
-              logFile << oppTeam[indxPkmn].name << ": " << oppTeam[indxPkmn].hp << " hit points remaining\n";
-            }
-						logFile << "|-----------------------|\n\n";
-						logFile.close();
           }
         } else if (messageType == "error") {
           for (int i = 0; i < parsedMessages.size(); ++i) {
@@ -299,12 +270,12 @@ struct PSUser : BasePSUser {
           }
         } else if (messageType.substr(0, 1) == ">") { // PS sending room name
           curRoom = messageType.substr(1);
-        } else if (messageType == "player") {
+        } else if (messageType == "player") { // fix bug here: when opponent quits, pm.size==2
           if (parsedMessage[2] == username) {
             battleData[curRoom].playerID = parsedMessage[1];
           }
         } else if (messageType == "switch") {
-          // example ["sw	itch", "p1a: Muk", ", L74", "82/100 brn"]
+          // example ["switch", "p1a: Muk", ", L74", "82/100 brn"]
           std::string curPlayer = parsedMessage[1].substr(0, 2);
           std::string switchTo = parsedMessage[1].substr(5);
           if (!(curPlayer == battleData[curRoom].playerID)) { // check who switched

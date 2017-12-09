@@ -17,13 +17,11 @@ struct BasePSUser {
 	bool autojoin = false;
 	bool is_guest = true;
 
-
 	std::string request_action(std::string request_type, std::string action, std::string additional_args) {
 		static const std::string server_url = "play.pokemonshowdown.com";
 		static const std::string path = "/action.php";
 		HTTPClientSession session(server_url);
-		std::string params = "act=" + action +
-			additional_args;
+		std::string params = "act=" + action + additional_args;
 		if (request_type == HTTPRequest::HTTP_POST) {
 			HTTPRequest request(request_type, path, HTTPRequest::HTTP_1_1);
 			request.setContentType("application/x-www-form-urlencoded");

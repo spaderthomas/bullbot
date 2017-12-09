@@ -1,3 +1,13 @@
+/* I removed the GameState class. Instead, you just pass in your team and your opponent's team (which is really what the state of the game is) into your action callback.
+
+   PSUser collects game state
+   Sends both teams to an action callback function (e.g. MCTS, Q-network, Random)
+   Action callback does whatever it needs to do -- checks for available moves, runs simulations with the given teams, feeds forward into the net -- and returns an int corresponding to an action
+
+   Right now I'm passing in references to the callback function, because a lot of the time I'm not changing the teams so why copy. But sometimes I need to make a copy of the teams (like if I'm simulating). Current problem is reconciling the fact that sometimes I want a reference and sometimes I don't.
+
+ */
+
 // STL
 #include <string>
 #include <vector>
@@ -33,6 +43,9 @@ using json = nlohmann::json;
 using namespace Poco::Net;
 using namespace Poco::JSON;
 
+// Data structures 
+#include "Data.hpp"
+
 #include <dlib/bayes_utils/bayes_utils.h>
 
 // Typedefs and defines
@@ -46,21 +59,26 @@ typedef std::lock_guard<std::mutex> mutex_guard;
 
 typedef std::vector<int> action_arr_t; 
 typedef std::vector<float> fvec_t;
+typedef std::vector<PokemonData> team_t;
+
+typedef std::function<int(team_t&, team_t&)> action_callback_t;
+typedef std::function<void(fvec_t*, fvec_t*)> observation_callback_t;
 
 #define BURNED 1
 #define PARALYZED 2
 #define ASLEEP 4
 #define FROZEN 8
 
-typedef std::function<int(fvec_t*, action_arr_t*)> action_callback_t;
-typedef std::function<void(fvec_t*, fvec_t*)> observation_callback_t;
-
+#define DEFAULT_NUM_SIMULATIONS 10
 // Source code
 #include "EnvironmentSettings.hpp"
-#include "Data.hpp"
 #include "PSConnection.hpp"
 #include "BasePSUser.hpp"
 #include "PSUser.hpp"
+#include "ai/MoveUtil.hpp"
+#include "ai/Simulator.hpp"
+#include "ai/MoveFunctions.hpp"
+
 
 int main() {
 	globalGameData.initGameData();
@@ -70,7 +88,8 @@ int main() {
 		PSUser& agent = agents[i];
     agent.connect("sim.smogon.com:8000");
 		//agent.connect("localhost:8000");
-		agent.username = "spaderbot" + std::to_string(i);
+		//agent.username = "spaderbot" + std::to_string(i);
+		agent.username = std::string("spaderbot");
 		agent.login(agent.username);
 		agent.send("|/autojoin lobby");
 		agent.accept_format("gen1randombattle");

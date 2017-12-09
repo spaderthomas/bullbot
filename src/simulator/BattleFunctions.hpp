@@ -2,7 +2,7 @@ void Battle::init() {
   this->players[0] = *Player::create("sample-team.txt", 0, &MCTS);
   this->players[1] = *Player::create("sample-team.txt", 1, &randomAttack);
 }
-
+ 
 int calcDamage(Player* attacker, Player* defender) {
   if (attacker->curMove.isSwitch) {
     return 0;

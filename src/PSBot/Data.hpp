@@ -16,6 +16,18 @@ struct {
     typeDataStream.open("data/type-chart.json");
     typeDataStream >> typeData;
   }
+
+  static std::string getTypeNameFromID(int id) {
+    for (json::iterator it = typeData.begin(); it != typeData.end(); ++it) {
+      if (it.value()["index"] == id) {
+        return it.key();
+      }
+    }
+  }
+
+  static int getTypeIDFromName(std::string name) {
+    return typeData[name]["index"];
+  }
 } globalGameData;
 
 struct MoveData {
@@ -39,12 +51,12 @@ struct MoveData {
 
 struct PokemonData {
   int id;
-  int types[2];
+  std::vector<std::string> types;
+  int hp;
+  std::unordered_map<std::string, int> stats;
   std::vector<MoveData> moves;
-  int stats[5] = {};
   std::unordered_map<std::string, int> boosts;
   unsigned int level = 0;
-  int hp;
 
   // one bit for each minor status
   uint8_t burned = 0x0;
@@ -70,15 +82,17 @@ struct PokemonData {
 		};
 
     fox_for(indxType, 2) {
-      data.push_back((float) types[indxType]);
+      data.push_back((float) getTypeIDFromName(types[indxType]));
     }
     fox_for(indxMove, 4) {
       fvec_t moveVec = moves[indxMove].as_vector();
       data.insert(data.begin(), moveVec.begin(), moveVec.end());
     }
-    fox_for(indxStat, 5) {
-      data.push_back((float) stats[indxStat]);
-    }
+    data.push_back((float) stats["atk"]);
+    data.push_back((float) stats["def"]);
+    data.push_back((float) stats["spatk"]);
+    data.push_back((float) stats["spdef"]);
+    data.push_back((float) stats["speed"]);
 
 		return data;
 	}
@@ -94,11 +108,7 @@ struct PokemonData {
   }
 };
 
-struct GameState {
-	std::vector<PokemonData> playerTeam;
-	std::vector<PokemonData> opponentTeam;
-
-	fvec_t as_vector() {
+fvec_t Data::stateAsVector(std::vector<PokemonData>& playerTeam, std::vector<PokemonData>& playerTeam) {
 		fvec_t data;
 		for (auto pokemon : playerTeam) {
 			fvec_t pokemonVec = pokemon.as_vector();
@@ -110,31 +120,24 @@ struct GameState {
 		}
     
 		return data;
-	}
-  
-  PokemonData* getOpponentPokemon(std::string pokemonName) {
-    fox_for(indxPkmn, opponentTeam.size()) {
-      if (opponentTeam[indxPkmn].name == pokemonName) {
-        return &opponentTeam[indxPkmn];
-      }
-    }
+}
 
-    return nullptr;
+PokemonData& Data::getPokemon(std::string pokemonName, std::vector<PokemonData> &team) {
+  fox_for(indxPkmn, team.size()) {
+    if (team[indxPkmn].name == pokemonName) {
+      return team[indxPkmn];
+    }
   }
 
-  PokemonData* getPlayerPokemon(std::string pokemonName) {
-    fox_for(indxPkmn, playerTeam.size()) {
-      if (playerTeam[indxPkmn].name == pokemonName) {
-        return &playerTeam[indxPkmn];
-      }
+  return nullptr;
+}
+
+PokemonData& Data::getActivePokemon(std::vector<PokemonData> &team) {
+  fox_for(indxPkmn, team.size()) {
+    if (team[indxPkmn].active) {
+      return team[indxPkmn];
     }
-
-    return nullptr;
   }
-};
 
-struct PSBattleData {
-  GameState state;
-  std::string playerID;
-  std::ofstream eventLog;
-};
+  return nullptr;
+}
