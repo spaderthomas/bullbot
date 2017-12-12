@@ -43,16 +43,17 @@ using json = nlohmann::json;
 using namespace Poco::Net;
 using namespace Poco::JSON;
 
+#include <dlib/bayes_utils/bayes_utils.h>
+
 // Data structures 
 #include "Data.hpp"
-
-#include <dlib/bayes_utils/bayes_utils.h>
 
 // Typedefs and defines
 typedef unsigned int fuint;
 #define fox_for(iterName, iterCount) for (fuint iterName = 0; iterName < (iterCount); ++iterName)
 #define fox_iter(iterator, iterable) for (auto iterator = iterable.begin(); iterator != iterable.end(); ++iterator) 
 #define fox_iter_json(iter, iterable) for (json::iterator iter = iterable.begin(); iter != iterable.end(); ++iter)
+
 
 typedef std::unique_ptr<std::mutex> mutex_ptr;
 typedef std::lock_guard<std::mutex> mutex_guard;
@@ -61,7 +62,7 @@ typedef std::vector<int> action_arr_t;
 typedef std::vector<float> fvec_t;
 typedef std::vector<PokemonData> team_t;
 
-typedef std::function<int(team_t&, team_t&)> action_callback_t;
+typedef std::function<int(team_t&, team_t&, action_arr_t&)> action_callback_t;
 typedef std::function<void(fvec_t*, fvec_t*)> observation_callback_t;
 
 #define BURNED 1
@@ -69,7 +70,17 @@ typedef std::function<void(fvec_t*, fvec_t*)> observation_callback_t;
 #define ASLEEP 4
 #define FROZEN 8
 
+#define DAMAGE(attack, defense, pow, rand, mult) (((0.84 * (attack) * (pow) / (defense)) + 2) * (mult) * (rand) / 255)
+#define isSwitch(move) move > 3
+#define toSwitch(move)
 #define DEFAULT_NUM_SIMULATIONS 10
+
+
+enum struct USER_ID {
+  PLAYER = 0;
+  OPPONENT = 1; 
+};
+
 // Source code
 #include "EnvironmentSettings.hpp"
 #include "PSConnection.hpp"
@@ -80,6 +91,7 @@ typedef std::function<void(fvec_t*, fvec_t*)> observation_callback_t;
 #include "ai/MoveFunctions.hpp"
 
 
+// Main loop
 int main() {
 	globalGameData.initGameData();
 	std::vector<PSUser> agents;

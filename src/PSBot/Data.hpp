@@ -108,7 +108,7 @@ struct PokemonData {
   }
 };
 
-fvec_t Data::stateAsVector(std::vector<PokemonData>& playerTeam, std::vector<PokemonData>& playerTeam) {
+fvec_t Data::stateAsVector(team_t& playerTeam, team_t& playerTeam) {
 		fvec_t data;
 		for (auto pokemon : playerTeam) {
 			fvec_t pokemonVec = pokemon.as_vector();
@@ -140,4 +140,23 @@ PokemonData& Data::getActivePokemon(std::vector<PokemonData> &team) {
   }
 
   return nullptr;
+}
+
+action_arr_t getAvailableActions(team_t& team) {
+  action_arr_t availableActions;
+  fox_for(indxPkmn, team.size()) {
+    PokemonData& pokemon = team[indxPkmn];
+    if (pokemon.active) {
+      // Push back all moves
+      availableActions.push_back(0);
+      availableActions.push_back(1);
+      availableActions.push_back(2);
+      availableActions.push_back(3);
+    } else {
+      if (!pokemon.fainted) {
+        // Push back all switches. Switching to team[0] would be represented by 4
+        availableActions.push_back(indxPkmn + 4); 
+      }
+    }
+  }
 }

@@ -1,4 +1,3 @@
-
 struct PSUser : BasePSUser {
 	PSUser() {
 		connection.set_on_message(std::bind(&PSUser::handle_message, this, std::placeholders::_1));
@@ -9,7 +8,7 @@ struct PSUser : BasePSUser {
 	std::unordered_set<std::string> accepted_formats;
 
   // Maps room IDs to info for room
-	std::unordered_map<std::string, PSBattleData> battleData;
+	std::unordered_map<std::string, std::vector<team_t>> battleData;
 
   // Basic web interaction functions
 	void connect(std::string uri) {
@@ -155,8 +154,8 @@ struct PSUser : BasePSUser {
             }
           }
 
-          // Construct full player team
-          std::vector<PokemonData> team;
+          // Construct full player team and valid moves
+          team_t team;
           action_arr_t availableActions; // [0:3] are moves, [4:8] are switches
           if (!waitForServer) {
             auto teamData = gameStateAsJSON["side"]["pokemon"];
@@ -221,12 +220,12 @@ struct PSUser : BasePSUser {
               team.push_back(newPokemon);
             }
 
-            battleData[curRoom].state.playerTeam = team;
+            battleData[curRoom][USER_ID::PLAYER] = team;
 
             // Choose move
-            fvec_t dontForgetToMessWithGameState;
-            int actionChoice = action_callback(&dontForgetToMessWithGameState,
-                                               &availableActions);
+            int actionChoice = action_callback(battleData[curRoom][USER_ID::PLAYER],
+                                               battleData[curRoom][USER_ID::OPPONENT],
+                                               availableActions);
             std::string actionString;
             if (actionChoice >= 0) {
               if (actionChoice < 4) { // attack

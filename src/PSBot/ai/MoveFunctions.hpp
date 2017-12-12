@@ -10,14 +10,16 @@ int RandomAICallback(team_t& playerTeam, team_t& opponentTeam) {
 }
 
 int runRandomSimulations(team_t& playerTeam, team_t& opponentTeam) {
-  Simulation sim;
+  SimulationInfo sim;
   sim.playerMoveFunc = &RandomAICallback;
   sim.opponentMoveFunc = &RandomAICallback;
-  sim.
+  sim.playerTeam = playerTeam;
+  sim.opponentTeam = opponentTeam;
+  sim.battleOver = false;
 
   int wins = 0;
   fox_for(indxSim, DEFAULT_NUM_SIMULATIONS) {
-    wins += simulate(player);
+    wins += simulate(sim);
   }
 }
 
