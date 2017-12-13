@@ -1,0 +1,31 @@
+Because our local simulator (which we use to do tree search rollouts) is not an
+entirely accurate simulation of the mechanics, sometimes a move will be marked
+valid when it is not. Trying to send such a move to Pokemon Showdown will result
+in a bot crash. However, we still need both of these pieces of information
+(what's legal in our good-enough simulator, and what's ACTUALLY legal).
+
+Pokemon Showdown (moves sento to server MUST be in this form):
+ATTACK:
+range: [1, 4]
+SWITCH:
+range: [2, 6]
+
+PSUser (our parser and interface to PS) will collect and send move legality like
+this:
+ATTACK:
+range: [0, 3]
+SWITCH:
+range: [4, 8]
+
+Simulator (our backend simulator to rollout lots of quasi realistic games) will
+collect and send move legality like this:;
+ATTACK:
+range: [0, 3]
+SWITCH:
+range: [4, 8]
+
+---
+
+PS PROTOCOL:
+send a challenge:
+|/challenge username, format

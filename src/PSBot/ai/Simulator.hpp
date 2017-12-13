@@ -1,28 +1,40 @@
-
 // Holds game state along with a move function for each player to simulate with
 struct SimulationInfo {
-  action_callback_t playerMoveFunc;
-  action_callback_t oppMoveFunc;
-  team_t playerTeam;
-  team_t opponentTeam;
   bool battleOver;
+  team_t oppTeam;
+  team_t playerTeam;
+  action_callback_t oppMoveFunc;
+  action_callback_t playerMoveFunc;
 };
-  
+
+struct TurnInfo {
+  int userMove;
+  team_t& userTeam;
+  action_arr_t validActions;
+
+  TurnInfo(team_t& team) : userTeam(team) {}
+};
+
 int calcDamage(MoveData& move, PokemonData& attacker, PokemonData& defender) {
-  std::string moveType = globalGameData.moveData["type"];
-  json moveChart = typeData[moveType];
+  int defense;
+  int attack = attacker.stats["atk"];
   int random = (rand() % 38) + 217;
   int pow = globalGameData.moveData[move.name]["power"];
-
-  if (pow == 0) {
-    return 0;
+  std::string moveType = globalGameData.moveData["type"];
+  std::string moveCategory = globalGameData.moveData[move.name]["category"];
+  if (moveCategory == "special") {
+    defense = defender.stats["spdef"];
+  } else {
+    defense = defender.stats["def"];
   }
+
+  // Get implicated Pokemon's stats
   // Get type effectiveness multiplier
   float mult = 1.0;
   for (const auto& type : defender.types) {
-    vector<string> immune = moveChart["immune"];
-    vector<string> notEffective = moveChart["nve"];
-    vector<string> superEffective = moveChart["s-e"];
+    std::vector<std::string> immune = globalGameData.typeData[moveType]["immune"];
+    std::vector<std::string> notEffective = globalGameData.typeData[moveType]["nve"];
+    std::vector<std::string> superEffective = globalGameData.typeData[moveType]["s-e"];
     fox_for(indxImmune, immune.size()) {
       if (immune[indxImmune] == type) {
         mult = 0.f;
@@ -41,7 +53,7 @@ int calcDamage(MoveData& move, PokemonData& attacker, PokemonData& defender) {
   }
 
   // Check if move's type matches any attacker type (STAB)
-  for (auto& type : attacker.types()) {
+  for (auto& type : attacker.types) {
     if (globalGameData.moveData[move.name]["type"] == type) {
       mult *= 1.5;
     }
@@ -52,61 +64,74 @@ int calcDamage(MoveData& move, PokemonData& attacker, PokemonData& defender) {
 }
 
 int simulate(SimulationInfo sim) {
-  int playerMove;
-  int opponentMove;
-  team_t& playerTeam = sim.playerTeam;
-  team_t& opponentTeam = sim.opponentTeam;
-
   while (!sim.battleOver) {
-    playerMove = sim.playerMoveFunc(playerTeam, opponentTeam);
-    opponentMove = sim.oppMoveFunc(opponentTeam, playerTeam);
+    // Generate a struct to hold some info about each player's turn
+    TurnInfo playerTurn(sim.playerTeam);
+    TurnInfo oppTurn(sim.oppTeam);
+
+    // Push available actions for each user on this turn
+    fox_for(id, 2) {
+      TurnInfo& info = id ? oppTurn : playerTurn;
+      action_arr_t availableActions;
+      auto &team = info.userTeam;
+      fox_for(indxPkmn, team.size()) {
+        PokemonData &pokemon = team[indxPkmn];
+        if (pokemon.active) {
+          // Push back all moves
+          availableActions.push_back(0);
+          availableActions.push_back(1);
+          availableActions.push_back(2);
+          availableActions.push_back(3);
+        } else {
+          if (!pokemon.fainted) {
+            // Push back all switches. 
+            availableActions.push_back(indxPkmn + 4);
+          }
+        }
+      }
+      info.validActions = availableActions;
+    }
+
+    // Generate moves for the turn for each player
+    playerTurn.userMove = sim.playerMoveFunc(playerTurn.userTeam, oppTurn.userTeam, playerTurn.validActions);
+    oppTurn.userMove = sim.oppMoveFunc(oppTurn.userTeam, playerTurn.userTeam, oppTurn.validActions);
 
     // Decide which moves goes first. 0 means player, 1 means opponent
     // Order only matters if both players attack
     int first;
-    if (isSwitch(playerMove)) {
-      first = 0;
-    } else if (isSwitch(opponentMove)) {
-      first = 1;
+    if (isSwitch(playerTurn.userMove)) {
+      first = PLAYER;
+    } else if (isSwitch(oppTurn.userMove)) {
+      first = OPPONENT;
     } else {
-      int playerSpeed = Data::getActivePokemon(playerTeam).stats["speed"];
-      int opponentSpeed = Data::getActivePokemon(opponentTeam).stats["speed"]; 
+      int playerSpeed = getActivePokemon(playerTurn.userTeam).stats["speed"];
+      int oppSpeed = getActivePokemon(oppTurn.userTeam).stats["speed"]; 
 
-      if (playerSpeed == opponentSpeed) { // handle speed ties
+      if (playerSpeed == oppSpeed) { // handle speed ties
         std::random_device randSeed;
         std::mt19937 engine{randSeed()};
         std::uniform_int_distribution<int> rng(0, 1);
         first = rng(engine);
       } else {
-        first = playerSpeed < opponentSpeed;
+        first = playerSpeed < oppSpeed;
       }
     }
     int order[2] = {first, !first};
-
+ 
     // Simulate the moves in order
-    fox_for(indxMove, 2) {
-      if (order[indxMove] == 0) {
-        int activeMove = playerMove;
-        int inactiveMove = opponentMove;
-        team_t& activePlayerTeam = playerTeam;
-        team_t& inactivePlayerTeam = opponentTeam;
+    for (auto indxActive : order) {
+      TurnInfo& active = (indxActive == PLAYER) ? playerTurn : oppTurn;
+      TurnInfo& inactive = (indxActive == OPPONENT) ? playerTurn : oppTurn;
+
+      // If move is switch, simply change which Pokemon is active
+      if (isSwitch(active.userMove)) {
+        getActivePokemon(active.userTeam).active = false;
+        active.userTeam[switchToIndx(active.userMove)].active = true;
       } else {
-        int activeMove = opponentMove;
-        int inactiveMove = playerMove;
-        team_t& activePlayerTeam = opponentTeam;
-        team_t& inactivePlayerTeam = playerTeam;
-      }
-      
-      if (isSwitch(activeMove)) {
-        PokemonData& oldActivePokemon = getActivePokemon(activePlayerTeam);
-        PokemonData& newActivePokemon = activePlayerTeam[activeMove - 4];
-        oldActivePokemon.active = false;
-        newActivePokemon.active = true;
-      } else {
-        PokemonData& attackingPokemon = getActivePokemon(activePlayerTeam);
-        PokemonData& defendingPokemon = getActivePokemon(inactivePlayerTeam);
+        PokemonData& attackingPokemon = getActivePokemon(active.userTeam);
+        PokemonData& defendingPokemon = getActivePokemon(inactive.userTeam);
         if (!attackingPokemon.fainted) {
-          defendingPokemon.hp -= calcDamage(attackingPokemon.moves[activeMove], defendingPokemon);
+          defendingPokemon.hp -= calcDamage(attackingPokemon.moves[active.userMove], attackingPokemon, defendingPokemon);
           if (defendingPokemon.hp <= 0) {
             defendingPokemon.fainted = true;
           }
@@ -116,7 +141,7 @@ int simulate(SimulationInfo sim) {
     
   }
 
-  int winner = 69;
+  int winner = PLAYER;
   return winner;
 }
 

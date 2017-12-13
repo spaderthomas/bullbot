@@ -200,5 +200,11 @@
     <ClInclude Include="src\simulator\libs\jsoncons_ext\msgpack\message_pack.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\PSBot\ai\MoveFunctions.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PSBot\ai\Simulator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

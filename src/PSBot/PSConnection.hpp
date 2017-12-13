@@ -1,13 +1,22 @@
-using namespace Poco::Net;
 struct PSConnection {
-	PSConnection() {}
+  // Members
+	SocketAddress uri;
+	unique_ptr<WebSocket> ws;
+	const string conn_string = string("/showdown/websocket");
+	function<void(string)> on_message = 0;
+	thread rcv_thread;
+	string buffer;
+
+  // Constructors
+  PSConnection() {}
   
-	PSConnection(std::string uri, std::function<void(std::string)> on_msg = 0) {
+	PSConnection(string uri, function<void(string)> on_msg = 0) {
 		set_on_message(on_msg);
 		connect(uri);
 	}
 
-	void connect(std::string uri) {
+  // Web interaction functions
+	void connect(string uri) {
 		buffer.resize(4096);
     SocketAddress sockAddr(uri);
 		this->uri = sockAddr;
@@ -20,25 +29,17 @@ struct PSConnection {
 		if (rcv_thread.joinable()) {
 			rcv_thread.detach();
 		}
-		std::thread new_thread(&PSConnection::rcv_message_loop, this);
+		thread new_thread(&PSConnection::rcv_message_loop, this);
 		rcv_thread.swap(new_thread);
 	}
 
-	void set_on_message(std::function<void(std::string)> func) {
+	void set_on_message(function<void(string)> func) {
 		on_message = func;
 	}
 
-	void send_msg(std::string &message) {
+	void send_msg(string &message) {
 		ws->sendFrame(message.data(), (int)message.size());
 	}
-
-private:
-	SocketAddress uri;
-	std::unique_ptr<WebSocket> ws;
-	const std::string conn_string = std::string("/showdown/websocket");
-	std::function<void(std::string)> on_message = 0;
-	std::thread rcv_thread;
-	std::string buffer;
 
 	void rcv_message_loop() {
 		int flags;
@@ -47,15 +48,15 @@ private:
 		while (ws) {
 				try {
 					msg_size = ws->receiveFrame((void*)buffer.data(), (int)buffer.size(), flags);
-					std::string msg = buffer.substr(0, msg_size);
+					string msg = buffer.substr(0, msg_size);
 					if (on_message) {
-						//temporary mutex lock so that std::out data is readable
-						static std::mutex message_mtx;
+						//temporary mutex lock so that out data is readable
+						static mutex message_mtx;
 						mutex_guard guard(message_mtx);
 						on_message(msg);
 					}
 				} catch (Poco::Net::NetException &e) {
-					std::cout << "WS ERROR: "<< e.what() << std::endl;
+					cout << "WS ERROR: "<< e.what() << endl;
 					// throw e;
 				}
 		}

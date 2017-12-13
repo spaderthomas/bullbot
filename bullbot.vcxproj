@@ -129,6 +129,8 @@ copy data\*.json bin\
     <ClInclude Include="src\nemesis\nemesis\environment\Environment.hpp" />
     <ClInclude Include="src\nemesis\nemesis\external\json\json.hpp" />
     <ClInclude Include="src\nemesis\nemesis\NemesisMain.hpp" />
+    <ClInclude Include="src\PSBot\ai\MoveFunctions.hpp" />
+    <ClInclude Include="src\PSBot\ai\Simulator.hpp" />
     <ClInclude Include="src\psbot\BasePSUser.hpp" />
     <ClInclude Include="src\psbot\Data.hpp" />
     <ClInclude Include="src\psbot\EnvironmentSettings.hpp" />

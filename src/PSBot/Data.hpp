@@ -1,3 +1,4 @@
+// Holds global data which define Pokemon, moves, and the type chart
 struct {
   json moveData;
   json pokemonData;
@@ -16,26 +17,30 @@ struct {
     typeDataStream.open("data/type-chart.json");
     typeDataStream >> typeData;
   }
+} globalGameData;
 
-  static std::string getTypeNameFromID(int id) {
-    for (json::iterator it = typeData.begin(); it != typeData.end(); ++it) {
-      if (it.value()["index"] == id) {
-        return it.key();
-      }
+std::string getTypeNameFromID(int id) {
+  auto& typeData = globalGameData.typeData;
+  for (json::iterator it = typeData.begin(); it != typeData.end(); ++it) {
+    if (it.value()["index"] == id) {
+      return it.key();
     }
   }
 
-  static int getTypeIDFromName(std::string name) {
-    return typeData[name]["index"];
-  }
-} globalGameData;
+  return ""; 
+}
 
+int getTypeIDFromName(std::string name) {
+  return globalGameData.typeData[name]["index"];
+}
+
+// Data to represent instantiations of Pokemon in game
 struct MoveData {
   int id;
   short pp = 16;
 	std::string name;
 
-	fvec_t as_vector() {
+	fvec_t asVector() {
 		fvec_t data = {
       (float)id,
       (float)pp
@@ -48,6 +53,7 @@ struct MoveData {
     name = moveName;
   }
 };
+
 
 struct PokemonData {
   int id;
@@ -70,7 +76,7 @@ struct PokemonData {
 
   std::string name;
 
-	fvec_t as_vector() {
+	fvec_t asVector() {
 		fvec_t data = {
       (float) id,
 			(float) level,
@@ -85,7 +91,7 @@ struct PokemonData {
       data.push_back((float) getTypeIDFromName(types[indxType]));
     }
     fox_for(indxMove, 4) {
-      fvec_t moveVec = moves[indxMove].as_vector();
+      fvec_t moveVec = moves[indxMove].asVector();
       data.insert(data.begin(), moveVec.begin(), moveVec.end());
     }
     data.push_back((float) stats["atk"]);
@@ -107,56 +113,51 @@ struct PokemonData {
     return -1;
   }
 };
+typedef std::vector<PokemonData> team_t;
 
-fvec_t Data::stateAsVector(team_t& playerTeam, team_t& playerTeam) {
+void initPokemonFromName(PokemonData &newPokemon, std::string name) {
+  newPokemon.name = name;
+  newPokemon.id = globalGameData.pokemonData[name]["index"];
+
+  // Types
+  std::vector<std::string> types = globalGameData.pokemonData[name]["type"];
+  newPokemon.types = types;
+}
+
+fvec_t stateAsVector(team_t& playerTeam, team_t& opponentTeam) {
 		fvec_t data;
 		for (auto pokemon : playerTeam) {
-			fvec_t pokemonVec = pokemon.as_vector();
+			fvec_t pokemonVec = pokemon.asVector();
 			data.insert(data.end(), pokemonVec.begin(), pokemonVec.end());
 		}
     for (auto pokemon : opponentTeam) {
-			fvec_t pokemonVec = pokemon.as_vector();
+			fvec_t pokemonVec = pokemon.asVector();
 			data.insert(data.end(), pokemonVec.begin(), pokemonVec.end());
 		}
     
 		return data;
 }
-
-PokemonData& Data::getPokemon(std::string pokemonName, std::vector<PokemonData> &team) {
+ 
+PokemonData& getPokemon(std::string pokemonName, team_t& team) {
   fox_for(indxPkmn, team.size()) {
     if (team[indxPkmn].name == pokemonName) {
       return team[indxPkmn];
     }
   }
 
-  return nullptr;
+  PokemonData dummy;
+  dummy.name = "dummy";
+  return dummy;
 }
 
-PokemonData& Data::getActivePokemon(std::vector<PokemonData> &team) {
+PokemonData& getActivePokemon(team_t& team) {
   fox_for(indxPkmn, team.size()) {
     if (team[indxPkmn].active) {
       return team[indxPkmn];
     }
   }
-
-  return nullptr;
-}
-
-action_arr_t getAvailableActions(team_t& team) {
-  action_arr_t availableActions;
-  fox_for(indxPkmn, team.size()) {
-    PokemonData& pokemon = team[indxPkmn];
-    if (pokemon.active) {
-      // Push back all moves
-      availableActions.push_back(0);
-      availableActions.push_back(1);
-      availableActions.push_back(2);
-      availableActions.push_back(3);
-    } else {
-      if (!pokemon.fainted) {
-        // Push back all switches. Switching to team[0] would be represented by 4
-        availableActions.push_back(indxPkmn + 4); 
-      }
-    }
-  }
+  
+  PokemonData dummy;
+  dummy.name = "dummy";
+  return dummy;
 }
