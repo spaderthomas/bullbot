@@ -24,7 +24,6 @@ struct PSConnection {
 		HTTPRequest request(HTTPRequest::HTTP_GET, conn_string, HTTPRequest::HTTP_1_1);
 		HTTPResponse response;
 		ws.reset(new WebSocket(cs, request, response));
-
 		ws->setReceiveTimeout(0);
 		if (rcv_thread.joinable()) {
 			rcv_thread.detach();
@@ -56,8 +55,7 @@ struct PSConnection {
 						on_message(msg);
 					}
 				} catch (Poco::Net::NetException &e) {
-					cout << "WS ERROR: "<< e.what() << endl;
-					// throw e;
+					cout << "POCO socket error:\n" << e.what() << endl;
 				}
 		}
 	}

@@ -138,26 +138,22 @@ fvec_t stateAsVector(team_t& playerTeam, team_t& opponentTeam) {
 		return data;
 }
  
-PokemonData& getPokemon(std::string pokemonName, team_t& team) {
+PokemonData* getPokemon(std::string pokemonName, team_t& team) {
   fox_for(indxPkmn, team.size()) {
     if (team[indxPkmn].name == pokemonName) {
-      return team[indxPkmn];
+      return &team[indxPkmn];
     }
   }
 
-  PokemonData dummy;
-  dummy.name = "dummy";
-  return dummy;
+  return nullptr;
 }
 
-PokemonData& getActivePokemon(team_t& team) {
+PokemonData* getActivePokemon(team_t& team) {
   fox_for(indxPkmn, team.size()) {
     if (team[indxPkmn].active) {
-      return team[indxPkmn];
+      return &team[indxPkmn];
     }
   }
   
-  PokemonData dummy;
-  dummy.name = "dummy";
-  return dummy;
+  return nullptr;
 }

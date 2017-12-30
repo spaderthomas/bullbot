@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 *.org
 src/PSBot/ai/temp
+src/PSBot/.dir-locals.el

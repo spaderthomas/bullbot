@@ -46,7 +46,7 @@ struct BasePSUser {
 	};
 
 	void send(string message) {
-		mutex_guard lock(*data_mutex_ptr.get());
+		//mutex_guard lock(*data_mutex_ptr.get());
 		connection.send_msg(message);
 	}
 

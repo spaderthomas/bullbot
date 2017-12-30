@@ -104,8 +104,8 @@ int simulate(SimulationInfo sim) {
     } else if (isSwitch(oppTurn.userMove)) {
       first = OPPONENT;
     } else {
-      int playerSpeed = getActivePokemon(playerTurn.userTeam).stats["speed"];
-      int oppSpeed = getActivePokemon(oppTurn.userTeam).stats["speed"]; 
+      int playerSpeed = getActivePokemon(playerTurn.userTeam)->stats["speed"];
+      int oppSpeed = getActivePokemon(oppTurn.userTeam)->stats["speed"]; 
 
       if (playerSpeed == oppSpeed) { // handle speed ties
         std::random_device randSeed;
@@ -125,15 +125,15 @@ int simulate(SimulationInfo sim) {
 
       // If move is switch, simply change which Pokemon is active
       if (isSwitch(active.userMove)) {
-        getActivePokemon(active.userTeam).active = false;
+        getActivePokemon(active.userTeam)->active = false;
         active.userTeam[switchToIndx(active.userMove)].active = true;
       } else {
-        PokemonData& attackingPokemon = getActivePokemon(active.userTeam);
-        PokemonData& defendingPokemon = getActivePokemon(inactive.userTeam);
-        if (!attackingPokemon.fainted) {
-          defendingPokemon.hp -= calcDamage(attackingPokemon.moves[active.userMove], attackingPokemon, defendingPokemon);
-          if (defendingPokemon.hp <= 0) {
-            defendingPokemon.fainted = true;
+        PokemonData* attackingPokemon = getActivePokemon(active.userTeam);
+        PokemonData* defendingPokemon = getActivePokemon(inactive.userTeam);
+        if (!attackingPokemon->fainted) {
+          defendingPokemon->hp -= calcDamage(attackingPokemon->moves[active.userMove], *attackingPokemon, *defendingPokemon);
+          if (defendingPokemon->hp <= 0) {
+            defendingPokemon->fainted = true;
           }
         }
       }

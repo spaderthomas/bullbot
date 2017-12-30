@@ -2,7 +2,7 @@ struct PSUser : BasePSUser {
   // Member variables
   action_callback_t action_callback;
   observation_callback_t observation_callback;
-	unordered_set<string> acceptedFormats;
+  unordered_set<string> acceptedFormats;
 
   // Maps room IDs to info for room
   struct BattleData {
@@ -58,15 +58,16 @@ struct PSUser : BasePSUser {
 		send("|/challenge " + username + "," + battle_type);
 	}
 
-	void accept_challenge(string username) {
-		send("|/accept " + username);
+	void accept_challenge(string format, string username) {
+    if (format == "gen1ou") {
+      // placeholder team
+      send("|/utm |alakazam|||psychic,seismictoss,thunderwave,recover|||||||]|lapras|||blizzard,thunderbolt,hyperbeam,sing|||||||]|exeggutor|||sleeppowder,psychic,stunspore,explosion|||||||]|chansey|||seismictoss,reflect,thunderwave,softboiled|||||||]|snorlax|||bodyslam,earthquake,hyperbeam,selfdestruct|||||||]|tauros|||bodyslam,earthquake,hyperbeam,blizzard|||||||");
+      send("|/accept " + username);
+    } else if (format == "gen1randombattle") {
+      send("|/accept " + username);
+    }
 	}
  
-	void accept_format(string format) {
-		lock_guard<mutex> lock(*data_mutex_ptr.get());
-		acceptedFormats.insert(format);
-  }
-
 	// Parse weird condition string into HP and various effects
   int hpFromPSString(string PSString) {
     const char *condition = PSString.c_str();
@@ -86,7 +87,7 @@ struct PSUser : BasePSUser {
   }
 
   // Main PS! interface function
-	void handle_message(string rawMessage) {
+  void handle_message(string rawMessage) {
     mutex_guard lock(*data_mutex_ptr.get());
     if (rawMessage.length() == 0) return;
 
@@ -193,9 +194,14 @@ struct PSUser : BasePSUser {
               newPokemon.stats.insert({string("spatk"), stats["spa"]});
               newPokemon.stats.insert({string("spdef"), stats["spd"]});
               newPokemon.stats.insert({string("speed"), stats["spe"]});
+
+              // Top one is for random battles. 'details' isn't a part of the message in regular battles, because all are level 100
+              #if 0
               string levelString = newPokemonData["details"];
               newPokemon.level = stoi(levelString.substr(levelString.find("L") + 1));
-
+              #endif
+              newPokemon.level = 100;
+              
               // Status effects, current HP
               string conditionString = newPokemonData["condition"];
               istringstream conditionStream(conditionString);
@@ -267,7 +273,7 @@ struct PSUser : BasePSUser {
             string battleType = challIter.value();
             if (acceptedFormats.count(battleType)) {
               printf("> accepted a challenge of format: %s from user %s\n", battleType.c_str(), challengingUser.c_str());
-              connection.send_msg("|/accept " + challengingUser);
+              accept_challenge(battleType, challengingUser);
             }
           }
         } else if (messageType.substr(0, 1) == ">") { // PS sending room name
@@ -280,15 +286,10 @@ struct PSUser : BasePSUser {
           // example ["switch", "p1a: Muk", ", L74", "82/100 brn"]
           string curPlayer = parsedMessage[1].substr(0, 2);
           string switchTo = parsedMessage[1].substr(5);
-          // add some comments
-
-
-
-
           
           if (!(curPlayer == battleData[curRoom].playerID)) { // check who switched
             bool switchPokemonExists = false;
-            if (getPokemon(switchTo, battleData[curRoom].oppTeam).name != "dummy") {
+            if (getPokemon(switchTo, battleData[curRoom].oppTeam)) {
               switchPokemonExists = true;
             }
 
@@ -296,65 +297,75 @@ struct PSUser : BasePSUser {
               PokemonData newPokemon;
               initPokemonFromName(newPokemon, switchTo);
               newPokemon.hp = hpFromPSString(parsedMessage[3]); // Only a % for opponent
+              newPokemon.level = 100;
+              #if 0
               int levelBeginPos = parsedMessage[2].find("L");
               int level = stoi(parsedMessage[2].substr(levelBeginPos + 1, 2));
+              #endif
               newPokemon.active = true;
               battleData[curRoom].oppTeam.push_back(newPokemon);
             }
           }
         } else if (messageType == "move") {
-          string curPlayer = parsedMessage[1].substr(0, 2);
-          string attackingPokemon = parsedMessage[1].substr(5);
+          string curPlayerID = parsedMessage[1].substr(0, 2);
+          string attackingPokemonName = parsedMessage[1].substr(5);
           string moveName = parsedMessage[2];
 
           // move name should be lowercase no spaces to match json
           string::iterator endPos = remove(moveName.begin(), moveName.end(), ' ');
           moveName.erase(endPos, moveName.end());
-          transform(moveName.begin(), moveName.end(), // input beginning and end
-                         moveName.begin(), // output beginning
-                         ::tolower); // function
+          transform(moveName.begin(), moveName.end(), moveName.begin(), ::tolower);
 
-          // Check if opponent's pokemon has used this move before. If not, add it
-          if (!(curPlayer == battleData[curRoom].playerID)) {
-            PokemonData& activePkmn = getPokemon(attackingPokemon, battleData[curRoom].oppTeam);
-            if (activePkmn.hasMove(moveName) == -1) {
-              MoveData newMove;
-              newMove.initFromName(moveName);
-              activePkmn.moves.push_back(newMove);
+          // Append new move if a) Opponent is using it and b) We haven't seen it yet
+          if (!(curPlayerID == battleData[curRoom].playerID)) {
+            PokemonData* activePkmn = getPokemon(attackingPokemonName, battleData[curRoom].oppTeam);
+            MoveData newMove;
+            newMove.initFromName(moveName);
+
+            if (activePkmn) {
+              if (activePkmn->hasMove(moveName) == -1) {
+                activePkmn->moves.push_back(newMove);
+              }
+            } else {
+              PokemonData newPkmn;
+              initPokemonFromName(newPkmn, attackingPokemonName);
+              newPkmn.moves.push_back(newMove);
+              battleData[curRoom].oppTeam.push_back(newPkmn);
             }
+              
           }
         } else if (messageType == "faint") {
-          string curPlayer = parsedMessage[1].substr(0, 2);          
-          string attackingPokemon = parsedMessage[1].substr(5);
-          if (!(curPlayer == battleData[curRoom].playerID)) {
-            PokemonData& faintedPokemon = getPokemon(attackingPokemon, battleData[curRoom].oppTeam);
-            faintedPokemon.fainted = true;
+          string curPlayerID = parsedMessage[1].substr(0, 2);          
+          string attackingPokemonName = parsedMessage[1].substr(5);
+          if (!(curPlayerID == battleData[curRoom].playerID)) {
+            PokemonData* faintedPokemon = getPokemon(attackingPokemonName, battleData[curRoom].oppTeam);
+            faintedPokemon->fainted = true;
           }
         } else if ((messageType == "-damage") || (messageType == "-heal")) {
           string curPlayer = parsedMessage[1].substr(0,2);
           string affectedPokemonName = parsedMessage[1].substr(5);
           if (!(curPlayer == battleData[curRoom].playerID)) {
             int newHP = hpFromPSString(parsedMessage[2]);
-            PokemonData& affectedPokemon = getPokemon(affectedPokemonName, battleData[curRoom].oppTeam);
-            affectedPokemon.hp = newHP; 
+            PokemonData* affectedPokemon = getPokemon(affectedPokemonName, battleData[curRoom].oppTeam);
+            affectedPokemon->hp = newHP; 
           }
         } else if ((messageType == "-status") || (messageType == "-curestatus")) {
           string curPlayer = parsedMessage[1].substr(0,2);
           string affectedPokemonName = parsedMessage[1].substr(5);
           if (!(curPlayer == battleData[curRoom].playerID)) {
             string status = parsedMessage[2];
-            PokemonData& affectedPokemon = getPokemon(affectedPokemonName, battleData[curRoom].oppTeam);
+            PokemonData* affectedPokemon = getPokemon(affectedPokemonName, battleData[curRoom].oppTeam);
             if (status == "frz") {
-              affectedPokemon.frozen = 
+              affectedPokemon->frozen = 
                 (messageType == "-status") ? FROZEN : 0; 
             } else if (status == "brn") {
-              affectedPokemon.burned = 
+              affectedPokemon->burned = 
                 (messageType == "-status") ? BURNED : 0;
             } else if (status == "par") {
-              affectedPokemon.paralyzed = 
+              affectedPokemon->paralyzed = 
                 (messageType == "-status") ? PARALYZED : 0;
             } else if (status == "slp") {
-              affectedPokemon.asleep = 
+              affectedPokemon->asleep = 
                 (messageType == "-status") ? ASLEEP : 0;
             }
          }
@@ -364,8 +375,8 @@ struct PSUser : BasePSUser {
           string affectedStat = parsedMessage[2];
           int boost = stoi(parsedMessage[3]);
           if (!(curPlayer == battleData[curRoom].playerID)) {
-            PokemonData& affectedPokemon = getPokemon(affectedPokemonName, battleData[curRoom].oppTeam);
-            affectedPokemon.boosts[affectedStat] = boost;
+            PokemonData* affectedPokemon = getPokemon(affectedPokemonName, battleData[curRoom].oppTeam);
+            affectedPokemon->boosts[affectedStat] = boost;
           }
         } else if (messageType == "win") {
           string winnerUsername = parsedMessage[1];

@@ -1,3 +1,9 @@
+// TODO
+  // find out why the network stuff is so fucking flaky
+  // fix that first sent out pokemon is unregistered
+  // correct level parsing for rand and nonrand simultaneously (switch and request)
+
+
 // STL
 #include <string>
 #include <vector>
@@ -31,6 +37,8 @@ using json = nlohmann::json;
 #include <Poco/Net/NetException.h>
 #include <Poco/Net/NetException.h>
 #include <Poco/JSON/Parser.h>
+#include <Poco/Timespan.h>
+using namespace Poco;
 using namespace Poco::Net;
 using namespace Poco::JSON;
 
@@ -83,13 +91,15 @@ enum USER_ID {
 
 // Main loop
 int main() {
-	globalGameData.initGameData();
+ 	globalGameData.initGameData();
   PSUser agent;
   agent.acceptedFormats.insert("gen1randombattle");
+  agent.acceptedFormats.insert("gen1ou");
 	agent.username = string("spaderbot");
-  agent.connect("sim.smogon.com:8000");
+  //agent.connect("sim.smogon.com:8000");
+	agent.connect("localhost:8000");
   agent.login(agent.username);
-  agent.send("|/autojoin lobby");
+  agent.send ("|/autojoin lobby");
 
 	while (true) {
 		cin.get();
