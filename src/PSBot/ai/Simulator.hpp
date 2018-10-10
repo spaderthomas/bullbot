@@ -59,7 +59,7 @@ int calcDamage(MoveData& move, PokemonData& attacker, PokemonData& defender) {
     }
   }
 
-  // Get final damage from damage formula (macro defined in Main.cpp)
+  // Get final damage from damage formula (macro defined in Main.cpp)|/utm |nidoranm|||doublekick|||||||
   return floor(DAMAGE(attack, defense, pow, random, mult));
 }
 

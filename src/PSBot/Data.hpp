@@ -57,9 +57,11 @@ struct MoveData {
 
 struct PokemonData {
   int id;
-  std::vector<std::string> types;
   int hp;
+
+  // atk, def, spatk, spdef, speed
   std::unordered_map<std::string, int> stats;
+  std::vector<std::string> types;
   std::vector<MoveData> moves;
   std::unordered_map<std::string, int> boosts;
   unsigned int level = 0;
@@ -77,9 +79,9 @@ struct PokemonData {
   std::string name;
 
 	fvec_t asVector() {
+    // Add all our basic float values
 		fvec_t data = {
       (float) id,
-			(float) level,
       (float) hp,
       (float) (burned | paralyzed | asleep | frozen),
       (float) fainted,
@@ -87,13 +89,39 @@ struct PokemonData {
       (float) trapped
 		};
 
-    fox_for(indxType, 2) {
+    // Add all types, with -1 for single-typed
+    int typesRemaining = 2;
+    fox_for(indxType, types.size()) {
       data.push_back((float) getTypeIDFromName(types[indxType]));
+      typesRemaining--;
     }
-    fox_for(indxMove, 4) {
+    fox_for(indxType, typesRemaining) {
+      data.push_back((float) -1);
+    }
+    
+    // Add all moves, with -50 for unknown
+    int movesRemaining = 4;
+    fox_for(indxMove, moves.size()) {
       fvec_t moveVec = moves[indxMove].asVector();
       data.insert(data.begin(), moveVec.begin(), moveVec.end());
+      movesRemaining--;
     }
+    fox_for(indxMove, movesRemaining) {
+      data.push_back((float) -50);
+    }
+
+    // Add all boosts
+    vector<string> statsNames = {"atk", "def", "spa", "spd", "spe"};
+    for (auto& stat : statsNames) {
+      auto it = boosts.find(stat);
+      if (it != boosts.end()) {
+        data.push_back(it->second);
+      } else {
+        data.push_back(0);
+      }
+    }
+
+    // Add all stats
     data.push_back((float) stats["atk"]);
     data.push_back((float) stats["def"]);
     data.push_back((float) stats["spatk"]);
@@ -116,20 +144,38 @@ struct PokemonData {
 typedef std::vector<PokemonData> team_t;
 
 void initPokemonFromName(PokemonData &newPokemon, std::string name) {
+  // ID
   newPokemon.name = name;
   newPokemon.id = globalGameData.pokemonData[name]["index"];
 
   // Types
   std::vector<std::string> types = globalGameData.pokemonData[name]["type"];
   newPokemon.types = types;
+
+  // Stats
+  newPokemon.hp = globalGameData.pokemonData[name]["stats"]["hp"];
+  std::unordered_map<std::string, int> stats;
+  stats["atk"] = globalGameData.pokemonData[name]["stats"]["attack"];
+  stats["def"] = globalGameData.pokemonData[name]["stats"]["defense"];
+  stats["spatk"] = globalGameData.pokemonData[name]["stats"]["special"];
+  stats["spdef"] = globalGameData.pokemonData[name]["stats"]["special"];
+  stats["speed"] = globalGameData.pokemonData[name]["stats"]["speed"];
+  newPokemon.stats = stats;
+
+  // Level
+  newPokemon.level = 100; 
 }
 
 fvec_t stateAsVector(team_t& playerTeam, team_t& opponentTeam) {
 		fvec_t data;
+
+    // Append player's Pokemon (which are always all known)
 		for (auto pokemon : playerTeam) {
 			fvec_t pokemonVec = pokemon.asVector();
 			data.insert(data.end(), pokemonVec.begin(), pokemonVec.end());
 		}
+
+    // Append opponent's Pokemon, filling in -1s for unknown information
     for (auto pokemon : opponentTeam) {
 			fvec_t pokemonVec = pokemon.asVector();
 			data.insert(data.end(), pokemonVec.begin(), pokemonVec.end());

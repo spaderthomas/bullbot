@@ -116,6 +116,7 @@ copy data\*.json bin\
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="libs\dlib\dlib\all\source.cpp" />
     <ClCompile Include="src\psbot\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -127,10 +128,10 @@ copy data\*.json bin\
     <ClInclude Include="src\nemesis\nemesis\agent\Random.hpp" />
     <ClInclude Include="src\nemesis\nemesis\agent\TDLearner.hpp" />
     <ClInclude Include="src\nemesis\nemesis\environment\Environment.hpp" />
-    <ClInclude Include="src\nemesis\nemesis\external\json\json.hpp" />
     <ClInclude Include="src\nemesis\nemesis\NemesisMain.hpp" />
     <ClInclude Include="src\PSBot\ai\MoveFunctions.hpp" />
     <ClInclude Include="src\PSBot\ai\Simulator.hpp" />
+    <ClInclude Include="src\PSBot\ai\TeamPrediction.hpp" />
     <ClInclude Include="src\psbot\BasePSUser.hpp" />
     <ClInclude Include="src\psbot\Data.hpp" />
     <ClInclude Include="src\psbot\EnvironmentSettings.hpp" />
@@ -138,49 +139,14 @@ copy data\*.json bin\
     <ClInclude Include="src\psbot\PSUser.hpp" />
     <ClInclude Include="src\simulator\Battle.hpp" />
     <ClInclude Include="src\simulator\BattleFunctions.hpp" />
-    <ClInclude Include="src\simulator\libs\foxlib\ADT.hpp" />
-    <ClInclude Include="src\simulator\libs\foxlib\Allocator.hpp" />
-    <ClInclude Include="src\simulator\libs\foxlib\Array.hpp" />
-    <ClInclude Include="src\simulator\libs\foxlib\FoxLib.hpp" />
-    <ClInclude Include="src\simulator\libs\foxlib\Log.hpp" />
-    <ClInclude Include="src\simulator\libs\foxlib\Macros.hpp" />
-    <ClInclude Include="src\simulator\libs\foxlib\String.hpp" />
-    <ClInclude Include="src\simulator\libs\foxlib\Types.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\json.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\jsoncons.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\jsoncons_config.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\jsoncons_util.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\json_container.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\json_decoder.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\json_deserializer.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\json_error_category.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\json_filter.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\json_input_handler.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\json_output_handler.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\json_parser.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\json_reader.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\json_serializer.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\json_traits.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\json_type_traits.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\osequencestream.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\parse_error_handler.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\serialization_options.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons\unicode_traits.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons_ext\csv\csv_error_category.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons_ext\csv\csv_parameters.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons_ext\csv\csv_parser.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons_ext\csv\csv_reader.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons_ext\csv\csv_serializer.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons_ext\jsonpath\jsonpath_error_category.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons_ext\jsonpath\jsonpath_filter.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons_ext\jsonpath\json_query.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons_ext\msgpack\binary_util.hpp" />
-    <ClInclude Include="src\simulator\libs\jsoncons_ext\msgpack\message_pack.hpp" />
     <ClInclude Include="src\simulator\MoveFunctions.hpp" />
     <ClInclude Include="src\simulator\Player.hpp" />
     <ClInclude Include="src\simulator\PlayerFunctions.hpp" />
     <ClInclude Include="src\simulator\Pokemon.hpp" />
     <ClInclude Include="src\simulator\SimulatorMain.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\xmemory0" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

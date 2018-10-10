@@ -15,10 +15,10 @@ struct PSConnection {
 		connect(uri);
 	}
 
-  // Web interaction functions
+    // Web interaction functions
 	void connect(string uri) {
 		buffer.resize(4096);
-    SocketAddress sockAddr(uri);
+	    SocketAddress sockAddr(uri);
 		this->uri = sockAddr;
 		HTTPClientSession cs(this->uri);
 		HTTPRequest request(HTTPRequest::HTTP_GET, conn_string, HTTPRequest::HTTP_1_1);
@@ -45,18 +45,18 @@ struct PSConnection {
 		size_t msg_size = 0;
 		while (!ws) {} // wait until websocket appears
 		while (ws) {
-				try {
-					msg_size = ws->receiveFrame((void*)buffer.data(), (int)buffer.size(), flags);
-					string msg = buffer.substr(0, msg_size);
-					if (on_message) {
-						//temporary mutex lock so that out data is readable
-						static mutex message_mtx;
-						mutex_guard guard(message_mtx);
-						on_message(msg);
-					}
-				} catch (Poco::Net::NetException &e) {
-					cout << "POCO socket error:\n" << e.what() << endl;
+			try {
+				msg_size = ws->receiveFrame((void*)buffer.data(), (int)buffer.size(), flags);
+				string msg = buffer.substr(0, msg_size);
+				if (on_message) {
+					//temporary mutex lock so that out data is readable
+					static mutex message_mtx;
+					mutex_guard guard(message_mtx);
+					on_message(msg);
 				}
+			} catch (Poco::Net::NetException &e) {
+				cout << "POCO socket error:\n" << e.what() << endl;
+			}
 		}
 	}
 };

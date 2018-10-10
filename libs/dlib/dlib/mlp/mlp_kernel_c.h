@@ -9,7 +9,7 @@
 
 namespace dlib
 {
-
+    
 
     template <
         typename mlp_base // is an implementation of mlp_kernel_abstract.h
