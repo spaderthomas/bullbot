@@ -6,63 +6,91 @@ def last_insert_id():
     # of the tuple is the ID we want
     return str(c.execute('''select last_insert_rowid()''').fetchone()[0])
 
+def already_have_battle(battle_id):
+    sql = '''select id 
+             from battle_ids b 
+             where 
+               b.id = %s'''%str(battle_id)
+    res = c.execute(sql).fetchone()
+    return res != None
+    
 # Constructs a query to add new label. 
-def insert_label_sql(pokemon):
+def _insert_label_sql(pokemon, battle_id):
     sql = 'insert into labels '
 
     # Each column names a Pokemon
     columns = '('
     for name in pokemon:
         columns += name + ', '
-    columns += 'sample)'
+    columns += 'battle_id)'
     sql += columns + ' values '
 
     # And we only have to fill in the values for present Pokemon
     values = '('
     for name in pokemon:
         values += '1, '
-    values += last_insert_id() + ')'
+    values += str(battle_id)
+    values += ')'
     sql += values
     
-    return sql;
+    return sql
 
 # Constructs query to add new sample
-def insert_data_sql(pokemon):
-    sql = 'insert into data '
+def _insert_sample_sql(pokemon, rowid):
+    sql = 'insert into samples '
 
     # Each column names a Pokemon
     columns = '('
     for name in pokemon:
         columns += name + ', '
-    columns = columns[:-2] # Trailing comma and space
-    columns += ')'
+    columns += 'label)'
     sql += columns + ' values '
 
-    # And we only have to fill in the values for present Pokemon
+    # Fill in a 1 for present Pokemon
     values = '('
     for name in pokemon:
         values += '1, '
-    values = values[:-2] # Trailing comma and space
-    values += ')'
+
+    # Fill in the foreign key to the label
+    values += rowid + ')'
     sql += values
 
-    return sql;
+    return sql
+
+def _insert_battle_sql(battle_id):
+    return '''insert into battle_ids (id) select %s
+                where not exists (select id from battle_ids where id=%s)
+              '''%(str(battle_id), str(battle_id))
 
 
 
-# Both sample and label should be a list of Pokemon names
-def insert(sample, label):
-    sql = insert_data_sql(sample)
+def insert(samples, label, battle_id):
+    # Make an entry in the battle table
+    sql = _insert_battle_sql(battle_id)
     c.execute(sql)
     c.commit()
 
-    sql = insert_label_sql(label)
-    print(sql)
+    # Make an entry in the label table, linking to the battle
+    sql = _insert_label_sql(label, battle_id)
     c.execute(sql)
     c.commit()
+    rowid = last_insert_id()
 
+    # Construct a bunch of samples, linking to the label
+    for sample in samples:
+        sql = _insert_sample_sql(sample, rowid)
+        print(sql)
+        c.execute(sql)
+        c.commit()
+
+        
 if __name__ == "__main__":
-    insert(["alakazam", "chansey"], ["zapdos"])
+    samples = [["alakazam", "chansey"], ["alakazam", "chansey"], ["alakazam", "chansey"]]
+    label = ["alakazam", "chansey", "golem"]
+    battle_id = 1234
+    
+    insert(samples, label, battle_id)
+
     c.close()
 
 
